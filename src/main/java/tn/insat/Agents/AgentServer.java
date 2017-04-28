@@ -31,7 +31,8 @@ public class AgentServer extends Agent implements Vocabulary {
 
    private ICoursRepository repo = new CoursRepository();
    private ICoursEtudiantRepository repo_coursetudiant = new CoursEtudiantRepository();
-   IEtudiantRepository repo_etudiant = new EtudiantRepository();
+   private IEtudiantRepository repo_etudiant = new EtudiantRepository();
+   private IEnseignantRepository repo_enseignant = new EnseignantRepository();
 
     
    private int idCnt = 0;
@@ -125,6 +126,10 @@ public class AgentServer extends Agent implements Vocabulary {
                      addBehaviour(new HandleInformationCours(myAgent, msg));
                   else if (action instanceof ListCoursEnseignant)
                      addBehaviour(new HandleListCoursEnseignant(myAgent, msg));
+                  else if (action instanceof ListEtudiantCours)
+                     addBehaviour(new HandleListEtudiantsCours(myAgent, msg));
+                  else if (action instanceof ListEtudiantEnseignant)
+                     addBehaviour(new HandleListEtudiantsEnseignant(myAgent, msg));
                   else
                      replyNotUnderstood(msg);
                   break;
@@ -283,6 +288,70 @@ public class AgentServer extends Agent implements Vocabulary {
          catch(Exception ex) { ex.printStackTrace(); }
       }
    }
+
+   class HandleListEtudiantsCours extends OneShotBehaviour {
+// ----------------------------------------------------  Handler for a CreateAccount request
+
+      private ACLMessage request;
+
+      HandleListEtudiantsCours(Agent a, ACLMessage request) {
+
+         super(a);
+         this.request = request;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(request);
+            ListEtudiantCours ca = (ListEtudiantCours) ((Action)content).getAction();
+            java.util.ArrayList<Etudiant> listetudiant = null;
+            listetudiant = repo_coursetudiant.findEtudiantsbyCours(ca.getId_cours());
+            jade.util.leap.ArrayList listcoursjade = new jade.util.leap.ArrayList(listetudiant);
+            Result result = new Result((Action)content, (jade.util.leap.ArrayList)listcoursjade);
+            ACLMessage reply = request.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+
+            System.out.println("List cours retournée");
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+   class HandleListEtudiantsEnseignant extends OneShotBehaviour {
+// ----------------------------------------------------  Handler for a CreateAccount request
+
+      private ACLMessage request;
+
+      HandleListEtudiantsEnseignant(Agent a, ACLMessage request) {
+
+         super(a);
+         this.request = request;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(request);
+            ListEtudiantEnseignant ca = (ListEtudiantEnseignant) ((Action)content).getAction();
+            java.util.ArrayList<Etudiant> listetudiant = null;
+            listetudiant = repo_enseignant.findEtudiantsbyid(ca.getId_enseignant());
+            jade.util.leap.ArrayList listcoursjade = new jade.util.leap.ArrayList(listetudiant);
+            Result result = new Result((Action)content, (jade.util.leap.ArrayList)listcoursjade);
+            ACLMessage reply = request.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+
+            System.out.println("List cours retournée");
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+
 
    void replyNotUnderstood(ACLMessage msg) {
 // -----------------------------------------

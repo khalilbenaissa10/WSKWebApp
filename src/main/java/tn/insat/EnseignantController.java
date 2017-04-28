@@ -3,7 +3,6 @@ package tn.insat;
 
 
         import java.util.List;
-        import java.util.concurrent.atomic.AtomicLong;
 
         import org.springframework.http.HttpStatus;
         import org.springframework.stereotype.Controller;
@@ -11,10 +10,7 @@ package tn.insat;
         import tn.insat.Agents.AgentOperator;
         import tn.insat.Client.ExampleController;
         import tn.insat.Client.SemaphoreClass;
-        import tn.insat.ontologies.Cours;
-        import tn.insat.ontologies.CreateCours;
-        import tn.insat.ontologies.Enseignant;
-        import tn.insat.ontologies.ListCoursEnseignant;
+        import tn.insat.ontologies.*;
 
 @Controller
 @RequestMapping("/enseignants")
@@ -29,8 +25,30 @@ public class EnseignantController {
         list_c_e.setId_enseignant(id);
         operator.send_to_enseignant(list_c_e);
         SemaphoreClass.available.acquire();
-        List<Cours> list = ExampleController.getListe();
-        ExampleController.setListe(null);
+        List<Cours> list = ExampleController.getListe_cours();
+        ExampleController.setListe_cours(null);
+        return list;
+    }
+
+    @RequestMapping(value = "/listeEtudiantByCours/{id}",method=RequestMethod.GET)
+    public @ResponseBody List<Etudiant> ListeEtudiantByCours(@PathVariable( "id" ) int id) throws InterruptedException {
+        ListEtudiantCours list_e_c = new ListEtudiantCours();
+        list_e_c.setId_cours(id);
+        operator.send_to_enseignant(list_e_c);
+        SemaphoreClass.available.acquire();
+        List<Etudiant> list = ExampleController.getListe_etudiant();
+        ExampleController.setListe_etudiant(null);
+        return list;
+    }
+
+    @RequestMapping(value = "/listeEtudianbyId/{id}",method=RequestMethod.GET)
+    public @ResponseBody List<Etudiant> ListeEtudiantByEnseignant(@PathVariable( "id" ) int id) throws InterruptedException {
+        ListEtudiantEnseignant list_e_e = new ListEtudiantEnseignant();
+        list_e_e.setId_enseignant(id);
+        operator.send_to_enseignant(list_e_e);
+        SemaphoreClass.available.acquire();
+        List<Etudiant> list = ExampleController.getListe_etudiant();
+        ExampleController.setListe_etudiant(null);
         return list;
     }
 

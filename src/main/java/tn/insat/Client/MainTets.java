@@ -6,8 +6,12 @@
 package tn.insat.Client;
 
 import tn.insat.Agents.AgentOperator;
+import tn.insat.Repositories.CoursEtudiantRepository;
+import tn.insat.Repositories.EnseignantRepository;
 import tn.insat.ontologies.Cours;
+import tn.insat.ontologies.Etudiant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,27 +63,29 @@ public class MainTets {
 
 		}*/
 
-		AgentOperator operator = AgentOperator.getInstance();
+	/*	AgentOperator operator = AgentOperator.getInstance();
 		operator.start_agents();
 		operator.send_to_enseignant("listcours");
 
 
 		SemaphoreClass.available.acquire();
-		List<Cours> list = ExampleController.getListe();
+		List<Cours> list = ExampleController.getListe_cours();
 		for (Cours c:list) {
 			System.out.println(c);
 		}
-		ExampleController.setListe(null);
+		ExampleController.setListe_cours(null);
+*/
 
 
-
-		/*CoursEtudiantRepository repo = new CoursEtudiantRepository();
-
+		EnseignantRepository repo = new EnseignantRepository();
 
 
+		ArrayList<Etudiant> le = null;
 
-
-		System.out.println(repo.AffecterEtudiant_Cours(1,1)); */
+		le = repo.findEtudiantsbyid(2);
+		for (Etudiant et:le) {
+			System.out.println(et.getNom_etudiant());
+		}
 
 
                 

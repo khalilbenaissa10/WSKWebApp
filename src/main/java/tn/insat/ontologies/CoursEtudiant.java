@@ -23,7 +23,7 @@ public class CoursEtudiant implements Concept {
             @JoinColumn(name="Cours_idCours", referencedColumnName="idCours", nullable=true) } )
     Cours cours_asso ;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumns( {
             @JoinColumn(name="Etudiant_idEtudiant", referencedColumnName="idEtudiant", nullable=true) } )
     Etudiant etudiant_asso ;

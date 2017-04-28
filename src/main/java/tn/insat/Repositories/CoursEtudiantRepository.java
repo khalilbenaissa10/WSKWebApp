@@ -1,11 +1,15 @@
 package tn.insat.Repositories;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import tn.insat.Utilities.HibernateUtil;
 import tn.insat.ontologies.Cours;
 import tn.insat.ontologies.CoursEtudiant;
 import tn.insat.ontologies.Etudiant;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import java.util.ArrayList;
 
 /**
  * Created by saif on 17/04/2017.
@@ -43,5 +47,28 @@ public class CoursEtudiantRepository implements ICoursEtudiantRepository {
 
         return a_retourner;
     }
+
+    public ArrayList<Etudiant> findEtudiantsbyCours(int id_cours){
+
+        ArrayList<Etudiant> le = null;
+
+        Session session = HibernateUtil.createSessionFactory().openSession();
+        Cours c = (Cours) session.get(Cours.class, id_cours);
+
+        le = new ArrayList<Etudiant>();
+
+        for (CoursEtudiant ce:c.getCoursetudiant()) {
+            le.add(ce.getEtudiant_asso());
+        }
+
+
+        // Clean up !
+        session.close();
+
+        return le;
+
+
+    }
+
 
 }

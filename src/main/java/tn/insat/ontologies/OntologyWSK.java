@@ -155,6 +155,13 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          add(as = new AgentActionSchema(LIST_COURS_ENSEIGNANT), ListCoursEnseignant.class);
          as.add(LIST_COURS_ENSEIGNANT_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
 
+         // ListEtudiantCours
+         add(as = new AgentActionSchema(LIST_ETUDIANT_COURS), ListEtudiantCours.class);
+         as.add(LIST_ETUDIANT_COURS_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+
+         // ListEtudiantEnseignant
+         add(as = new AgentActionSchema(LIST_ETUDIANT_ENSEIGNANT), ListEtudiantEnseignant.class);
+         as.add(LIST_ETUDIANT_ENSEIGNANT_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
 
 
 
@@ -164,8 +171,10 @@ public class OntologyWSK extends Ontology implements Vocabulary {
 
 
 
-         
-         
+
+
+
+
       }
       catch (OntologyException oe) {
          oe.printStackTrace();

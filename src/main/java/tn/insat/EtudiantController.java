@@ -3,7 +3,6 @@ package tn.insat;
 
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -26,8 +25,8 @@ public class EtudiantController {
         list_c_e.setId_enseignant(id);
         operator.send_to_enseignant(list_c_e);
         SemaphoreClass.available.acquire();
-        List<Cours> list = ExampleController.getListe();
-        ExampleController.setListe(null);
+        List<Cours> list = ExampleController.getListe_cours();
+        ExampleController.setListe_cours(null);
         return list;
     }
 

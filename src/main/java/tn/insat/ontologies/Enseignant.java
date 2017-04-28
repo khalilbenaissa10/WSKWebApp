@@ -27,7 +27,7 @@ public class Enseignant  implements Concept {
     private String nom_enseignant;
 
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="enseignant")
+    @OneToMany(fetch=FetchType.EAGER, mappedBy="enseignant")
     private Set<Cours> cours = new HashSet<Cours>(0);
 
 

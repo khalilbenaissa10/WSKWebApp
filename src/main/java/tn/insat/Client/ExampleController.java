@@ -3,6 +3,7 @@ package tn.insat.Client;
 
 import tn.insat.ontologies.Cours;
 import tn.insat.ontologies.CoursEtudiant;
+import tn.insat.ontologies.Etudiant;
 
 import java.util.List;
 
@@ -18,16 +19,17 @@ public  class ExampleController {
         ExampleController.cours_etudiant = cours_etudiant;
     }
 
-    public static List<Cours> liste ;
+    public static List<Cours> liste_cours;
+    public static List<Etudiant> liste_etudiant;
    public static Cours cours ;
    public static CoursEtudiant cours_etudiant ;
 
-    public static List<Cours> getListe() {
-        return liste;
+    public static List<Cours> getListe_cours() {
+        return liste_cours;
     }
 
-    public static void setListe(List<Cours> liste) {
-        ExampleController.liste = liste;
+    public static void setListe_cours(List<Cours> liste_cours) {
+        ExampleController.liste_cours = liste_cours;
     }
 
     public static Cours getCours() {
@@ -36,5 +38,13 @@ public  class ExampleController {
 
     public static void setCours(Cours cours) {
         ExampleController.cours = cours;
+    }
+
+    public static List<Etudiant> getListe_etudiant() {
+        return liste_etudiant;
+    }
+
+    public static void setListe_etudiant(List<Etudiant> liste_etudiant) {
+        ExampleController.liste_etudiant = liste_etudiant;
     }
 }

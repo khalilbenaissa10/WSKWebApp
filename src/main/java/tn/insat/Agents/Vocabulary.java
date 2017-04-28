@@ -75,6 +75,14 @@ public interface Vocabulary {
    public static final String LIST_COURS_ENSEIGNANT = "List_cours_enseignant";
    public static final String LIST_COURS_ENSEIGNANT_ID = "id_enseignant";
 
+   //list etudiant cours
+   public static final String LIST_ETUDIANT_COURS = "List_etudiant_cours";
+   public static final String LIST_ETUDIANT_COURS_ID = "id_cours";
+
+   //list etudiant enseignant
+   public static final String LIST_ETUDIANT_ENSEIGNANT = "List_etudiant_enseignant";
+   public static final String LIST_ETUDIANT_ENSEIGNANT_ID = "id_enseignant";
+
 
    //etudiant
    public static final String ETUDIANT="Etudiant";

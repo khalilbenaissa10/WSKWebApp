@@ -73,6 +73,26 @@ public class AgentEnseignant extends Agent implements Vocabulary, IAgentEnseigna
                              }
                          });
                      }
+                     if(obj instanceof ListEtudiantCours){
+
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 listEtudiantbyCours(((ListEtudiantCours) obj).getId_cours());
+                             }
+                         });
+                     }
+                     if(obj instanceof ListEtudiantEnseignant){
+
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 listEtudiantbyEnseignant(((ListEtudiantEnseignant) obj).getId_enseignant());
+                             }
+                         });
+                     }
                  }
                  else
                      block();
@@ -130,6 +150,26 @@ public class AgentEnseignant extends Agent implements Vocabulary, IAgentEnseigna
 
 
   }
+
+    public void listEtudiantbyCours(int id_cours){
+
+        ListEtudiantCours lc = new ListEtudiantCours();
+        lc.setId_cours(id_cours);
+        sendMessage(ACLMessage.QUERY_REF, lc);
+
+
+    }
+
+    public void listEtudiantbyEnseignant(int id_enseignant){
+
+        ListEtudiantEnseignant lc = new ListEtudiantEnseignant();
+        lc.setId_enseignant(id_enseignant);
+        sendMessage(ACLMessage.QUERY_REF, lc);
+
+
+    }
+
+
 
    
    
@@ -200,11 +240,20 @@ public class AgentEnseignant extends Agent implements Vocabulary, IAgentEnseigna
                   }
                   else if (result.getValue()  instanceof ArrayList) {
 
-
                       ArrayList lcs = (ArrayList) result.getValue() ;
-                      java.util.ArrayList<Cours> L = (java.util.ArrayList<Cours>)lcs.toList();
-                      ExampleController.setListe(L);
-                      SemaphoreClass.available.release();
+                      if (lcs.get(0) instanceof Cours) {
+                          java.util.ArrayList<Cours> L = (java.util.ArrayList<Cours>)lcs.toList();
+                          ExampleController.setListe_cours(L);
+                          SemaphoreClass.available.release();
+
+                      }else if(lcs.get(0) instanceof Etudiant){
+                          java.util.ArrayList<Etudiant> L = (java.util.ArrayList<Etudiant>)lcs.toList();
+                          ExampleController.setListe_etudiant(L);
+                          SemaphoreClass.available.release();
+
+                      }
+
+
 
 
 
