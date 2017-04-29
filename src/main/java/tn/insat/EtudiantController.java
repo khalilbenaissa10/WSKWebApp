@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import tn.insat.Agents.AgentOperator;
 import tn.insat.Client.ExampleController;
 import tn.insat.Client.SemaphoreClass;
+import tn.insat.Client.SingletonEtudiant;
 import tn.insat.ontologies.*;
 
 @Controller
@@ -47,6 +48,17 @@ public class EtudiantController {
 
         return crs_et ;
 
+    }
+
+    @RequestMapping(value = "/getEtudiantById/{id}",method=RequestMethod.GET)
+    public @ResponseBody Etudiant getEtudiantById(@PathVariable( "id" ) int id) throws InterruptedException {
+        InformationEtudiant info_etudiant = new InformationEtudiant();
+        info_etudiant.setId_etudiant(id);
+        operator.send_to_etudiant(info_etudiant);
+        SemaphoreClass.available.acquire();
+        Etudiant etudiant = SingletonEtudiant.getEtudiant();
+       SingletonEtudiant.setEtudiant(null);
+        return etudiant;
     }
 
 }

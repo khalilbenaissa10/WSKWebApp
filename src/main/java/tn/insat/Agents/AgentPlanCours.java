@@ -18,7 +18,9 @@ import jade.domain.FIPAAgentManagement.*;
 import jade.gui.*;
 import jade.lang.acl.*;
 import jade.util.leap.*;
-import tn.insat.ontologies.OntologyWSK;
+import tn.insat.Client.ExampleController;
+import tn.insat.Client.SemaphoreClass;
+import tn.insat.ontologies.*;
 
 /**
  *
@@ -30,6 +32,7 @@ public class AgentPlanCours extends Agent implements Vocabulary, IAgentPlanCours
       private AID server;
     private Codec codec = new SLCodec();
    private Ontology ontology = OntologyWSK.getInstance();
+
     
      protected void setup() {
 // ------------------------
@@ -37,9 +40,60 @@ public class AgentPlanCours extends Agent implements Vocabulary, IAgentPlanCours
       // Register language and ontology
       getContentManager().registerLanguage(codec);
       getContentManager().registerOntology(ontology);
+         setEnabledO2ACommunication(true, 10);
 
-     
-      
+
+
+         addBehaviour(new CyclicBehaviour() {
+
+             public void action() {
+                 // Retrieve the first object in the queue and print it on
+                 // the standard output
+                 Object obj = getO2AObject();
+                 if(obj != null) {
+                     System.out.println("Got an object from the queue: [" + obj + "]");
+                     if(obj instanceof ListeAllCours){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 ListeAllCours aff = (ListeAllCours) obj ;
+                                 listerAllCours();
+
+                             }
+                         });
+                     }
+                     else if(obj instanceof ListeCoursSearchDescription){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 ListeCoursSearchDescription aff = (ListeCoursSearchDescription) obj ;
+                                 listerCoursSearchDescription(aff.getSearch());
+
+                             }
+                         });
+                     }
+                     else {
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 ListeCoursSearch aff = (ListeCoursSearch) obj ;
+                                 listerListCoursSearch(aff.getSearch());
+
+                             }
+                         });
+                     }
+
+
+                 }
+                 else
+                     block();
+             }
+
+         });
+
    }
 
    protected void takeDown() {
@@ -48,9 +102,31 @@ public class AgentPlanCours extends Agent implements Vocabulary, IAgentPlanCours
        System.out.println(getLocalName() + " is now shutting down.");
        
     }
-   
-   
-   
+
+
+    public void listerAllCours(){
+
+       ListeAllCours lc = new ListeAllCours();
+        sendMessage(ACLMessage.QUERY_REF, lc);
+
+
+    }
+
+    public void listerListCoursSearch(String search){
+        ListeCoursSearch liste_search = new ListeCoursSearch();
+        liste_search.setSearch(search);
+        sendMessage(ACLMessage.QUERY_REF, liste_search);
+
+    }
+
+    public void listerCoursSearchDescription(String search){
+        ListeCoursSearchDescription liste_search = new ListeCoursSearchDescription();
+        liste_search.setSearch(search);
+        sendMessage(ACLMessage.QUERY_REF, liste_search);
+
+    }
+
+
    
     class WaitServerResponse extends ParallelBehaviour {
 // ----------------------------------------------------  launch a SimpleBehaviour to receive
@@ -84,53 +160,53 @@ public class AgentPlanCours extends Agent implements Vocabulary, IAgentPlanCours
       }
 
       public void action() {
-        /*
-         ACLMessage msg = receive(MessageTemplate.MatchSender(server));
 
-         if (msg == null) { block(); return; }
+          ACLMessage msg = receive(MessageTemplate.MatchSender(server));
 
-         if (msg.getPerformative() == ACLMessage.NOT_UNDERSTOOD){
-           // alertGui("Response from server: NOT UNDERSTOOD");
-         }
-         else if (msg.getPerformative() != ACLMessage.INFORM){
-           // alertGui("\nUnexpected msg from server!");
-         }
-         else {
-            try {
-               ContentElement content = getContentManager().extractContent(msg);
+          if (msg == null) { block(); return; }
 
-               if (content instanceof Result) {
+          if (msg.getPerformative() == ACLMessage.NOT_UNDERSTOOD){
+              System.out.println("Response from server: NOT UNDERSTOOD");
+          }
+          else if (msg.getPerformative() != ACLMessage.INFORM){
+              System.out.println("Unexpected Message ");
+          }
+          else {
+              try {
+                  ContentElement content = getContentManager().extractContent(msg);
 
-                  Result result = (Result) content;
+                  if (content instanceof Result) {
 
-                  if (result.getAction() instanceof Problem) {
+                      Result result = (Result) content;
 
-                     Problem prob = (Problem)result.getAction();
-                     alertGui(prob);
+
+                      if (result.getValue() instanceof Problem) {
+
+                          Problem prob = (Problem) result.getItems().get(0);
+                          System.out.println("Problem : " + prob.getMsg());
+                      }
+                      else if (result.getValue()  instanceof ArrayList) {
+
+                          ArrayList lcs = (ArrayList) result.getValue() ;
+                          if (lcs.get(0) instanceof Cours) {
+                              java.util.ArrayList<Cours> L = (java.util.ArrayList<Cours>)lcs.toList();
+                              ExampleController.setListe_cours(L);
+                              SemaphoreClass.available.release();
+
+                          }
+
+                      }
+                      else System.out.println("\nUnexpected result from server!");
                   }
-                  else if (result.getAction()  instanceof Account) {
-
-                     Account acc = (Account) result.getAction() ;
-
-                     if (command == NEW_ACCOUNT) {
-                        accounts.add(acc);
-                     }
-                     alertGui(acc);
+                  else {
+                      System.out.println("\nUnable de decode response from server!");
                   }
-                  else if (result.getAction()  instanceof List) {
-                     alertGui(result.getItems());
-                  }
-                  else alertGui("\nUnexpected result from server!");
-               }
-               else {
-                  alertGui("\nUnable de decode response from server!");
-               }
-            }
-            catch (Exception e) { e.printStackTrace(); }
-         }
-         resetStatusGui();
-         finished = true;
-   */   }
+              }
+              catch (Exception e) { e.printStackTrace(); }
+          }
+
+          finished = true;
+      }
 
       public boolean done() { return finished; }
 

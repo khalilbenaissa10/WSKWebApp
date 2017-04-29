@@ -1,5 +1,6 @@
 package tn.insat.Repositories;
 
+import org.hibernate.criterion.Criterion;
 import tn.insat.Utilities.HibernateUtil;
 import tn.insat.ontologies.Cours;
 import org.hibernate.Criteria;
@@ -72,5 +73,54 @@ public class CoursRepository implements  ICoursRepository{
     }
 
 
+    public ArrayList<Cours> findAll(){
+
+        ArrayList<Cours> lc = null;
+
+        Session session = HibernateUtil.createSessionFactory().openSession();
+        lc = (ArrayList<Cours>)session.createCriteria(Cours.class).list();
+
+        // Clean up !
+        session.close();
+
+        return lc;
+    }
+
+
+    public ArrayList<Cours> findCoursLikkSearch(String search){
+
+        ArrayList<Cours> lc = null;
+
+        Session session = HibernateUtil.createSessionFactory().openSession();
+        Criteria cr = session.createCriteria(Cours.class);
+        Criterion c1 = Restrictions.like("intitule", "%"+search+"%");
+        cr.add(c1);
+
+        // Work with the session
+        lc =  (ArrayList<Cours>) cr.list();
+
+        // Clean up !
+        session.close();
+
+        return lc;
+    }
+
+    public ArrayList<Cours> findCoursLikkSearchDescription(String search){
+
+        ArrayList<Cours> lc = null;
+
+        Session session = HibernateUtil.createSessionFactory().openSession();
+        Criteria cr = session.createCriteria(Cours.class);
+        Criterion c1 = Restrictions.like("description", "%"+search+"%");
+        cr.add(c1);
+
+        // Work with the session
+        lc =  (ArrayList<Cours>) cr.list();
+
+        // Clean up !
+        session.close();
+
+        return lc;
+    }
 
 }

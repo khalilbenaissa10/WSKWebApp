@@ -53,7 +53,7 @@ public class EnseignantController {
     }
 
 
-    @RequestMapping( value = "/listeCours/{id}",method = RequestMethod.POST )
+    @RequestMapping( value = "/creerCours/{id}",method = RequestMethod.POST )
     @ResponseStatus( HttpStatus.CREATED )
     @ResponseBody
     public Cours create( @PathVariable( "id" ) int id,@RequestBody Cours resource ) throws InterruptedException {

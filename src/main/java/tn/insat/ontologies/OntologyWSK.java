@@ -155,6 +155,17 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          add(as = new AgentActionSchema(LIST_COURS_ENSEIGNANT), ListCoursEnseignant.class);
          as.add(LIST_COURS_ENSEIGNANT_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
 
+         // ListAllCours
+         add(as = new AgentActionSchema(LIST_ALL_COURS), ListeAllCours.class);
+
+         // ListCoursSearch
+         add(as = new AgentActionSchema(LIST_COURS_SEARCH), ListeCoursSearch.class);
+         as.add(LIST_COURS_SEARCH_SEARCH, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+
+         // ListCoursSearchDescription
+         add(as = new AgentActionSchema(LIST_COURS_SEARCH_DESCRIPTION), ListeCoursSearchDescription.class);
+         as.add(LIST_COURS_SEARCH_DESCRIPTION_SEARCH, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+
          // ListEtudiantCours
          add(as = new AgentActionSchema(LIST_ETUDIANT_COURS), ListEtudiantCours.class);
          as.add(LIST_ETUDIANT_COURS_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
@@ -162,6 +173,10 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          // ListEtudiantEnseignant
          add(as = new AgentActionSchema(LIST_ETUDIANT_ENSEIGNANT), ListEtudiantEnseignant.class);
          as.add(LIST_ETUDIANT_ENSEIGNANT_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+
+         // InformationEtudiant
+         add(as = new AgentActionSchema(INFORMATION_ETUDIANT), InformationEtudiant.class);
+         as.add(INFORMATION_ETUDIANT_ID_ETUDIANT, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
 
 
 

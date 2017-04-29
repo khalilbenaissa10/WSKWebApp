@@ -13,4 +13,8 @@ public interface ICoursRepository {
     Boolean create(Cours c);
     Cours findById(int id);
     ArrayList<Cours> findByEnseignant(int id_enseignant);
+    ArrayList<Cours> findAll();
+    ArrayList<Cours> findCoursLikkSearch(String search);
+    ArrayList<Cours> findCoursLikkSearchDescription(String search);
+
 }

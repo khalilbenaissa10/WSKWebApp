@@ -12,6 +12,7 @@ package tn.insat.Agents;
 public interface Vocabulary {
     
     public static final int COURS_INTROUVABLE = 8;
+    public static final int ETUDIANT_INTROUVABLE = 9 ;
     
     public static final String MSG_COURS_INTOUVABLE = "Cours Introuvable !!!";
     public static final String SERVER_AGENT = "Server Agent";
@@ -70,6 +71,21 @@ public interface Vocabulary {
    public static final String INFORMATION_COURS = "Information_cours";
    public static final String INFORMATION_COURS_TYPE = "type";
    public static final String INFORMATION_COURS_ID_COURS="Id_cours";
+
+   //list all cours
+   public static final String LIST_ALL_COURS= "liste_All_Cours";
+
+   //list cours search
+   public static final String LIST_COURS_SEARCH= "liste_cours_search";
+   public static final String LIST_COURS_SEARCH_SEARCH = "search";
+
+   //information etudiant
+   public static final String INFORMATION_ETUDIANT= "Information_etudiant";
+   public static final String INFORMATION_ETUDIANT_ID_ETUDIANT = "id_etudiant";
+
+   //list cours search by description
+   public static final String LIST_COURS_SEARCH_DESCRIPTION= "liste_cours_search_description";
+   public static final String LIST_COURS_SEARCH_DESCRIPTION_SEARCH = "search";
 
    //list cours enseignant
    public static final String LIST_COURS_ENSEIGNANT = "List_cours_enseignant";

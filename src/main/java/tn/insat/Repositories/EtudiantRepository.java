@@ -3,7 +3,6 @@ package tn.insat.Repositories;
 import org.hibernate.Session;
 import tn.insat.Utilities.HibernateUtil;
 import tn.insat.ontologies.Etudiant;
-import tn.insat.ontologies.IEtudiantRepository;
 
 /**
  * Created by Khalil on 26/04/2017.

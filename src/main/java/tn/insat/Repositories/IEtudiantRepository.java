@@ -1,4 +1,6 @@
-package tn.insat.ontologies;
+package tn.insat.Repositories ;
+
+import tn.insat.ontologies.Etudiant;
 
 /**
  * Created by Khalil on 26/04/2017.
@@ -6,4 +8,5 @@ package tn.insat.ontologies;
 public interface IEtudiantRepository {
 
     Etudiant findById(int id);
+
 }

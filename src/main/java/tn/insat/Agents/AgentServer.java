@@ -33,6 +33,7 @@ public class AgentServer extends Agent implements Vocabulary {
    private ICoursEtudiantRepository repo_coursetudiant = new CoursEtudiantRepository();
    private IEtudiantRepository repo_etudiant = new EtudiantRepository();
    private IEnseignantRepository repo_enseignant = new EnseignantRepository();
+   ICoursRepository repo_cours = new CoursRepository();
 
     
    private int idCnt = 0;
@@ -130,7 +131,16 @@ public class AgentServer extends Agent implements Vocabulary {
                      addBehaviour(new HandleListEtudiantsCours(myAgent, msg));
                   else if (action instanceof ListEtudiantEnseignant)
                      addBehaviour(new HandleListEtudiantsEnseignant(myAgent, msg));
+                  else if (action instanceof ListeAllCours)
+                     addBehaviour(new HandleListAllCours(myAgent, msg));
+                  else if (action instanceof ListeCoursSearch)
+                     addBehaviour(new HandleListCoursSearch(myAgent,msg));
+                  else if (action instanceof ListeCoursSearchDescription)
+                     addBehaviour(new HandleListCoursSearchDescription(myAgent,msg));
+                  else if (action instanceof InformationEtudiant)
+                     addBehaviour(new HandleInformationEtudiant(myAgent,msg));
                   else
+
                      replyNotUnderstood(msg);
                   break;
 
@@ -210,6 +220,40 @@ public class AgentServer extends Agent implements Vocabulary {
       }
    }
 
+   class HandleInformationEtudiant extends OneShotBehaviour {
+// --------------------------------------------------  Handler for an Information query
+
+      private ACLMessage query;
+
+      HandleInformationEtudiant(Agent a, ACLMessage query) {
+
+         super(a);
+         this.query = query;
+      }
+
+      public void action() {
+
+         try {
+
+            ContentElement content = getContentManager().extractContent(query);
+            InformationEtudiant info = (InformationEtudiant)((Action)content).getAction();
+            Object obj = processInformationEtudiant(info);
+            if (obj == null) replyNotUnderstood(query);
+            else {
+               ACLMessage reply = query.createReply();
+               reply.setPerformative(ACLMessage.INFORM);
+               Result result = new Result((Action)content, obj);
+               getContentManager().fillContent(reply, result);
+               send(reply);
+               System.out.println("information du cours " + obj  + "from server");
+            }
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+
+
 
    class HandleAffecterCours extends OneShotBehaviour {
 // --------------------------------------------------  Handler for an Information query
@@ -288,6 +332,103 @@ public class AgentServer extends Agent implements Vocabulary {
          catch(Exception ex) { ex.printStackTrace(); }
       }
    }
+
+   class HandleListAllCours extends OneShotBehaviour {
+// ----------------------------------------------------  Handler for a CreateAccount request
+
+      private ACLMessage request;
+
+      HandleListAllCours(Agent a, ACLMessage request) {
+
+         super(a);
+         this.request = request;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(request);
+            ListeAllCours ca = (ListeAllCours) ((Action)content).getAction();
+            java.util.ArrayList<Cours> listcours = null;
+            listcours = repo_cours.findAll();
+            jade.util.leap.ArrayList listcoursjade = new jade.util.leap.ArrayList(listcours);
+            Result result = new Result((Action)content, (jade.util.leap.ArrayList)listcoursjade);
+            ACLMessage reply = request.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+
+            System.out.println("List All cours retournée");
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+
+   class HandleListCoursSearch extends OneShotBehaviour {
+// ----------------------------------------------------  Handler for a CreateAccount request
+
+      private ACLMessage request;
+
+      HandleListCoursSearch(Agent a, ACLMessage request) {
+
+         super(a);
+         this.request = request;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(request);
+            ListeCoursSearch ca = (ListeCoursSearch) ((Action)content).getAction();
+            java.util.ArrayList<Cours> listcours = null;
+            listcours = repo_cours.findCoursLikkSearch(ca.getSearch());
+            jade.util.leap.ArrayList listcoursjade = new jade.util.leap.ArrayList(listcours);
+            Result result = new Result((Action)content, (jade.util.leap.ArrayList)listcoursjade);
+            ACLMessage reply = request.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+
+            System.out.println("List All cours retournée");
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+   class HandleListCoursSearchDescription extends OneShotBehaviour {
+// ----------------------------------------------------  Handler for a CreateAccount request
+
+      private ACLMessage request;
+
+      HandleListCoursSearchDescription(Agent a, ACLMessage request) {
+
+         super(a);
+         this.request = request;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(request);
+            ListeCoursSearchDescription ca = (ListeCoursSearchDescription) ((Action)content).getAction();
+            java.util.ArrayList<Cours> listcours = null;
+            listcours = repo_cours.findCoursLikkSearchDescription(ca.getSearch());
+            jade.util.leap.ArrayList listcoursjade = new jade.util.leap.ArrayList(listcours);
+            Result result = new Result((Action)content, (jade.util.leap.ArrayList)listcoursjade);
+            ACLMessage reply = request.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+
+            System.out.println("List All cours retournée");
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+
+
 
    class HandleListEtudiantsCours extends OneShotBehaviour {
 // ----------------------------------------------------  Handler for a CreateAccount request
@@ -372,10 +513,21 @@ public class AgentServer extends Agent implements Vocabulary {
    Object processInformation(InformationCours info) {
 // -------------------------------------------
 
-   //   Cours crs = (Cours)listcours.get(info.getId_Cours());
+      //   Cours crs = (Cours)listcours.get(info.getId_Cours());
       Cours crs = repo.findById(info.getId_Cours());
       if (crs == null) return newProblem(COURS_INTROUVABLE);
       return crs;
+
+
+   }
+
+   Object processInformationEtudiant(InformationEtudiant info) {
+// -------------------------------------------
+
+
+      Etudiant etd = repo_etudiant.findById(info.getId_etudiant());
+      if (etd == null) return newProblem(ETUDIANT_INTROUVABLE);
+      return etd;
 
 
    }

@@ -19,6 +19,7 @@ import jade.lang.acl.*;
 import jade.util.leap.*;
 import tn.insat.Client.ExampleController;
 import tn.insat.Client.SemaphoreClass;
+import tn.insat.Client.SingletonEtudiant;
 import tn.insat.ontologies.*;
 
 /**
@@ -59,6 +60,18 @@ public class AgentEtudiant extends Agent implements Vocabulary,IAgentEtudiant {
                              }
                          });
                      }
+                     else if(obj instanceof InformationEtudiant)
+                     {
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 InformationEtudiant aff = (InformationEtudiant) obj ;
+                                 informationEtudiant(aff.getId_etudiant());
+
+                             }
+                         });
+                     }
 
                  }
                  else
@@ -88,6 +101,15 @@ public class AgentEtudiant extends Agent implements Vocabulary,IAgentEtudiant {
       sendMessage(ACLMessage.REQUEST, ac);
 
    }
+
+    public void informationEtudiant(int id_etudiant) {
+// ----------------------  Process to the server agent the request
+//                         to create a new account
+        InformationEtudiant ac = new InformationEtudiant();
+        ac.setId_etudiant(id_etudiant);
+        sendMessage(ACLMessage.QUERY_REF, ac);
+
+    }
    
      @Override
    public void PasserTest() {
@@ -169,6 +191,15 @@ public class AgentEtudiant extends Agent implements Vocabulary,IAgentEtudiant {
 
                       CoursEtudiant lcs = (CoursEtudiant) result.getValue() ;
                       ExampleController.setCours_etudiant(lcs);
+                      SemaphoreClass.available.release();
+
+
+                  }
+                  else if (result.getValue()  instanceof Etudiant) {
+
+
+                      Etudiant etd = (Etudiant) result.getValue() ;
+                      SingletonEtudiant.setEtudiant(etd);
                       SemaphoreClass.available.release();
 
 

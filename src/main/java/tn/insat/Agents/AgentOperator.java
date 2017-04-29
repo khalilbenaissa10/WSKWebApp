@@ -26,6 +26,7 @@ public class AgentOperator {
     AgentController servercontroller= null;
     AgentController enseignantcontroller= null;
     AgentController etudiantcontroller= null;
+    AgentController planCoursController = null ;
 
     public void start_agents(){
 
@@ -45,6 +46,9 @@ public class AgentOperator {
 
             etudiantcontroller = maincontainer.createNewAgent("Etudiant","tn.insat.Agents.AgentEtudiant", new Object[0]);
             etudiantcontroller.start();
+
+            planCoursController = maincontainer.createNewAgent("PlanCours","tn.insat.Agents.AgentPlanCours", new Object[0]);
+            planCoursController.start();
 
 
         } catch (StaleProxyException e1) {
@@ -83,6 +87,24 @@ public class AgentOperator {
 
             }
             etudiantcontroller.putO2AObject(obj, AgentController.ASYNC);
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void send_to_planCours(Object obj){
+
+        try {
+
+            State state = planCoursController.getState();
+            while (!(state.getCode() == AgentState.cAGENT_STATE_IDLE)) {
+                Thread.sleep(100); // wait 100 miliseconds and try it again...
+                state = planCoursController.getState();
+
+            }
+            planCoursController.putO2AObject(obj, AgentController.ASYNC);
 
 
         }catch(Exception e){
