@@ -39,6 +39,12 @@ public class Test implements Concept {
     @OneToMany(fetch=FetchType.LAZY, mappedBy="test_asso")
     private Set<TestEtudiant> testetudiants = new HashSet<TestEtudiant>(0);
 
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="test_question")
+    private Set<Question> testquestions = new HashSet<Question>(0);
+
+
+
+
     public int getId_test() {
         return id_test;
     }
@@ -66,6 +72,10 @@ public class Test implements Concept {
     public Cours getCours_test() {
         return cours_test;
     }
+
+    public Set<Question> getTestquestions() {  return testquestions;}
+
+    public void setTestquestions(Set<Question> testquestions) {     this.testquestions = testquestions;    }
 
     public void setCours_test(Cours cours_test) {
         this.cours_test = cours_test;

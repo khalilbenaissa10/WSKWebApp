@@ -30,6 +30,9 @@ public class Enseignant  implements Concept {
     @OneToMany(fetch=FetchType.EAGER, mappedBy="enseignant")
     private Set<Cours> cours = new HashSet<Cours>(0);
 
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="enseignant_sujetforum")
+    private Set<SujetForum> sujetforumenseignant = new HashSet<SujetForum>(0);
+
 
     public int getId_enseignant() {
         return id_enseignant;
@@ -54,4 +57,8 @@ public class Enseignant  implements Concept {
     public void setCours(Set<Cours> cours) {
         this.cours = cours;
     }
+
+    public Set<SujetForum> getSujetforumenseignant() { return sujetforumenseignant;   }
+
+    public void setSujetforumenseignant(Set<SujetForum> sujetforumenseignant) { this.sujetforumenseignant = sujetforumenseignant;    }
 }

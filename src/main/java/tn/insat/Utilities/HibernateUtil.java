@@ -1,9 +1,11 @@
 package tn.insat.Utilities;
 
+import com.fasterxml.classmate.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+import tn.insat.ontologies.*;
 
 public class HibernateUtil {
 
@@ -17,7 +19,23 @@ public class HibernateUtil {
     static {
         try {
             // Initialize the hibernate configuration.
-            Configuration configuration = new Configuration().configure();
+           // Configuration configuration = new Configuration().configure();
+
+            Configuration configuration =  new Configuration()
+                    .addAnnotatedClass(Enseignant.class)
+                    .addAnnotatedClass(Etudiant.class)
+                    .addAnnotatedClass(Cours.class)
+                    .addAnnotatedClass(Seance.class)
+                    .addAnnotatedClass(Test.class)
+                    .addAnnotatedClass(TestEtudiant.class)
+                    .addAnnotatedClass(CoursEtudiant.class)
+                    .addAnnotatedClass(Ressource.class)
+                    .addAnnotatedClass(Connaissance.class)
+                    .addAnnotatedClass(Question.class)
+                    .addAnnotatedClass(Proposition.class)
+                    .addAnnotatedClass(SujetForum.class)
+                    .addAnnotatedClass(Question.class)
+                    .configure();
 
             // Build a service registry from the properties of the configuration
             // –

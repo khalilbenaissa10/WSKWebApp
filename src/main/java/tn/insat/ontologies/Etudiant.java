@@ -41,6 +41,9 @@ public class Etudiant  implements Concept {
     @OneToMany(fetch=FetchType.LAZY, mappedBy="etudiant_connaissance")
     private Set<Connaissance> connaissances = new HashSet<Connaissance>(0);
 
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="etudiant_sujetforum")
+    private Set<SujetForum> sujetforumetudiant = new HashSet<SujetForum>(0);
+
     public int getId_etudiant() {
         return id_etudiant;
     }
@@ -72,6 +75,10 @@ public class Etudiant  implements Concept {
     public void setTestetudiant(Set<TestEtudiant> testetudiant) {
         this.testetudiant = testetudiant;
     }
+
+    public Set<SujetForum> getSujetforumetudiant() {return sujetforumetudiant;    }
+
+    public void setSujetforumetudiant(Set<SujetForum> sujetforumetudiant) {this.sujetforumetudiant = sujetforumetudiant;    }
 
     @Override
     public boolean equals(Object other){

@@ -19,6 +19,12 @@
         <mapping class="tn.insat.ontologies.CoursEtudiant" />
         <mapping class="tn.insat.ontologies.Ressource" />
         <mapping class="tn.insat.ontologies.Connaissance" />
+        <mapping class="tn.insat.ontologies.Question" />
+        <mapping class="tn.insat.ontologies.Proposition" />
+        <mapping class="tn.insat.ontologies.SujetForum" />
+        <mapping class="tn.insat.ontologies.ReponseForum" />
+
+
 
 
     </session-factory>

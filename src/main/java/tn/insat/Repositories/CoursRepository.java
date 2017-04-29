@@ -31,7 +31,7 @@ public class CoursRepository implements  ICoursRepository{
         } catch (Exception e) {
             System.out.println("LOG : Exception lors de la creation. Détails :"
                     + e);
-            if ((transaction != null) && transaction.isActive())
+            if ((transaction != null) /*&& transaction.isActive()*/)
                 transaction.rollback();
         }
 
