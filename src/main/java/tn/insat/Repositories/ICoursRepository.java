@@ -16,5 +16,6 @@ public interface ICoursRepository {
     ArrayList<Cours> findAll();
     ArrayList<Cours> findCoursLikkSearch(String search);
     ArrayList<Cours> findCoursLikkSearchDescription(String search);
+    ArrayList<Cours> findByEtudiant(int id_etudiant);
 
 }

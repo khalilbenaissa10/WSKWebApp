@@ -139,6 +139,8 @@ public class AgentServer extends Agent implements Vocabulary {
                      addBehaviour(new HandleListCoursSearchDescription(myAgent,msg));
                   else if (action instanceof InformationEtudiant)
                      addBehaviour(new HandleInformationEtudiant(myAgent,msg));
+                  else if (action instanceof ListeCoursByEtudiant)
+                     addBehaviour(new HandleListCoursByEtudiant(myAgent,msg));
                   else
 
                      replyNotUnderstood(msg);
@@ -247,6 +249,40 @@ public class AgentServer extends Agent implements Vocabulary {
                send(reply);
                System.out.println("information du cours " + obj  + "from server");
             }
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+
+   class HandleListCoursByEtudiant extends OneShotBehaviour {
+// --------------------------------------------------  Handler for an Information query
+
+      private ACLMessage query;
+
+      HandleListCoursByEtudiant(Agent a, ACLMessage query) {
+
+         super(a);
+         this.query = query;
+      }
+
+      public void action() {
+
+         try {
+
+            ContentElement content = getContentManager().extractContent(query);
+
+            ListeCoursByEtudiant info = (ListeCoursByEtudiant) ((Action)content).getAction();
+            java.util.ArrayList<Cours> listcours = null;
+            listcours = repo_cours.findByEtudiant(info.getId_etudiant()) ;
+            jade.util.leap.ArrayList listcoursjade = new jade.util.leap.ArrayList(listcours);
+            Result result = new Result((Action)content, (jade.util.leap.ArrayList)listcoursjade);
+               ACLMessage reply = query.createReply();
+               reply.setPerformative(ACLMessage.INFORM);
+               getContentManager().fillContent(reply, result);
+               send(reply);
+               System.out.println("liste cours by etudiant " + listcours  + "from server");
+
          }
          catch(Exception ex) { ex.printStackTrace(); }
       }

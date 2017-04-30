@@ -72,6 +72,18 @@ public class AgentEtudiant extends Agent implements Vocabulary,IAgentEtudiant {
                              }
                          });
                      }
+                     else if(obj instanceof ListeCoursByEtudiant)
+                     {
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 ListeCoursByEtudiant aff = (ListeCoursByEtudiant) obj ;
+                                 listerCoursByEtudiant(aff.getId_etudiant());
+
+                             }
+                         });
+                     }
 
                  }
                  else
@@ -110,6 +122,18 @@ public class AgentEtudiant extends Agent implements Vocabulary,IAgentEtudiant {
         sendMessage(ACLMessage.QUERY_REF, ac);
 
     }
+
+    public void listerCoursByEtudiant(int id_etudiant) {
+// ----------------------  Process to the server agent the request
+//                         to create a new account
+        ListeCoursByEtudiant ac = new ListeCoursByEtudiant();
+        ac.setId_etudiant(id_etudiant);
+        sendMessage(ACLMessage.QUERY_REF, ac);
+
+    }
+
+
+
    
      @Override
    public void PasserTest() {
@@ -202,6 +226,17 @@ public class AgentEtudiant extends Agent implements Vocabulary,IAgentEtudiant {
                       SingletonEtudiant.setEtudiant(etd);
                       SemaphoreClass.available.release();
 
+
+                  }
+                  else if (result.getValue()  instanceof ArrayList) {
+
+                      ArrayList lcs = (ArrayList) result.getValue() ;
+                      if (lcs.get(0) instanceof Cours) {
+                          java.util.ArrayList<Cours> L = (java.util.ArrayList<Cours>)lcs.toList();
+                          ExampleController.setListe_cours(L);
+                          SemaphoreClass.available.release();
+
+                      }
 
                   }
                   else System.out.println("\nUnexpected result from server!");

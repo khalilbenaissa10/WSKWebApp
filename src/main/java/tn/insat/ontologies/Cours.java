@@ -158,4 +158,17 @@ public class Cours implements Concept,Serializable {
     public void setRessources(Set<Ressource> ressources) {
         this.ressources = ressources;
     }
+
+    @Override
+    public boolean equals(Object other){
+        if (other == null) return false;
+        if (other == this) return true;
+        if (!(other instanceof Cours))return false;
+        Cours otherMyClass = (Cours) other;
+        if(otherMyClass.getId_cours()== (this.getId_cours())) return true;
+        else return false;
+
+    }
+
+
 }

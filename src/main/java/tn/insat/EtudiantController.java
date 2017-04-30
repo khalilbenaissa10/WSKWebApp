@@ -22,9 +22,9 @@ public class EtudiantController {
 
     @RequestMapping(value = "/listeCours/{id}",method=RequestMethod.GET)
     public @ResponseBody List<Cours> sayHello(@PathVariable( "id" ) int id) throws InterruptedException {
-        ListCoursEnseignant list_c_e = new ListCoursEnseignant();
-        list_c_e.setId_enseignant(id);
-        operator.send_to_enseignant(list_c_e);
+        ListeCoursByEtudiant list_c_e = new ListeCoursByEtudiant();
+        list_c_e.setId_etudiant(id);
+        operator.send_to_etudiant(list_c_e);
         SemaphoreClass.available.acquire();
         List<Cours> list = ExampleController.getListe_cours();
         ExampleController.setListe_cours(null);

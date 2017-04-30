@@ -170,6 +170,10 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          add(as = new AgentActionSchema(LIST_ETUDIANT_COURS), ListEtudiantCours.class);
          as.add(LIST_ETUDIANT_COURS_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
 
+         // List Cours by etudiant
+         add(as = new AgentActionSchema(LIST_COURS_BY_ETUDIANT), ListeCoursByEtudiant.class);
+         as.add(LIST_COURS_BY_ETUDIANT_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+
          // ListEtudiantEnseignant
          add(as = new AgentActionSchema(LIST_ETUDIANT_ENSEIGNANT), ListEtudiantEnseignant.class);
          as.add(LIST_ETUDIANT_ENSEIGNANT_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);

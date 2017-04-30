@@ -32,16 +32,16 @@ public class Etudiant  implements Concept {
     @Column(name="NomEtudiant", length=450)
     private String nom_etudiant;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="etudiant_asso")
+    @OneToMany(fetch=FetchType.EAGER, mappedBy="etudiant_asso")
     private Set<CoursEtudiant> coursetudiant = new HashSet<CoursEtudiant>(0);
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="etudiant_asso_test")
+    @OneToMany(fetch=FetchType.EAGER, mappedBy="etudiant_asso_test")
     private Set<TestEtudiant> testetudiant = new HashSet<TestEtudiant>(0);
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="etudiant_connaissance")
+    @OneToMany(fetch=FetchType.EAGER, mappedBy="etudiant_connaissance")
     private Set<Connaissance> connaissances = new HashSet<Connaissance>(0);
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="etudiant_sujetforum")
+    @OneToMany(fetch=FetchType.EAGER, mappedBy="etudiant_sujetforum")
     private Set<SujetForum> sujetforumetudiant = new HashSet<SujetForum>(0);
 
     public int getId_etudiant() {

@@ -18,6 +18,7 @@ public class Question {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="idQuestion", unique=true, nullable=false)
     int id_question ;
+
     @Column(name="EnonceQuestion", length=256)
     String enonce_question ;
 

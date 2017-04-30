@@ -91,6 +91,10 @@ public interface Vocabulary {
    public static final String LIST_COURS_ENSEIGNANT = "List_cours_enseignant";
    public static final String LIST_COURS_ENSEIGNANT_ID = "id_enseignant";
 
+   //list cours by etudiant
+   public static final String LIST_COURS_BY_ETUDIANT = "List_cours_by_etudiant";
+   public static final String LIST_COURS_BY_ETUDIANT_ID = "id_etudiant";
+
    //list etudiant cours
    public static final String LIST_ETUDIANT_COURS = "List_etudiant_cours";
    public static final String LIST_ETUDIANT_COURS_ID = "id_cours";

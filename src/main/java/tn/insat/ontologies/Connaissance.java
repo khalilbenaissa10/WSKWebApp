@@ -6,19 +6,19 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name="connaissance"
+@Table(name="conaissance"
         ,catalog="wskdb"
 )
 public class Connaissance {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="idConnaissance", unique=true, nullable=false)
+    @Column(name="idConaissance", unique=true, nullable=false)
     int id_connaissance ;
-    @Column(name="NiveauConnaissance", length=450)
+    @Column(name="NiveauConaissance", length=450)
     int level_connaissance ;
 
-    @Column(name="DescriptionConnaissance", length=450)
+    @Column(name="DescriptionConaissance", length=450)
     String description_connsaissance ;
 
     @ManyToOne(fetch=FetchType.LAZY)

@@ -7,6 +7,8 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import tn.insat.ontologies.CoursEtudiant;
+import tn.insat.ontologies.Etudiant;
 
 import java.util.ArrayList;
 
@@ -55,7 +57,7 @@ public class CoursRepository implements  ICoursRepository{
     @Override
     public ArrayList<Cours> findByEnseignant(int id_enseignant){
 
-        ArrayList<Cours> lc = null;
+        ArrayList<Cours> lc = new ArrayList<Cours>();
 
         Session session = HibernateUtil.createSessionFactory().openSession();
         Criteria cr = session.createCriteria(Cours.class);
@@ -64,10 +66,17 @@ public class CoursRepository implements  ICoursRepository{
         // Work with the session
          lc =  (ArrayList<Cours>) cr.list();
 
+        ArrayList<Cours> uniques = new ArrayList<Cours>();
+        for (Cours element : lc) {
+            if (!uniques.contains(element)) {
+                uniques.add(element);
+            }
+        }
+
         // Clean up !
         session.close();
 
-        return lc;
+        return uniques;
 
 
     }
@@ -121,6 +130,27 @@ public class CoursRepository implements  ICoursRepository{
         session.close();
 
         return lc;
+    }
+
+    public ArrayList<Cours> findByEtudiant(int id_etudiant){
+
+        ArrayList<Cours> lc = new ArrayList<Cours>();
+
+        Session session = HibernateUtil.createSessionFactory().openSession();
+        Etudiant etudiant = (Etudiant)  session.get(Etudiant.class,id_etudiant);
+        for (CoursEtudiant c:etudiant.getCoursetudiant()
+                ) {
+            lc.add(c.getCours_asso());
+        }
+
+
+
+        // Clean up !
+        session.close();
+
+        return lc;
+
+
     }
 
 }

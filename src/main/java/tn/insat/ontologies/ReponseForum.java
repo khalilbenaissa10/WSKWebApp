@@ -23,7 +23,7 @@ public class ReponseForum {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumns( {
             @JoinColumn(name="SujetForum_idSujetForum", referencedColumnName="idSujetForum", nullable=true) } )
-    private Test sujetforum_reponseforum ;
+    private SujetForum sujetforum_reponseforum ;
 
     public int getId_reponseforum() {
         return id_reponseforum;
@@ -41,11 +41,11 @@ public class ReponseForum {
         this.text_reponseforum = text_reponseforum;
     }
 
-    public Test getSujetforum_reponseforum() {
+    public SujetForum getSujetforum_reponseforum() {
         return sujetforum_reponseforum;
     }
 
-    public void setSujetforum_reponseforum(Test sujetforum_reponseforum) {
+    public void setSujetforum_reponseforum(SujetForum sujetforum_reponseforum) {
         this.sujetforum_reponseforum = sujetforum_reponseforum;
     }
 }

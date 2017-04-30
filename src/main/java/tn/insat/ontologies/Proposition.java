@@ -17,15 +17,17 @@ public class Proposition {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="idPropostion", unique=true, nullable=false)
     int id_proposition ;
+
     @Column(name="TextProposition", length=256)
     String text_proposition ;
+
     @Column(name="ValidProposition")
     Boolean valid_proposition ;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumns( {
             @JoinColumn(name="Question_idQuestion", referencedColumnName="idQuestion", nullable=true) } )
-    private Test question_proposition ;
+    private Question question_proposition ;
 
     public int getId_proposition() {
         return id_proposition;
@@ -51,11 +53,11 @@ public class Proposition {
         this.valid_proposition = valid_proposition;
     }
 
-   public Test getQuestion_proposition() {
+   public Question getQuestion_proposition() {
         return question_proposition;
     }
 
-    public void setQuestion_proposition(Test question_proposition) {
+    public void setQuestion_proposition(Question question_proposition) {
         this.question_proposition = question_proposition;
     }
 }

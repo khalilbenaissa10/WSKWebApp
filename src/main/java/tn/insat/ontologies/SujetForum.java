@@ -27,12 +27,12 @@ public class SujetForum {
    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumns( {
             @JoinColumn(name="Enseignant_idEnseignant", referencedColumnName="idEnseignant", nullable=true) } )
-    private Test enseignant_sujetforum ;
+    private Enseignant enseignant_sujetforum ;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumns( {
             @JoinColumn(name="Etudiant_idEtudiant", referencedColumnName="idEtudiant", nullable=true) } )
-    private Test etudiant_sujetforum ;
+    private Etudiant etudiant_sujetforum ;
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="sujetforum_reponseforum")
     private Set<ReponseForum> reponsesforum = new HashSet<ReponseForum>(0);
@@ -61,19 +61,19 @@ public class SujetForum {
         this.text_sujetforum = text_sujetforum;
     }
 
-    public Test getEnseignant_sujetforum() {
+    public Enseignant getEnseignant_sujetforum() {
         return enseignant_sujetforum;
     }
 
-    public void setEnseignant_sujetforum(Test enseignant_sujetforum) {
+    public void setEnseignant_sujetforum(Enseignant enseignant_sujetforum) {
         this.enseignant_sujetforum = enseignant_sujetforum;
     }
 
-    public Test getEtudiant_sujetforum() {
+    public Etudiant getEtudiant_sujetforum() {
         return etudiant_sujetforum;
     }
 
-    public void setEtudiant_sujetforum(Test etudiant_sujetforum) {
+    public void setEtudiant_sujetforum(Etudiant etudiant_sujetforum) {
         this.etudiant_sujetforum = etudiant_sujetforum;
     }
 
