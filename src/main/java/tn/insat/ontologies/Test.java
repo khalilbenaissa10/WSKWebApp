@@ -31,7 +31,7 @@ public class Test implements Concept {
     @Column(name="DureeTest", length=45)
     private String duree_test;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumns( {
             @JoinColumn(name="Cours_idCours", referencedColumnName="idCours", nullable=true) } )
     private Cours cours_test ;

@@ -58,6 +58,7 @@ public class EnseignantController {
     @ResponseBody
     public Cours create( @PathVariable( "id" ) int id,@RequestBody Cours resource ) throws InterruptedException {
         CreateCours cc = new CreateCours();
+        cc.setId_cours(resource.getId_cours());
         cc.setDuree(resource.getDuree());
         cc.setIntitule(resource.getIntitule());
         cc.setDescription(resource.getDescription());

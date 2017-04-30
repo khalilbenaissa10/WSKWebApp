@@ -11,7 +11,7 @@ package tn.insat.Agents;
  */
 public interface IAgentEnseignant {
     
-    void createCours(String intitulecours,int duree,String Description, int id_enseignant);
+    void createCours(int cours_id,String intitulecours,int duree,String Description, int id_enseignant);
 
     public void infoCours(int idcours);
 

@@ -33,6 +33,7 @@ public class AgentServer extends Agent implements Vocabulary {
    private ICoursEtudiantRepository repo_coursetudiant = new CoursEtudiantRepository();
    private IEtudiantRepository repo_etudiant = new EtudiantRepository();
    private IEnseignantRepository repo_enseignant = new EnseignantRepository();
+   private ITestRepository repo_test = new TestRepository();
    ICoursRepository repo_cours = new CoursRepository();
 
     
@@ -141,6 +142,8 @@ public class AgentServer extends Agent implements Vocabulary {
                      addBehaviour(new HandleInformationEtudiant(myAgent,msg));
                   else if (action instanceof ListeCoursByEtudiant)
                      addBehaviour(new HandleListCoursByEtudiant(myAgent,msg));
+                  else if (action instanceof TestByCours)
+                     addBehaviour(new HandleListCoursByTest(myAgent,msg));
                   else
 
                      replyNotUnderstood(msg);
@@ -172,16 +175,18 @@ public class AgentServer extends Agent implements Vocabulary {
             CreateCours ca = (CreateCours)((Action)content).getAction();
             Cours cours = new Cours();
 
+            cours.setId_cours(ca.getId_cours());
             cours.setIntitule(ca.getIntitule());
             cours.setDescription(ca.getDescription());
             cours.setDuree(ca.getDuree());
             cours.setEnseignant(ca.getEnseignant());
+            repo.create(cours);
+            cours = repo.findById(ca.getId_cours());
             Result result = new Result((Action)content, (Cours)cours);
             ACLMessage reply = request.createReply();
             reply.setPerformative(ACLMessage.INFORM);
             getContentManager().fillContent(reply, result);
             send(reply);
-            repo.create(cours);
             System.out.println("Cours [" + cours.getIntitule() + " # " +
                                cours.getId_cours() + "] created!");
          }
@@ -207,15 +212,15 @@ public class AgentServer extends Agent implements Vocabulary {
 
             ContentElement content = getContentManager().extractContent(query);
             InformationCours info = (InformationCours)((Action)content).getAction();
-            Object obj = processInformation(info);
-            if (obj == null) replyNotUnderstood(query);
+            Cours crs = repo.findById(info.getId_Cours());
+            if (crs == null) replyNotUnderstood(query);
             else {
                ACLMessage reply = query.createReply();
                reply.setPerformative(ACLMessage.INFORM);
-               Result result = new Result((Action)content, obj);
+               Result result = new Result((Action)content, crs);
                getContentManager().fillContent(reply, result);
                send(reply);
-               System.out.println("information du cours " + obj  + "from server");
+               System.out.println("information du cours " + crs  + "from server");
             }
          }
          catch(Exception ex) { ex.printStackTrace(); }
@@ -287,6 +292,41 @@ public class AgentServer extends Agent implements Vocabulary {
          catch(Exception ex) { ex.printStackTrace(); }
       }
    }
+
+   class HandleListCoursByTest extends OneShotBehaviour {
+// --------------------------------------------------  Handler for an Information query
+
+      private ACLMessage query;
+
+      HandleListCoursByTest(Agent a, ACLMessage query) {
+
+         super(a);
+         this.query = query;
+      }
+
+      public void action() {
+
+         try {
+
+            ContentElement content = getContentManager().extractContent(query);
+
+            TestByCours info = (TestByCours) ((Action)content).getAction();
+            java.util.ArrayList<Test> listTest = null;
+            listTest = (java.util.ArrayList<Test>) repo_test.findByCours(info.getId_cours());
+            jade.util.leap.ArrayList listtestjade = new jade.util.leap.ArrayList(listTest);
+            Result result = new Result((Action)content, (jade.util.leap.ArrayList)listtestjade);
+            ACLMessage reply = query.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+            System.out.println("liste test by cours " + listTest  + "from server");
+
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+
 
 
 

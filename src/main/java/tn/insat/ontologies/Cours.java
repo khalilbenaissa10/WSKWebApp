@@ -47,7 +47,7 @@ public class Cours implements Concept,Serializable {
     @OneToMany(fetch=FetchType.LAZY, mappedBy="cours_seance")
     private Set<Seance> seances = new HashSet<Seance>(0);
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="cours_test")
+    @OneToMany(fetch=FetchType.EAGER, mappedBy="cours_test")
     private Set<Test> tests = new HashSet<Test>(0);
 
     @OneToMany(fetch=FetchType.EAGER, mappedBy="cours_asso")

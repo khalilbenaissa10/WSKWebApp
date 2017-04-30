@@ -1,6 +1,7 @@
 package tn.insat.Repositories;
 
 import org.hibernate.criterion.Criterion;
+import tn.insat.Client.ExampleController;
 import tn.insat.Utilities.HibernateUtil;
 import tn.insat.ontologies.Cours;
 import org.hibernate.Criteria;
@@ -10,7 +11,9 @@ import org.hibernate.criterion.Restrictions;
 import tn.insat.ontologies.CoursEtudiant;
 import tn.insat.ontologies.Etudiant;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Khalil on 16/04/2017.
@@ -66,15 +69,12 @@ public class CoursRepository implements  ICoursRepository{
         // Work with the session
          lc =  (ArrayList<Cours>) cr.list();
 
-        ArrayList<Cours> uniques = new ArrayList<Cours>();
-        for (Cours element : lc) {
-            if (!uniques.contains(element)) {
-                uniques.add(element);
-            }
-        }
+
 
         // Clean up !
         session.close();
+
+        ArrayList<Cours> uniques =ExampleController.rendreUniques(lc);
 
         return uniques;
 
@@ -92,7 +92,9 @@ public class CoursRepository implements  ICoursRepository{
         // Clean up !
         session.close();
 
-        return lc;
+        ArrayList<Cours> uniques = ExampleController.rendreUniques(lc);
+
+        return uniques;
     }
 
 
@@ -111,7 +113,9 @@ public class CoursRepository implements  ICoursRepository{
         // Clean up !
         session.close();
 
-        return lc;
+        ArrayList<Cours> uniques =ExampleController.rendreUniques(lc);
+
+        return uniques;
     }
 
     public ArrayList<Cours> findCoursLikkSearchDescription(String search){
@@ -129,7 +133,9 @@ public class CoursRepository implements  ICoursRepository{
         // Clean up !
         session.close();
 
-        return lc;
+        ArrayList<Cours> uniques =ExampleController.rendreUniques(lc);
+
+        return uniques;
     }
 
     public ArrayList<Cours> findByEtudiant(int id_etudiant){
@@ -148,7 +154,9 @@ public class CoursRepository implements  ICoursRepository{
         // Clean up !
         session.close();
 
-        return lc;
+        ArrayList<Cours> uniques =ExampleController.rendreUniques(lc);
+
+        return uniques;
 
 
     }

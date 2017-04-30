@@ -1,10 +1,9 @@
 package tn.insat.Client;
 
 
-import tn.insat.ontologies.Cours;
-import tn.insat.ontologies.CoursEtudiant;
-import tn.insat.ontologies.Etudiant;
+import tn.insat.ontologies.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +22,16 @@ public  class ExampleController {
     public static List<Etudiant> liste_etudiant;
    public static Cours cours ;
    public static CoursEtudiant cours_etudiant ;
+
+    public static List<Test> getListeTest() {
+        return ListeTest;
+    }
+
+    public static void setListeTest(List<Test> listeTest) {
+        ListeTest = listeTest;
+    }
+
+    private static List<Test> ListeTest ;
 
     public static List<Cours> getListe_cours() {
         return liste_cours;
@@ -46,5 +55,25 @@ public  class ExampleController {
 
     public static void setListe_etudiant(List<Etudiant> liste_etudiant) {
         ExampleController.liste_etudiant = liste_etudiant;
+    }
+
+    public static ArrayList<Cours> rendreUniques(List<Cours> le){
+        ArrayList<Cours> uniques = new ArrayList<Cours>();
+        for (Cours element : le) {
+            if (!uniques.contains(element)) {
+                uniques.add(element);
+            }
+        }
+        return uniques;
+    }
+
+    public static ArrayList<Etudiant> rendreUniquesEtudiants(List<Etudiant> le){
+        ArrayList<Etudiant> uniques = new ArrayList<Etudiant>();
+        for (Etudiant element : le) {
+            if (!uniques.contains(element)) {
+                uniques.add(element);
+            }
+        }
+        return uniques;
     }
 }

@@ -59,7 +59,7 @@ public class AgentEnseignant extends Agent implements Vocabulary, IAgentEnseigna
                              @Override
                              public void action() {
                                  CreateCours cc = (CreateCours)obj ;
-                                 createCours(cc.getIntitule(),cc.getDuree(),cc.getDescription(),cc.getEnseignant().getId_enseignant());
+                                 createCours(cc.getId_cours(),cc.getIntitule(),cc.getDuree(),cc.getDescription(),cc.getEnseignant().getId_enseignant());
                              }
                          });
                      }
@@ -119,11 +119,12 @@ public class AgentEnseignant extends Agent implements Vocabulary, IAgentEnseigna
    
    
     @Override
-  public void createCours(String intitulecours ,int duree,String description, int id_enseignant) {
+  public void createCours(int cours_id,String intitulecours ,int duree,String description, int id_enseignant) {
 // ----------------------  Process to the server agent the request
 //                         to create a new account
         System.out.println("create cours from enseignant");
       CreateCours ca = new CreateCours();
+      ca.setId_cours(cours_id);
       ca.setDuree(duree);
       ca.setDescription(description);
       ca.setIntitule(intitulecours);

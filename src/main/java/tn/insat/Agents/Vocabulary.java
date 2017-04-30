@@ -37,9 +37,19 @@ public interface Vocabulary {
    public static final String TEST_DUREE = "duree_test";
    public static final String TEST_COURS = "cours_test";
    public static final String TEST_ETUDIANTS = "testetudiant";
+   public static final String TEST_TEST_QUESTIONS = "testquestions";
+
+   //Proposition
+   public static final String PROPOSITION = "Proposition";
+   public static final String PROPOSITION_ID = "id_proposition";
+   public static final String PROPOSITION_TEXT_PROPOSITION = "text_proposition";
+   public static final String PROPOSITION_VALID_PROPOSITION = "valid_proposition";
+   public static final String PROPOSITION_QUESTION_PROPOSITION = "question_proposition";
+
 
    //create cours
    public static final String CREATE_COURS = "Create_cours";
+   public static final String CREATE_COURS_ID = "id_cours";
    public static final String CREATE_COURS_INTITULE = "intitule";
    public static final String CREATE_COURS_DUREE = "duree";
    public static final String CREATE_COURS_DESCRIPTION = "DESCRIPTION";
@@ -103,6 +113,10 @@ public interface Vocabulary {
    public static final String LIST_ETUDIANT_ENSEIGNANT = "List_etudiant_enseignant";
    public static final String LIST_ETUDIANT_ENSEIGNANT_ID = "id_enseignant";
 
+   //Test by cours
+   public static final String TEST_BY_COURS = "Test_by_cours";
+   public static final String TEST_BY_COURS_ID_COURS = "id_cours";
+
 
    //etudiant
    public static final String ETUDIANT="Etudiant";
@@ -110,6 +124,13 @@ public interface Vocabulary {
    public static final String ETUDIANT_NOM="nom_etudiant";
    public static final String ETUDIANT_COURS_ETUDIANT="coursetudiant";
    public static final String ETUDIANT_TEST_ETUDIANT="testetudiant";
+
+   //Question
+   public static final String QUESTION="Question";
+   public static final String QUESTION_ID="id_question";
+   public static final String QUESTION_ENONCE="enonce_question";
+   public static final String QUESTION_TEST_QUESTION ="test_question";
+   public static final String QUESTION_PROPOSITIONS ="propositions";
 
    //enseignant
    public static final String ENSEIGNANT="eneignant";

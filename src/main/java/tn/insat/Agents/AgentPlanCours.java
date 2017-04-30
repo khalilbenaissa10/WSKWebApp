@@ -73,6 +73,18 @@ public class AgentPlanCours extends Agent implements Vocabulary, IAgentPlanCours
 
                              }
                          });
+
+                     }
+                     else if(obj instanceof InformationCours) {
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 InformationCours aff = (InformationCours) obj;
+                                 infoCours(aff);
+
+                             }
+                         });
                      }
                      else {
                          addBehaviour(new OneShotBehaviour() {
@@ -101,6 +113,14 @@ public class AgentPlanCours extends Agent implements Vocabulary, IAgentPlanCours
 
        System.out.println(getLocalName() + " is now shutting down.");
        
+    }
+
+
+    public void infoCours(InformationCours ic) {
+
+
+        sendMessage(ACLMessage.QUERY_REF, ic);
+
     }
 
 
@@ -184,6 +204,16 @@ public class AgentPlanCours extends Agent implements Vocabulary, IAgentPlanCours
 
                           Problem prob = (Problem) result.getItems().get(0);
                           System.out.println("Problem : " + prob.getMsg());
+                      }
+                      else if (result.getValue()  instanceof Cours) {
+
+                          Cours crs = (Cours)result.getValue() ;
+
+                              ExampleController.setCours(crs);
+                              SemaphoreClass.available.release();
+
+
+
                       }
                       else if (result.getValue()  instanceof ArrayList) {
 

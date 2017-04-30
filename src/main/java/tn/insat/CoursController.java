@@ -54,5 +54,15 @@ public class CoursController {
     }
 
 
+    @RequestMapping(value = "/getCoursById/{id}",method=RequestMethod.GET)
+    public @ResponseBody Cours getCoursById(@PathVariable( "id" ) int id) throws InterruptedException {
+        InformationCours info_cours = new InformationCours();
+        info_cours.setId_Cours(id);
+        operator.send_to_planCours(info_cours);
+        SemaphoreClass.available.acquire();
+        Cours cours = ExampleController.getCours();
+        ExampleController.setCours(null);
+        return cours;
+    }
 
 }

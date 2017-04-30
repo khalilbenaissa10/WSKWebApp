@@ -11,11 +11,21 @@ import jade.content.*;
  * @author saif
  */
 public class CreateCours implements AgentAction {
-    
+
+
+    private int id_cours ;
     private String intitule;
     private int duree;
     private String description ;
     private Enseignant enseignant ;
+
+    public int getId_cours() {
+        return id_cours;
+    }
+
+    public void setId_cours(int id_cours) {
+        this.id_cours = id_cours;
+    }
 
     /**
      * @return the intitule

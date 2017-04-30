@@ -1,5 +1,6 @@
 package tn.insat.Repositories;
 
+import tn.insat.Client.ExampleController;
 import tn.insat.Utilities.HibernateUtil;
 import tn.insat.ontologies.Cours;
 import tn.insat.ontologies.CoursEtudiant;
@@ -45,12 +46,7 @@ public class EnseignantRepository implements  IEnseignantRepository {
         }
 
 
-        ArrayList<Etudiant> uniques = new ArrayList<Etudiant>();
-        for (Etudiant element : le) {
-            if (!uniques.contains(element)) {
-                uniques.add(element);
-            }
-        }
+        ArrayList<Etudiant> uniques = ExampleController.rendreUniquesEtudiants(le);
 
 
 
