@@ -2,6 +2,7 @@ package tn.insat.Repositories;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import tn.insat.Utilities.HibernateUtil;
 import tn.insat.ontologies.Cours;
@@ -32,4 +33,43 @@ public class TestRepository implements  ITestRepository {
         session.close();
         return lt;
     }
+
+    @Override
+    public Boolean create(Test t) {
+        boolean a_retourner = false;
+        Transaction transaction = null;
+        try {
+            Session session = HibernateUtil.createSessionFactory()
+                    .openSession();
+            transaction = session.beginTransaction();
+
+            session.save(t);
+            transaction.commit();
+
+            a_retourner = true;
+        } catch (Exception e) {
+            System.out.println("LOG : Exception lors de la creation. Détails :"
+                    + e);
+            if ((transaction != null) /*&& transaction.isActive()*/)
+                transaction.rollback();
+        }
+
+        return a_retourner;
+    }
+
+
+    @Override
+    public Test findById(int id_test){
+
+        Session session = HibernateUtil.createSessionFactory().openSession();
+
+        // Work with the session
+        Test c = (Test) session.get(Test.class, id_test);
+
+        // Clean up !
+        session.close();
+
+        return c;
+    }
+
 }

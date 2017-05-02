@@ -7,4 +7,6 @@ import java.util.concurrent.Semaphore;
  */
 public class SemaphoreClass {
     static public Semaphore available = new Semaphore(0,true);
+
+    static public Semaphore available2 = new Semaphore(0,true);
 }

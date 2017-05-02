@@ -21,7 +21,6 @@ import javax.persistence.*;
 public class Test implements Concept {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="idTest", unique=true, nullable=false)
     private int id_test;
 
@@ -41,8 +40,6 @@ public class Test implements Concept {
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="test_question")
     private Set<Question> testquestions = new HashSet<Question>(0);
-
-
 
 
     public int getId_test() {

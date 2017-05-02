@@ -5,6 +5,7 @@
  */
 package tn.insat.Agents;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import jade.content.*;
 import jade.content.lang.*;
 import jade.content.lang.sl.*;
@@ -19,6 +20,7 @@ import jade.lang.acl.*;
 import jade.util.leap.*;
 import tn.insat.Client.ExampleController;
 import tn.insat.Client.SemaphoreClass;
+import tn.insat.Client.SingletonQuestion;
 import tn.insat.ontologies.*;
 
 /**
@@ -58,6 +60,68 @@ public class AgentTest extends Agent implements Vocabulary, IAgentTest {
                              }
                          });
                      }
+                     else if(obj instanceof CreateTest){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 CreateTest cc = (CreateTest)obj ;
+                                 createTest(cc);
+                             }
+                         });
+                     }
+                     else if(obj instanceof CreateQuestion){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 CreateQuestion cc = (CreateQuestion)obj ;
+                                 createQuestion(cc);
+                             }
+                         });
+                     }
+                     else if(obj instanceof CreateProposition){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 CreateProposition cc = (CreateProposition)obj ;
+                                 createProposition(cc);
+                             }
+                         });
+                     }
+                     else if(obj instanceof CreateReponseEtudiant){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 CreateReponseEtudiant cc = (CreateReponseEtudiant)obj ;
+                                 createReponseEtudiant(cc);
+                             }
+                         });
+                     }
+                     else if(obj instanceof QuestionByTest){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 QuestionByTest aff = (QuestionByTest) obj ;
+                                 listerQuestionByTest(aff);
+
+                             }
+                         });
+                     }
+                     else if(obj instanceof PropositionByQuestion){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 PropositionByQuestion aff = (PropositionByQuestion) obj ;
+                                 listerPropostionsByQuestion(aff);
+
+                             }
+                         });
+                     }
 
                  }
                  else
@@ -75,13 +139,59 @@ public class AgentTest extends Agent implements Vocabulary, IAgentTest {
        
     }
 
+    @Override
+    public void createTest(CreateTest cc) {
+// ----------------------  Process to the server agent the request
+//                         to create a new account
+        System.out.println("create test from test");
+        sendMessage(ACLMessage.REQUEST,(CreateTest) cc);
+
+    }
+
+    public void createQuestion(CreateQuestion cc) {
+// ----------------------  Process to the server agent the request
+//                         to create a new account
+        System.out.println("create test from test");
+        sendMessage(ACLMessage.REQUEST,(CreateQuestion) cc);
+
+    }
+
+    public void createProposition(CreateProposition cc) {
+// ----------------------  Process to the server agent the request
+//                         to create a new account
+        System.out.println("create test from test");
+        sendMessage(ACLMessage.REQUEST,(CreateProposition) cc);
+
+    }
+
+    public void createReponseEtudiant(CreateReponseEtudiant cc) {
+// ----------------------  Process to the server agent the request
+//                         to create a new account
+        System.out.println("create reponse etudiant from test");
+        sendMessage(ACLMessage.REQUEST,(CreateReponseEtudiant) cc);
+
+    }
+
+
+
 
     public void listerTestByCours(TestByCours aff){
         sendMessage(ACLMessage.QUERY_REF, aff);
 
     }
-   
-   
+
+    public void listerQuestionByTest(QuestionByTest aff){
+        sendMessage(ACLMessage.QUERY_REF, aff);
+
+    }
+
+    public void listerPropostionsByQuestion(PropositionByQuestion aff){
+        sendMessage(ACLMessage.QUERY_REF, aff);
+
+    }
+
+
+
     class WaitServerResponse extends ParallelBehaviour {
 // ----------------------------------------------------  launch a SimpleBehaviour to receive
 //                                                       servers response and a WakerBehaviour
@@ -139,6 +249,30 @@ public class AgentTest extends Agent implements Vocabulary, IAgentTest {
                           Problem prob = (Problem) result.getItems().get(0);
                           System.out.println("Problem : " + prob.getMsg());
                       }
+                      else if (result.getValue() instanceof Test) {
+
+                          Test test= (Test) result.getItems().get(0);
+                          SingletonQuestion.setTest(test);
+                          SemaphoreClass.available.release();
+                      }
+                      else if (result.getValue() instanceof Question) {
+
+                          Question question= (Question) result.getItems().get(0);
+                          SingletonQuestion.setQuestion(question);
+                          SemaphoreClass.available.release();
+                      }
+                      else if (result.getValue() instanceof Proposition) {
+
+                          Proposition proposition= (Proposition) result.getItems().get(0);
+                          SingletonQuestion.setProposition(proposition);
+                          SemaphoreClass.available2.release();
+                      }
+                      else if (result.getValue() instanceof ReponseEtudiant) {
+
+                          ReponseEtudiant reponse= (ReponseEtudiant) result.getItems().get(0);
+                          SingletonQuestion.setReponseEtudiant(reponse);
+                          SemaphoreClass.available2.release();
+                      }
                       else if (result.getValue()  instanceof ArrayList) {
 
                           ArrayList lcs = (ArrayList) result.getValue() ;
@@ -148,6 +282,19 @@ public class AgentTest extends Agent implements Vocabulary, IAgentTest {
                               SemaphoreClass.available.release();
 
                           }
+                          else if (lcs.get(0) instanceof Question) {
+                              java.util.ArrayList<Question> L = (java.util.ArrayList<Question>)lcs.toList();
+                              SingletonQuestion.setQuestions(L);
+                              SemaphoreClass.available.release();
+
+                          }
+                          else if (lcs.get(0) instanceof Proposition) {
+                              java.util.ArrayList<Proposition> L = (java.util.ArrayList<Proposition>)lcs.toList();
+                              SingletonQuestion.setPropositions(L);
+                              SemaphoreClass.available.release();
+
+                          }
+
 
                       }
                       else System.out.println("\nUnexpected result from server!");

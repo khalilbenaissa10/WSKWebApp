@@ -14,8 +14,7 @@ public class Proposition {
 
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="idPropostion", unique=true, nullable=false)
+    @Column(name="idProposition", unique=true, nullable=false)
     int id_proposition ;
 
     @Column(name="TextProposition", length=256)
@@ -24,7 +23,7 @@ public class Proposition {
     @Column(name="ValidProposition")
     Boolean valid_proposition ;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumns( {
             @JoinColumn(name="Question_idQuestion", referencedColumnName="idQuestion", nullable=true) } )
     private Question question_proposition ;

@@ -5,10 +5,12 @@
  */
 package tn.insat.Agents;
 
+import tn.insat.ontologies.CreateTest;
+
 /**
  *
  * @author saif
  */
 public interface IAgentTest {
-    
+    void createTest(CreateTest cc);
 }

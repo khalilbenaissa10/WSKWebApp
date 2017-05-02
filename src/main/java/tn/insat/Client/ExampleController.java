@@ -19,6 +19,7 @@ public  class ExampleController {
     }
 
     public static List<Cours> liste_cours;
+    public static TestEtudiant testEtudiant ;
     public static List<Etudiant> liste_etudiant;
    public static Cours cours ;
    public static CoursEtudiant cours_etudiant ;
@@ -75,5 +76,13 @@ public  class ExampleController {
             }
         }
         return uniques;
+    }
+
+    public static TestEtudiant getTestEtudiant() {
+        return testEtudiant;
+    }
+
+    public static void setTestEtudiant(TestEtudiant testEtudiant) {
+        ExampleController.testEtudiant = testEtudiant;
     }
 }

@@ -35,6 +35,7 @@ public class HibernateUtil {
                     .addAnnotatedClass(Proposition.class)
                     .addAnnotatedClass(SujetForum.class)
                     .addAnnotatedClass(ReponseForum.class)
+                    .addAnnotatedClass(ReponseEtudiant.class)
                     .configure();
 
             // Build a service registry from the properties of the configuration

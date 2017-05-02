@@ -35,6 +35,10 @@ public class AgentServer extends Agent implements Vocabulary {
    private IEnseignantRepository repo_enseignant = new EnseignantRepository();
    private ITestRepository repo_test = new TestRepository();
    ICoursRepository repo_cours = new CoursRepository();
+   IQuestionRepository repo_question = new QuestionRepository();
+   IPropositionRepository repo_proposition =new PropositionRepository();
+   ITestEtudiantRepository repo_test_etudiant = new TestEtudiantRepository();
+   IReponseEtudiantRepository repo_reponse_question = new ReponseEtudiantRepository();
 
     
    private int idCnt = 0;
@@ -116,6 +120,16 @@ public class AgentServer extends Agent implements Vocabulary {
                      addBehaviour(new HandleCreateCours(myAgent, msg));
                   else if (action instanceof AffecterCours)
                     addBehaviour(new HandleAffecterCours(myAgent, msg));
+                  else if (action instanceof AffecterTest)
+                     addBehaviour(new HandleAffecterTest(myAgent, msg));
+                  else if (action instanceof CreateTest)
+                     addBehaviour(new HandleCreateTest(myAgent, msg));
+                  else if (action instanceof CreateQuestion)
+                     addBehaviour(new HandleCreateQuestion(myAgent, msg));
+                  else if (action instanceof CreateProposition)
+                     addBehaviour(new HandleCreationProposition(myAgent, msg));
+                  else if (action instanceof CreateReponseEtudiant)
+                     addBehaviour(new HandleCreateReponseEtudiant(myAgent, msg));
                   else
                      replyNotUnderstood(msg);
                   break;
@@ -144,6 +158,10 @@ public class AgentServer extends Agent implements Vocabulary {
                      addBehaviour(new HandleListCoursByEtudiant(myAgent,msg));
                   else if (action instanceof TestByCours)
                      addBehaviour(new HandleListCoursByTest(myAgent,msg));
+                  else if (action instanceof QuestionByTest)
+                     addBehaviour(new HandleListeQuestionByTest(myAgent,msg));
+                  else if (action instanceof PropositionByQuestion)
+                     addBehaviour(new HandleListePropositionByQuestion(myAgent,msg));
                   else
 
                      replyNotUnderstood(msg);
@@ -193,6 +211,149 @@ public class AgentServer extends Agent implements Vocabulary {
          catch(Exception ex) { ex.printStackTrace(); }
       }
    }
+
+
+   class HandleCreateTest extends OneShotBehaviour {
+// ----------------------------------------------------  Handler for a CreateAccount request
+
+      private ACLMessage request;
+
+      HandleCreateTest(Agent a, ACLMessage request) {
+
+         super(a);
+         this.request = request;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(request);
+            CreateTest ca = (CreateTest)((Action)content).getAction();
+            Test test = new Test();
+            Cours cours_du_test =repo_cours.findById(ca.getId_cours());
+            test.setCours_test(cours_du_test);
+            test.setId_test(ca.getId_test());
+            test.setNom_test(ca.getNom_test());
+            test.setDuree_test(ca.getDuree_test());
+
+            repo_test.create(test);
+            test = repo_test.findById(ca.getId_test());
+            Result result = new Result((Action)content, (Test)test);
+            ACLMessage reply = request.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+
+   class HandleCreateQuestion extends OneShotBehaviour {
+// ----------------------------------------------------  Handler for a CreateAccount request
+
+      private ACLMessage request;
+
+      HandleCreateQuestion(Agent a, ACLMessage request) {
+
+         super(a);
+         this.request = request;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(request);
+            CreateQuestion ca = (CreateQuestion)((Action)content).getAction();
+            Question question = new Question();
+            question.setEnonce_question(ca.getEnonce_question());
+            question.setId_question(ca.getId_question());
+            question.setTest_question(ca.getTest());
+            repo_question.create(question);
+
+            question = repo_question.findById(ca.getId_question());
+            Result result = new Result((Action)content, (Question)question);
+            ACLMessage reply = request.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+
+   class HandleCreationProposition extends OneShotBehaviour {
+// ----------------------------------------------------  Handler for a CreateAccount request
+
+      private ACLMessage request;
+
+      HandleCreationProposition(Agent a, ACLMessage request) {
+
+         super(a);
+         this.request = request;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(request);
+            CreateProposition ca = (CreateProposition)((Action)content).getAction();
+            Proposition proposition = new Proposition();
+           proposition.setId_proposition(ca.getId_proposition());
+           proposition.setQuestion_proposition(ca.getQuestion());
+           proposition.setText_proposition(ca.getText_proposition());
+           proposition.setValid_proposition(ca.getValid_proposition());
+           repo_proposition.create(proposition);
+
+            proposition = repo_proposition.findById(ca.getId_proposition());
+            Result result = new Result((Action)content, (Proposition)proposition);
+            ACLMessage reply = request.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+
+
+   class HandleCreateReponseEtudiant extends OneShotBehaviour {
+// ----------------------------------------------------  Handler for a CreateAccount request
+
+      private ACLMessage request;
+
+      HandleCreateReponseEtudiant(Agent a, ACLMessage request) {
+
+         super(a);
+         this.request = request;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(request);
+            CreateReponseEtudiant ca = (CreateReponseEtudiant)((Action)content).getAction();
+            ReponseEtudiant reponse = new ReponseEtudiant();
+            reponse.setId_reponse_etudiant(ca.getId_reponse_etudiant());
+            reponse.setTestetudiant(ca.getTestEtudiant());
+            reponse.setText_reponse_etudiant(ca.getText_reponse_etudiant());
+            reponse.setValid_reponse_etudiant(ca.getValid_reponse_etudiant());
+            repo_reponse_question.Create(reponse);
+
+            reponse = repo_reponse_question.findById(ca.getId_reponse_etudiant());
+            Result result = new Result((Action)content, (ReponseEtudiant)reponse);
+            ACLMessage reply = request.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+
 
 
    class HandleInformationCours extends OneShotBehaviour {
@@ -326,6 +487,72 @@ public class AgentServer extends Agent implements Vocabulary {
       }
    }
 
+   class HandleListeQuestionByTest extends OneShotBehaviour {
+// --------------------------------------------------  Handler for an Information query
+
+      private ACLMessage query;
+
+      HandleListeQuestionByTest(Agent a, ACLMessage query) {
+
+         super(a);
+         this.query = query;
+      }
+
+      public void action() {
+
+         try {
+
+            ContentElement content = getContentManager().extractContent(query);
+
+            QuestionByTest info = (QuestionByTest) ((Action)content).getAction();
+            java.util.ArrayList<Question> listQuestion = null;
+            listQuestion = (java.util.ArrayList<Question>) repo_question.findByTest(info.getId_test());
+            jade.util.leap.ArrayList listQuestionJade = new jade.util.leap.ArrayList(listQuestion);
+            Result result = new Result((Action)content, (jade.util.leap.ArrayList)listQuestionJade);
+            ACLMessage reply = query.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+            System.out.println("liste question by test " + listQuestion  + "from server");
+
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+
+   class HandleListePropositionByQuestion extends OneShotBehaviour {
+// --------------------------------------------------  Handler for an Information query
+
+      private ACLMessage query;
+
+      HandleListePropositionByQuestion(Agent a, ACLMessage query) {
+
+         super(a);
+         this.query = query;
+      }
+
+      public void action() {
+
+         try {
+
+            ContentElement content = getContentManager().extractContent(query);
+
+            PropositionByQuestion info = (PropositionByQuestion) ((Action)content).getAction();
+            java.util.ArrayList<Proposition> listProposition = null;
+            listProposition = (java.util.ArrayList<Proposition>) repo_proposition.findByQuestion(info.getId_question());
+            jade.util.leap.ArrayList listPropositionJade = new jade.util.leap.ArrayList(listProposition);
+            Result result = new Result((Action)content, (jade.util.leap.ArrayList)listPropositionJade);
+            ACLMessage reply = query.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+            System.out.println("liste question by test " + listProposition  + "from server");
+
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
 
 
 
@@ -370,6 +597,54 @@ public class AgentServer extends Agent implements Vocabulary {
                getContentManager().fillContent(reply, result);
                send(reply);
                System.out.println("affectation cours de serveur");
+
+            }
+
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+
+   class HandleAffecterTest extends OneShotBehaviour {
+// --------------------------------------------------  Handler for an Information query
+
+      private ACLMessage query;
+
+      HandleAffecterTest(Agent a, ACLMessage query) {
+
+         super(a);
+         this.query = query;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(query);
+            AffecterTest test_aff = (AffecterTest)((Action)content).getAction();
+            Boolean res = repo_test_etudiant.AffecterEtudiant_Test(test_aff.getId_test(),test_aff.getId_etudiant());
+            if (!res){
+               String reponse = "Affectation du test d'id "+test_aff.getId_test()+" à l'etudiant d'id "+test_aff.getId_etudiant()+" a échoue";
+               ACLMessage reply = query.createReply();
+               reply.setPerformative(ACLMessage.INFORM);
+               Result result = new Result((Action)content, (String)reponse);
+               getContentManager().fillContent(reply, result);
+               send(reply);
+               System.out.println("affectation cours de serveur");
+            }
+            else {
+               //String reponse = "Cours d'id "+cours_aff.getId_cours()+" a ete affecté à l'etudiant d'id"+cours_aff.getId_etudiant();
+               ACLMessage reply = query.createReply();
+               reply.setPerformative(ACLMessage.INFORM);
+               TestEtudiant ce = new TestEtudiant();
+               Test test = repo_test.findById(test_aff.getId_test());
+               Etudiant etudiant = repo_etudiant.findById(test_aff.getId_etudiant());
+               ce.setTest_asso(test);
+               ce.setEtudiant_asso_test(etudiant);
+               Result result = new Result((Action)content, (TestEtudiant)ce);
+               getContentManager().fillContent(reply, result);
+               send(reply);
+               System.out.println("affectation test de serveur");
 
             }
 

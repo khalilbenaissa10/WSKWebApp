@@ -2,6 +2,8 @@ package tn.insat.ontologies;
 
 import jade.content.Concept;
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Khalil on 16/04/2017.
@@ -18,18 +20,22 @@ public class TestEtudiant implements Concept {
     @Column(name="idTestEtudiant", unique=true, nullable=false)
     int id_test_etudiant ;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumns( {
             @JoinColumn(name="Test_idTest", referencedColumnName="idTest", nullable=true) } )
     Test test_asso ;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumns( {
             @JoinColumn(name="Etudiant_idEtudiant", referencedColumnName="idEtudiant", nullable=true) } )
     Etudiant etudiant_asso_test ;
 
     @Column(name="Note", unique=true, nullable=false)
     String note_test ;
+
+
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="testetudiant")
+    private Set<ReponseEtudiant> reponseEtudiants = new HashSet<ReponseEtudiant>(0);
 
     public int getId_test_etudiant() {
         return id_test_etudiant;
@@ -61,5 +67,13 @@ public class TestEtudiant implements Concept {
 
     public void setNote_test(String note_test) {
         this.note_test = note_test;
+    }
+
+    public Set<ReponseEtudiant> getReponseEtudiants() {
+        return reponseEtudiants;
+    }
+
+    public void setReponseEtudiants(Set<ReponseEtudiant> reponseEtudiants) {
+        this.reponseEtudiants = reponseEtudiants;
     }
 }

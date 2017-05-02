@@ -60,6 +60,17 @@ public class AgentEtudiant extends Agent implements Vocabulary,IAgentEtudiant {
                              }
                          });
                      }
+                     else if(obj instanceof AffecterTest){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 AffecterTest aff = (AffecterTest) obj ;
+                                 PasserTest(aff.getId_test(),aff.getId_etudiant());
+
+                             }
+                         });
+                     }
                      else if(obj instanceof InformationEtudiant)
                      {
                          addBehaviour(new OneShotBehaviour() {
@@ -113,6 +124,16 @@ public class AgentEtudiant extends Agent implements Vocabulary,IAgentEtudiant {
       sendMessage(ACLMessage.REQUEST, ac);
 
    }
+    public void PasserTest(int id_test, int id_etudiant) {
+// ----------------------  Process to the server agent the request
+//                         to create a new account
+        AffecterTest ac = new AffecterTest();
+        ac.setId_etudiant(id_etudiant);
+        ac.setId_test(id_test);
+        sendMessage(ACLMessage.REQUEST, ac);
+
+    }
+
 
     public void informationEtudiant(int id_etudiant) {
 // ----------------------  Process to the server agent the request
@@ -210,11 +231,21 @@ public class AgentEtudiant extends Agent implements Vocabulary,IAgentEtudiant {
                       System.out.println("Le cours  "+crs.getIntitule() + "a été affecté a l'etudiant");
 
 
-                  }else if (result.getValue()  instanceof CoursEtudiant) {
+                  }
+                  else if (result.getValue()  instanceof CoursEtudiant) {
 
 
                       CoursEtudiant lcs = (CoursEtudiant) result.getValue() ;
                       ExampleController.setCours_etudiant(lcs);
+                      SemaphoreClass.available.release();
+
+
+                  }
+                  else if (result.getValue()  instanceof TestEtudiant) {
+
+
+                      TestEtudiant lcs = (TestEtudiant) result.getValue() ;
+                      ExampleController.setTestEtudiant(lcs);
                       SemaphoreClass.available.release();
 
 

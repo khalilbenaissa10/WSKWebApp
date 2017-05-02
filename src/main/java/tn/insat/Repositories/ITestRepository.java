@@ -11,4 +11,7 @@ import java.util.List;
 public interface ITestRepository {
 
     List<Test> findByCours(int id_cours);
+    Boolean create(Test t);
+    Test findById(int id_test);
+
 }

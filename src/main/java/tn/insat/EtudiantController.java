@@ -50,6 +50,24 @@ public class EtudiantController {
 
     }
 
+
+    @RequestMapping( value = "/affecterTest/{id}",method = RequestMethod.POST )
+    @ResponseStatus( HttpStatus.CREATED )
+    @ResponseBody
+    public TestEtudiant affecter_test( @PathVariable( "id" ) int id,@RequestBody Test resource ) throws InterruptedException {
+        AffecterTest ac = new AffecterTest();
+        ac.setId_test(resource.getId_test());
+        ac.setId_etudiant(id);
+        operator.send_to_etudiant(ac);
+        SemaphoreClass.available.acquire();
+        TestEtudiant test_et = ExampleController.getTestEtudiant();
+        ExampleController.setTestEtudiant(null);
+
+
+        return test_et ;
+
+    }
+
     @RequestMapping(value = "/getEtudiantById/{id}",method=RequestMethod.GET)
     public @ResponseBody Etudiant getEtudiantById(@PathVariable( "id" ) int id) throws InterruptedException {
         InformationEtudiant info_etudiant = new InformationEtudiant();

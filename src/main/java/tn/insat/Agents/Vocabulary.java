@@ -46,6 +46,12 @@ public interface Vocabulary {
    public static final String PROPOSITION_VALID_PROPOSITION = "valid_proposition";
    public static final String PROPOSITION_QUESTION_PROPOSITION = "question_proposition";
 
+   //create Reponse Etudiant
+   public static final String REPONSEETUDIANT = "Reponse_etudiant";
+   public static final String REPONSE_ETUDIANT_ID = "id_reponse_etudiant";
+   public static final String REPONSE_ETUDIANT_TEXT = "text_reponse_etudiant";
+   public static final String REPONSE_ETUDIANT_VALID = "valid_reponse_etudiant";
+   public static final String REPONSE_ETUDIANT_TEST_ETUDIANT = "testetudiant";
 
    //create cours
    public static final String CREATE_COURS = "Create_cours";
@@ -60,10 +66,37 @@ public interface Vocabulary {
    public static final String AFFECTER_COURS_ID_COURS = "id_cours";
    public static final String AFFECTER_COURS_ID_ETUDIANT = "id_etudiant";
 
+   //affecter test
+   public static final String AFFECTER_TEST = "Affecter_test";
+   public static final String AFFECTER_TEST_ID_TEST = "id_test";
+   public static final String AFFECTER_TEST_ID_ETUDIANT= "id_etudiant";
+
    //create test
    public static final String CREATE_TEST = "Create_test";
-   public static final String CREATE_TEST_NOM = "nom";
-   public static final String CREATE_TEST_DUREE = "duree";
+   public static final String CREATE_TEST_ID_COURS = "id_cours";
+   public static final String CREATE_TEST_ID_TEST = "id_test";
+   public static final String CREATE_TEST_NOM = "nom_test";
+   public static final String CREATE_TEST_DUREE = "duree_test";
+
+   //create Reponse Etudiant
+   public static final String CREATE_REPONSE_ETUDIANT = "Create_reponse_etudiant";
+   public static final String CREATE_REPONSE_ETUDIANT_ID = "id_reponse_etudiant";
+   public static final String CREATE_REPONSE_ETUDIANT_TEXT = "text_reponse_etudiant";
+   public static final String CREATE_REPONSE_ETUDIANT_VALID = "valid_reponse_etudiant";
+   public static final String CREATE_REPONSE_ETUDIANT_TEST_ETUDIANT = "testetudiant";
+
+   //create question
+   public static final String CREATE_QUESTION = "Create_question";
+   public static final String CREATE_QUESTION_TEST = "test";
+   public static final String CREATE_QUESTION_ID_QUESTION = "id_question";
+   public static final String CREATE_QUESTION_ENONCE = "enonce_question";
+
+   //create  Proposition
+   public static final String CREATE_PROPOSITION= "Create_proposition";
+   public static final String CREATE_PROPOSITION_QUESTION = "question";
+   public static final String CREATE_PROPOSITION_VALID_PROPOSITION = "valid_proposition";
+   public static final String CREATE_PROPOSITION_TEXT_PROPOSITION = "text_proposition";
+   public static final String CREATE_PROPOSITION_ID_PROPOSITION = "id_proposition";
 
 
    //passer test
@@ -155,7 +188,7 @@ public interface Vocabulary {
    public static final String TEST_ETUDIANT ="TestEtudiant";
    public static final String TEST_ETUDIANT_ID ="id_test_etudiant";
    public static final String TEST_ETUDIANT_TEST_ASSO ="test_asso";
-   public static final String TEST_ETUDIANT_ASS0_TEST ="etudiant_asso_test";
+   public static final String TEST_ETUDIANT_ETUDIANT_ASSO ="etudiant_asso_test";
    public static final String TEST_ETUDIANT_NOTE ="note_test";
 
 
@@ -171,6 +204,15 @@ public interface Vocabulary {
    public static final String CONNAISSANCE_ID = "id_ressource";
    public static final String CONNAISSANCE_LEVEL = "level_connaissance";
    public static final String CONNAISSANCE_DESCRIPTION = "description_connaissance";
+
+
+   //Question BY test
+   public static final String QUESTION_BY_TEST = "Question_by_test";
+   public static final String QUESTION_BY_TEST_ID_TEST = "id_test";
+
+   //Proposition by Question
+   public static final String PROPOSITION_BY_QUESTION = "Proposition_by_question";
+   public static final String PROPOSITION_BY_QUESTION_ID_QUESTION = "id_question";
 
 
 }

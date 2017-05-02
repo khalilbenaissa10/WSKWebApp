@@ -15,14 +15,13 @@ import java.util.Set;
 public class Question {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="idQuestion", unique=true, nullable=false)
     int id_question ;
 
     @Column(name="EnonceQuestion", length=256)
     String enonce_question ;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumns( {
             @JoinColumn(name="Test_idTest", referencedColumnName="idTest", nullable=true) } )
     private Test test_question ;
@@ -53,5 +52,13 @@ public class Question {
 
     public void setTest_question(Test test_question) {
         this.test_question = test_question;
+    }
+
+    public Set<Proposition> getPropositions() {
+        return propositions;
+    }
+
+    public void setPropositions(Set<Proposition> propositions) {
+        this.propositions = propositions;
     }
 }

@@ -43,6 +43,7 @@ public class OntologyWSK extends Ontology implements Vocabulary {
           add(new ConceptSchema(CONNAISSANCE), Connaissance.class);
          add(new ConceptSchema(QUESTION), Question.class);
          add(new ConceptSchema(PROPOSITION), Proposition.class);
+         add(new ConceptSchema(REPONSEETUDIANT), ReponseEtudiant.class);
 
 
 
@@ -65,10 +66,10 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          add(cs, Test.class);
          cs.add(TEST_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
          cs.add(TEST_NOM, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
-         cs.add(TEST_DUREE , (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
-       //  cs.add(TEST_TEST_QUESTIONS,(ConceptSchema) getSchema(Question.class));
+         cs.add(TEST_DUREE , (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
          cs.add(TEST_COURS,(ConceptSchema) getSchema(Cours.class));
        //  cs.add(TEST_ETUDIANTS,(ConceptSchema) getSchema(Etudiant.class));
+          // cs.add(TEST_TEST_QUESTIONS,(ConceptSchema) getSchema(Question.class),1,ObjectSchema.UNLIMITED);
 
          // Question
          cs  = (ConceptSchema) getSchema(QUESTION);
@@ -76,7 +77,7 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          cs.add(QUESTION_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
          cs.add(QUESTION_ENONCE, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
          cs.add(QUESTION_TEST_QUESTION,(ConceptSchema) getSchema(Test.class));
-         cs.add(QUESTION_PROPOSITIONS,(ConceptSchema) getSchema(Proposition.class));
+        // cs.add(QUESTION_PROPOSITIONS,(ConceptSchema) getSchema(Proposition.class));
 
 
          // Proposition
@@ -125,7 +126,10 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          cs = (ConceptSchema) getSchema(TEST_ETUDIANT);
          add(cs, TestEtudiant.class);
          cs.add(TEST_ETUDIANT_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
-         cs.add(TEST_ETUDIANT_NOTE, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         cs.add(TEST_ETUDIANT_NOTE, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.OPTIONAL);
+         cs.add(TEST_ETUDIANT_TEST_ASSO,(ConceptSchema) getSchema(Test.class));
+         cs.add(TEST_ETUDIANT_ETUDIANT_ASSO,(ConceptSchema) getSchema(Etudiant.class));
+
 
          // Ressource
          cs = (ConceptSchema) getSchema(RESSOURCE);
@@ -140,13 +144,27 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          cs.add(CONNAISSANCE_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
          cs.add(CONNAISSANCE_DESCRIPTION, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
          cs.add(CONNAISSANCE_LEVEL, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
-         
+
+         //ReponseEtudiant
+         cs = (ConceptSchema) getSchema(REPONSEETUDIANT);
+         add(cs, ReponseEtudiant.class);
+         cs.add(REPONSE_ETUDIANT_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+         cs.add(REPONSE_ETUDIANT_TEXT, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         cs.add(REPONSE_ETUDIANT_VALID, (PrimitiveSchema) getSchema(BasicOntology.BOOLEAN), ObjectSchema.MANDATORY);
+         cs.add(REPONSE_ETUDIANT_TEST_ETUDIANT,(ConceptSchema) getSchema(TestEtudiant.class));
 
          // ------- Add AgentActions
 
+         // CreateReponseEtudiant
+         AgentActionSchema as = new AgentActionSchema(CREATE_REPONSE_ETUDIANT);
+         add(as, CreateReponseEtudiant.class);
+         as.add(CREATE_REPONSE_ETUDIANT_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+         as.add(CREATE_REPONSE_ETUDIANT_TEXT, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         as.add(CREATE_REPONSE_ETUDIANT_VALID, (PrimitiveSchema) getSchema(BasicOntology.BOOLEAN), ObjectSchema.MANDATORY);
+         as.add(CREATE_REPONSE_ETUDIANT_TEST_ETUDIANT,(ConceptSchema) getSchema(TestEtudiant.class));
+
          // CreateCours
-         AgentActionSchema as = new AgentActionSchema(CREATE_COURS);
-         add(as, CreateCours.class);
+         add(as = new AgentActionSchema(CREATE_COURS), CreateCours.class);
          as.add(CREATE_COURS_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
          as.add(CREATE_COURS_INTITULE, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
          as.add(CREATE_COURS_DESCRIPTION, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
@@ -157,12 +175,32 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          add(as = new AgentActionSchema(AFFECTER_COURS), AffecterCours.class);
          as.add(AFFECTER_COURS_ID_COURS, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
          as.add(AFFECTER_COURS_ID_ETUDIANT, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+
+         // AffecterTest
+         add(as = new AgentActionSchema(AFFECTER_TEST), AffecterTest.class);
+         as.add(AFFECTER_TEST_ID_ETUDIANT, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+         as.add(AFFECTER_TEST_ID_TEST, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
         
          // CreateTest
          add(as = new AgentActionSchema(CREATE_TEST), CreateTest.class);
+         as.add(CREATE_TEST_ID_COURS, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+         as.add(CREATE_TEST_ID_TEST, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
          as.add(CREATE_TEST_NOM, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
-         as.add(CREATE_TEST_DUREE, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
-         
+         as.add(CREATE_TEST_DUREE, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+
+         // CreateQuestion
+         add(as = new AgentActionSchema(CREATE_QUESTION), CreateQuestion.class);
+         as.add(CREATE_QUESTION_ID_QUESTION, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+         as.add(CREATE_QUESTION_ENONCE, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         as.add(CREATE_QUESTION_TEST,(ConceptSchema) getSchema(Test.class));
+
+         // CreateProposition
+         add(as = new AgentActionSchema(CREATE_PROPOSITION), CreateProposition.class);
+         as.add(CREATE_PROPOSITION_ID_PROPOSITION, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+         as.add(CREATE_PROPOSITION_TEXT_PROPOSITION, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         as.add(CREATE_PROPOSITION_VALID_PROPOSITION, (PrimitiveSchema) getSchema(BasicOntology.BOOLEAN), ObjectSchema.MANDATORY);
+         as.add(CREATE_PROPOSITION_QUESTION,(ConceptSchema) getSchema(Question.class));
+
          // PasserTest
          add(as = new AgentActionSchema(PASSER_TEST), PasserTest.class);
          as.add(PASSER_TEST_ID_TEST, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
@@ -177,6 +215,14 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          // Test by cours
          add(as = new AgentActionSchema(TEST_BY_COURS), TestByCours.class);
          as.add(TEST_BY_COURS_ID_COURS, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+
+         // Question by test
+         add(as = new AgentActionSchema(QUESTION_BY_TEST), QuestionByTest.class);
+         as.add(QUESTION_BY_TEST_ID_TEST, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+
+         // Proposition by question
+         add(as = new AgentActionSchema(PROPOSITION_BY_QUESTION), PropositionByQuestion.class);
+         as.add(PROPOSITION_BY_QUESTION_ID_QUESTION, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
 
          // ListCoursEnseignant
          add(as = new AgentActionSchema(LIST_COURS_ENSEIGNANT), ListCoursEnseignant.class);
