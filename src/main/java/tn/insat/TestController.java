@@ -15,13 +15,17 @@ import tn.insat.Client.ExampleController;
 import tn.insat.Client.SemaphoreClass;
 import tn.insat.Client.SingletonQuestion;
 import tn.insat.Repositories.ITestEtudiantRepository;
+import tn.insat.Repositories.IUtilityRepository;
 import tn.insat.Repositories.TestEtudiantRepository;
+import tn.insat.Repositories.UtilityRepository;
 import tn.insat.ontologies.*;
 
 @Controller
 @RequestMapping("/tests")
 public class TestController {
     ITestEtudiantRepository repo = new TestEtudiantRepository();
+
+
 
 
     AgentOperator operator = AgentOperator.getInstance();
@@ -60,6 +64,38 @@ public class TestController {
         return list;
     }
 
+    @RequestMapping(value = "/listeTousTestEtudiant",method=RequestMethod.GET)
+    public @ResponseBody List<TestEtudiant> listertoutTestEtudiant() throws InterruptedException {
+        ListAllTestEtudiant classe = new ListAllTestEtudiant();
+
+        operator.send_to_test(classe);
+        SemaphoreClass.available.acquire();
+        List<TestEtudiant> list = SingletonQuestion.getTestEtudiantList();
+        SingletonQuestion.setTestEtudiantList(null);
+        return list;
+    }
+
+    @RequestMapping(value = "/listeTousTestEtudiantById/{id}",method=RequestMethod.GET)
+    public @ResponseBody List<TestEtudiant> listerTestEtudiantById(@PathVariable( "id" ) int id) throws InterruptedException {
+        ListTestEtudiant classe = new ListTestEtudiant();
+        classe.setId_etudiant(id);
+        operator.send_to_test(classe);
+        SemaphoreClass.available.acquire();
+        List<TestEtudiant> list = SingletonQuestion.getTestEtudiantList();
+        SingletonQuestion.setTestEtudiantList(null);
+        return list;
+    }
+
+    @RequestMapping(value = "/listeNotesByTest/{id}",method=RequestMethod.GET)
+    public @ResponseBody List<TestEtudiant> listerTestEtudiantByTest(@PathVariable( "id" ) int id) throws InterruptedException {
+        ListTestEtudiantByTest classe = new ListTestEtudiantByTest();
+        classe.setId_test(id);
+        operator.send_to_test(classe);
+        SemaphoreClass.available.acquire();
+        List<TestEtudiant> list = SingletonQuestion.getTestEtudiantList();
+        SingletonQuestion.setTestEtudiantList(null);
+        return list;
+    }
 
 
     @RequestMapping( value = "/creerTest/{idCours}",method = RequestMethod.POST )

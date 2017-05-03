@@ -162,6 +162,12 @@ public class AgentServer extends Agent implements Vocabulary {
                      addBehaviour(new HandleListeQuestionByTest(myAgent,msg));
                   else if (action instanceof PropositionByQuestion)
                      addBehaviour(new HandleListePropositionByQuestion(myAgent,msg));
+                  else if (action instanceof ListAllTestEtudiant)
+                     addBehaviour(new HandleListAllTestEtudiant(myAgent,msg));
+                  else if (action instanceof ListTestEtudiant)
+                     addBehaviour(new HandleListTestEtudiant(myAgent,msg));
+                  else if (action instanceof ListTestEtudiantByTest)
+                     addBehaviour(new HandleListTestEtudiantByTest(myAgent,msg));
                   else
 
                      replyNotUnderstood(msg);
@@ -811,6 +817,103 @@ public class AgentServer extends Agent implements Vocabulary {
          catch(Exception ex) { ex.printStackTrace(); }
       }
    }
+
+   class HandleListAllTestEtudiant extends OneShotBehaviour {
+// ----------------------------------------------------  Handler for a CreateAccount request
+
+      private ACLMessage request;
+
+      HandleListAllTestEtudiant(Agent a, ACLMessage request) {
+
+         super(a);
+         this.request = request;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(request);
+
+            java.util.ArrayList<TestEtudiant> listtestetudiant = null;
+            listtestetudiant = repo_test_etudiant.findall();
+            jade.util.leap.ArrayList listjade = new jade.util.leap.ArrayList(listtestetudiant);
+            Result result = new Result((Action)content, (jade.util.leap.ArrayList)listjade);
+            ACLMessage reply = request.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+
+
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+   class HandleListTestEtudiant extends OneShotBehaviour {
+// ----------------------------------------------------  Handler for a CreateAccount request
+
+      private ACLMessage request;
+
+      HandleListTestEtudiant(Agent a, ACLMessage request) {
+
+         super(a);
+         this.request = request;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(request);
+            ListTestEtudiant ca = (ListTestEtudiant) ((Action)content).getAction();
+            java.util.ArrayList<TestEtudiant> listtestetudiant = null;
+            listtestetudiant = repo_test_etudiant.findBtIdEtudiant(ca.getId_etudiant());
+            jade.util.leap.ArrayList listjade = new jade.util.leap.ArrayList(listtestetudiant);
+            Result result = new Result((Action)content, (jade.util.leap.ArrayList)listjade);
+            ACLMessage reply = request.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+
+
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+   class HandleListTestEtudiantByTest extends OneShotBehaviour {
+// ----------------------------------------------------  Handler for a CreateAccount request
+
+      private ACLMessage request;
+
+      HandleListTestEtudiantByTest(Agent a, ACLMessage request) {
+
+         super(a);
+         this.request = request;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(request);
+            ListTestEtudiantByTest ca = (ListTestEtudiantByTest) ((Action)content).getAction();
+            java.util.ArrayList<TestEtudiant> listtestetudiant = null;
+            listtestetudiant = repo_test_etudiant.findBtIdTest(ca.getId_test());
+            jade.util.leap.ArrayList listjade = new jade.util.leap.ArrayList(listtestetudiant);
+            Result result = new Result((Action)content, (jade.util.leap.ArrayList)listjade);
+            ACLMessage reply = request.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+
+
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+
+
+
 
    class HandleListEtudiantsEnseignant extends OneShotBehaviour {
 // ----------------------------------------------------  Handler for a CreateAccount request

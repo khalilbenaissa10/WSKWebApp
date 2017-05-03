@@ -2,8 +2,13 @@ package tn.insat.Repositories;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+import tn.insat.Client.ExampleController;
 import tn.insat.Utilities.HibernateUtil;
 import tn.insat.ontologies.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Khalil on 02/05/2017.
@@ -75,5 +80,80 @@ public class TestEtudiantRepository implements ITestEtudiantRepository{
         }
 
         return a_retourner;
+    }
+
+    @Override
+    public ArrayList<TestEtudiant> findall(){
+
+        ArrayList<TestEtudiant> lc = null;
+
+        Session session = HibernateUtil.createSessionFactory().openSession();
+            lc = (ArrayList<TestEtudiant>)session.createCriteria(TestEtudiant.class).list();
+
+        ArrayList<TestEtudiant> uniques = new ArrayList<TestEtudiant>();
+        for (TestEtudiant element : lc) {
+            if (!uniques.contains(element)) {
+                uniques.add(element);
+            }
+        }
+
+        // Clean up !
+        session.close();
+
+       // ArrayList<TestEtudiant> uniques = ExampleController.rendreUniques(lc);
+
+        return uniques;
+    }
+
+    @Override
+    public ArrayList<TestEtudiant> findBtIdEtudiant(int id_etudiant){
+
+        ArrayList<TestEtudiant> lc = null;
+
+        Session session = HibernateUtil.createSessionFactory().openSession();
+
+       // TestEtudiant e = (TestEtudiant) session.get(TestEtudiant.class, id_etudiant);
+
+        lc = (ArrayList<TestEtudiant>)session.createCriteria(TestEtudiant.class)
+                .add(Restrictions.eq("etudiant_asso_test.id_etudiant",id_etudiant)).list();
+
+
+        ArrayList<TestEtudiant> uniques = new ArrayList<TestEtudiant>();
+        for (TestEtudiant element : lc) {
+            if (!uniques.contains(element)) {
+                uniques.add(element);
+            }
+        }
+
+        // Clean up !
+        session.close();
+
+        return uniques;
+    }
+
+    @Override
+    public ArrayList<TestEtudiant> findBtIdTest(int id_test){
+
+        ArrayList<TestEtudiant> lc = null;
+
+        Session session = HibernateUtil.createSessionFactory().openSession();
+
+        // TestEtudiant e = (TestEtudiant) session.get(TestEtudiant.class, id_etudiant);
+
+        lc = (ArrayList<TestEtudiant>)session.createCriteria(TestEtudiant.class)
+                .add(Restrictions.eq("test_asso.id_test",id_test)).list();
+
+
+        ArrayList<TestEtudiant> uniques = new ArrayList<TestEtudiant>();
+        for (TestEtudiant element : lc) {
+            if (!uniques.contains(element)) {
+                uniques.add(element);
+            }
+        }
+
+        // Clean up !
+        session.close();
+
+        return uniques;
     }
 }

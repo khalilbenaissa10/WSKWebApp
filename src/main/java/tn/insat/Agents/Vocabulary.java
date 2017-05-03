@@ -214,5 +214,16 @@ public interface Vocabulary {
    public static final String PROPOSITION_BY_QUESTION = "Proposition_by_question";
    public static final String PROPOSITION_BY_QUESTION_ID_QUESTION = "id_question";
 
+   //List tous EtudiantTest
+   public static final String LIST_ALL_TEST_ETUDIANT = "List_all_test_etudiant";
+
+   //List  EtudiantTest By Etudiant
+   public static final String LIST_TEST_ETUDIANT_BY_ETUDIANT = "List_test_etudiant";
+   public static final String LIST_TEST_ETUDIANT_BY_ETUDIANT_ID_ETUDIANT = "id_etudiant";
+
+   //List  EtudiantTest By Test
+   public static final String LIST_TEST_ETUDIANT_BY_TEST = "List_test_etudiant_by_test";
+   public static final String LIST_TEST_ETUDIANT_BY_TEST_ID_TEST = "id_test";
+
 
 }

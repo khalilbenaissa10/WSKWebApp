@@ -122,6 +122,41 @@ public class AgentTest extends Agent implements Vocabulary, IAgentTest {
                              }
                          });
                      }
+                     else if(obj instanceof ListAllTestEtudiant){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 ListAllTestEtudiant aff = (ListAllTestEtudiant) obj ;
+                                 listerAllTestEtudiant(aff);
+
+                             }
+                         });
+                     }
+                     else if(obj instanceof ListTestEtudiant){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 ListTestEtudiant aff = (ListTestEtudiant) obj ;
+                                 ListTestEtudiantByIdEtudiant(aff);
+
+                             }
+                         });
+                     }
+                     else if(obj instanceof ListTestEtudiantByTest){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 ListTestEtudiantByTest aff = (ListTestEtudiantByTest) obj ;
+                                 ListTestEtudiantByIdTest(aff);
+
+                             }
+                         });
+                     }
+
+
 
                  }
                  else
@@ -190,6 +225,20 @@ public class AgentTest extends Agent implements Vocabulary, IAgentTest {
 
     }
 
+    public void listerAllTestEtudiant(ListAllTestEtudiant aff){
+        sendMessage(ACLMessage.QUERY_REF, aff);
+
+    }
+
+    public void ListTestEtudiantByIdEtudiant(ListTestEtudiant aff){
+        sendMessage(ACLMessage.QUERY_REF, aff);
+
+    }
+
+    public void ListTestEtudiantByIdTest(ListTestEtudiantByTest aff){
+        sendMessage(ACLMessage.QUERY_REF, aff);
+
+    }
 
 
     class WaitServerResponse extends ParallelBehaviour {
@@ -291,6 +340,12 @@ public class AgentTest extends Agent implements Vocabulary, IAgentTest {
                           else if (lcs.get(0) instanceof Proposition) {
                               java.util.ArrayList<Proposition> L = (java.util.ArrayList<Proposition>)lcs.toList();
                               SingletonQuestion.setPropositions(L);
+                              SemaphoreClass.available.release();
+
+                          }
+                          else if (lcs.get(0) instanceof TestEtudiant) {
+                              java.util.ArrayList<TestEtudiant> L = (java.util.ArrayList<TestEtudiant>)lcs.toList();
+                              SingletonQuestion.setTestEtudiantList(L);
                               SemaphoreClass.available.release();
 
                           }

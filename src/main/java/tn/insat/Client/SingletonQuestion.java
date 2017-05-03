@@ -1,9 +1,6 @@
 package tn.insat.Client;
 
-import tn.insat.ontologies.Proposition;
-import tn.insat.ontologies.Question;
-import tn.insat.ontologies.ReponseEtudiant;
-import tn.insat.ontologies.Test;
+import tn.insat.ontologies.*;
 
 import java.util.List;
 
@@ -23,6 +20,16 @@ public class SingletonQuestion {
     public static Proposition proposition;
 
     public static List<Proposition> propositions ;
+
+    public static List<TestEtudiant> testEtudiantList;
+
+    public static List<TestEtudiant> getTestEtudiantList() {
+        return testEtudiantList;
+    }
+
+    public static void setTestEtudiantList(List<TestEtudiant> testEtudiantList) {
+        SingletonQuestion.testEtudiantList = testEtudiantList;
+    }
 
     public static List<Question> getQuestions() {
         return questions;
