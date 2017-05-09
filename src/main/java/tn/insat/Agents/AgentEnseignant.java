@@ -245,12 +245,12 @@ public class AgentEnseignant extends Agent implements Vocabulary, IAgentEnseigna
                       if (lcs.get(0) instanceof Cours) {
                           java.util.ArrayList<Cours> L = (java.util.ArrayList<Cours>)lcs.toList();
                           ExampleController.setListe_cours(L);
-                          SemaphoreClass.available.release();
+                          SemaphoreClass.listeCoursEnseignant_sem.release();
 
                       }else if(lcs.get(0) instanceof Etudiant){
                           java.util.ArrayList<Etudiant> L = (java.util.ArrayList<Etudiant>)lcs.toList();
                           ExampleController.setListe_etudiant(L);
-                          SemaphoreClass.available.release();
+                          SemaphoreClass.listeEtudiantCours_sem.release();
 
                       }
 

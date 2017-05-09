@@ -210,7 +210,7 @@ public class AgentPlanCours extends Agent implements Vocabulary, IAgentPlanCours
                           Cours crs = (Cours)result.getValue() ;
 
                               ExampleController.setCours(crs);
-                              SemaphoreClass.available.release();
+                              SemaphoreClass.informationCours_sem.release();
 
 
 
@@ -221,7 +221,7 @@ public class AgentPlanCours extends Agent implements Vocabulary, IAgentPlanCours
                           if (lcs.get(0) instanceof Cours) {
                               java.util.ArrayList<Cours> L = (java.util.ArrayList<Cours>)lcs.toList();
                               ExampleController.setListe_cours(L);
-                              SemaphoreClass.available.release();
+                              SemaphoreClass.listeAllcours_sem.release();
 
                           }
 

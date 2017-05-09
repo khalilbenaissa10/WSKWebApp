@@ -12,6 +12,7 @@ import tn.insat.Client.ExampleController;
 import tn.insat.Client.SemaphoreClass;
 import tn.insat.ontologies.*;
 
+@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping("/cours")
 public class CoursController {
@@ -23,7 +24,7 @@ public class CoursController {
     public @ResponseBody List<Cours> listerAllCours() throws InterruptedException {
        ListeAllCours listeAll = new ListeAllCours();
         operator.send_to_planCours(listeAll);
-        SemaphoreClass.available.acquire();
+        SemaphoreClass.listeAllcours_sem.acquire();
         List<Cours> list = ExampleController.getListe_cours();
         ExampleController.setListe_cours(null);
         return list;
@@ -34,7 +35,7 @@ public class CoursController {
         ListeCoursSearch liste_search = new ListeCoursSearch();
         liste_search.setSearch(search);
         operator.send_to_planCours(liste_search);
-        SemaphoreClass.available.acquire();
+        SemaphoreClass.listeAllcours_sem.acquire();
         List<Cours> list = ExampleController.getListe_cours();
         ExampleController.setListe_cours(null);
         return list;
@@ -46,7 +47,7 @@ public class CoursController {
         ListeCoursSearchDescription liste_search = new ListeCoursSearchDescription();
         liste_search.setSearch(search);
         operator.send_to_planCours(liste_search);
-        SemaphoreClass.available.acquire();
+        SemaphoreClass.listeAllcours_sem.acquire();
         List<Cours> list = ExampleController.getListe_cours();
         ExampleController.setListe_cours(null);
         return list;
@@ -59,7 +60,7 @@ public class CoursController {
         InformationCours info_cours = new InformationCours();
         info_cours.setId_Cours(id);
         operator.send_to_planCours(info_cours);
-        SemaphoreClass.available.acquire();
+        SemaphoreClass.informationCours_sem.acquire();
         Cours cours = ExampleController.getCours();
         ExampleController.setCours(null);
         return cours;

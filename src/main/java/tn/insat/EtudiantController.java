@@ -13,6 +13,8 @@ import tn.insat.Client.SemaphoreClass;
 import tn.insat.Client.SingletonEtudiant;
 import tn.insat.ontologies.*;
 
+
+@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping("/etudiants")
 public class EtudiantController {
@@ -25,7 +27,7 @@ public class EtudiantController {
         ListeCoursByEtudiant list_c_e = new ListeCoursByEtudiant();
         list_c_e.setId_etudiant(id);
         operator.send_to_etudiant(list_c_e);
-        SemaphoreClass.available.acquire();
+        SemaphoreClass.listeCoursEtudiant_sem.acquire();
         List<Cours> list = ExampleController.getListe_cours();
         ExampleController.setListe_cours(null);
         return list;
@@ -73,7 +75,7 @@ public class EtudiantController {
         InformationEtudiant info_etudiant = new InformationEtudiant();
         info_etudiant.setId_etudiant(id);
         operator.send_to_etudiant(info_etudiant);
-        SemaphoreClass.available.acquire();
+        SemaphoreClass.informationEtudiant_sem.acquire();
         Etudiant etudiant = SingletonEtudiant.getEtudiant();
        SingletonEtudiant.setEtudiant(null);
         return etudiant;

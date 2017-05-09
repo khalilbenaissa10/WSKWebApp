@@ -12,6 +12,8 @@ package tn.insat;
         import tn.insat.Client.SemaphoreClass;
         import tn.insat.ontologies.*;
 
+
+@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping("/enseignants")
 public class EnseignantController {
@@ -24,7 +26,7 @@ public class EnseignantController {
         ListCoursEnseignant list_c_e = new ListCoursEnseignant();
         list_c_e.setId_enseignant(id);
         operator.send_to_enseignant(list_c_e);
-        SemaphoreClass.available.acquire();
+        SemaphoreClass.listeCoursEnseignant_sem.acquire();
         List<Cours> list = ExampleController.getListe_cours();
         ExampleController.setListe_cours(null);
         return list;
@@ -35,7 +37,7 @@ public class EnseignantController {
         ListEtudiantCours list_e_c = new ListEtudiantCours();
         list_e_c.setId_cours(id);
         operator.send_to_enseignant(list_e_c);
-        SemaphoreClass.available.acquire();
+        SemaphoreClass.listeEtudiantCours_sem.acquire();
         List<Etudiant> list = ExampleController.getListe_etudiant();
         ExampleController.setListe_etudiant(null);
         return list;
@@ -46,7 +48,7 @@ public class EnseignantController {
         ListEtudiantEnseignant list_e_e = new ListEtudiantEnseignant();
         list_e_e.setId_enseignant(id);
         operator.send_to_enseignant(list_e_e);
-        SemaphoreClass.available.acquire();
+        SemaphoreClass.listeEtudiantCours_sem.acquire();
         List<Etudiant> list = ExampleController.getListe_etudiant();
         ExampleController.setListe_etudiant(null);
         return list;

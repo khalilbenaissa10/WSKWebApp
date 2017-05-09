@@ -20,6 +20,7 @@ import tn.insat.Repositories.TestEtudiantRepository;
 import tn.insat.Repositories.UtilityRepository;
 import tn.insat.ontologies.*;
 
+@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping("/tests")
 public class TestController {
@@ -35,7 +36,7 @@ public class TestController {
         TestByCours test_by_cours = new TestByCours();
         test_by_cours.setId_cours(id);
         operator.send_to_test(test_by_cours);
-        SemaphoreClass.available.acquire();
+        SemaphoreClass.listTest_sem.acquire();
         List<Test> list = ExampleController.getListeTest();
         ExampleController.setListeTest(null);
         return list;
@@ -47,7 +48,7 @@ public class TestController {
         QuestionByTest question_by_test = new QuestionByTest();
         question_by_test.setId_test(id);
         operator.send_to_test(question_by_test);
-        SemaphoreClass.available.acquire();
+        SemaphoreClass.listQuestion_sem.acquire();
         List<Question> list = SingletonQuestion.getQuestions();
         SingletonQuestion.setQuestions(null);
         return list;
@@ -58,7 +59,7 @@ public class TestController {
         PropositionByQuestion classe = new PropositionByQuestion();
         classe.setId_question(id);
         operator.send_to_test(classe);
-        SemaphoreClass.available.acquire();
+        SemaphoreClass.listProposition_sem.acquire();
         List<Proposition> list = SingletonQuestion.getPropositions();
         SingletonQuestion.setPropositions(null);
         return list;
@@ -69,7 +70,7 @@ public class TestController {
         ListAllTestEtudiant classe = new ListAllTestEtudiant();
 
         operator.send_to_test(classe);
-        SemaphoreClass.available.acquire();
+        SemaphoreClass.listTestEtudiant_sem.acquire();
         List<TestEtudiant> list = SingletonQuestion.getTestEtudiantList();
         SingletonQuestion.setTestEtudiantList(null);
         return list;
@@ -80,7 +81,7 @@ public class TestController {
         ListTestEtudiant classe = new ListTestEtudiant();
         classe.setId_etudiant(id);
         operator.send_to_test(classe);
-        SemaphoreClass.available.acquire();
+        SemaphoreClass.listTestEtudiant_sem.acquire();
         List<TestEtudiant> list = SingletonQuestion.getTestEtudiantList();
         SingletonQuestion.setTestEtudiantList(null);
         return list;
@@ -91,7 +92,7 @@ public class TestController {
         ListTestEtudiantByTest classe = new ListTestEtudiantByTest();
         classe.setId_test(id);
         operator.send_to_test(classe);
-        SemaphoreClass.available.acquire();
+        SemaphoreClass.listTestEtudiant_sem.acquire();
         List<TestEtudiant> list = SingletonQuestion.getTestEtudiantList();
         SingletonQuestion.setTestEtudiantList(null);
         return list;

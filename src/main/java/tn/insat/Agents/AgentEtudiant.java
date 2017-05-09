@@ -255,7 +255,7 @@ public class AgentEtudiant extends Agent implements Vocabulary,IAgentEtudiant {
 
                       Etudiant etd = (Etudiant) result.getValue() ;
                       SingletonEtudiant.setEtudiant(etd);
-                      SemaphoreClass.available.release();
+                      SemaphoreClass.informationEtudiant_sem.release();
 
 
                   }
@@ -265,7 +265,7 @@ public class AgentEtudiant extends Agent implements Vocabulary,IAgentEtudiant {
                       if (lcs.get(0) instanceof Cours) {
                           java.util.ArrayList<Cours> L = (java.util.ArrayList<Cours>)lcs.toList();
                           ExampleController.setListe_cours(L);
-                          SemaphoreClass.available.release();
+                          SemaphoreClass.listeCoursEtudiant_sem.release();
 
                       }
 

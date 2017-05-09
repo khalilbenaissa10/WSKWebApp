@@ -1,10 +1,7 @@
 package tn.insat;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import tn.insat.Client.ExampleController;
 import tn.insat.Client.SemaphoreClass;
 import tn.insat.Repositories.IUtilityRepository;
@@ -18,6 +15,7 @@ import java.util.List;
  * Created by saif on 03/05/2017.
  */
 
+@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping("/utilite")
 public class UtilityController {

@@ -328,25 +328,25 @@ public class AgentTest extends Agent implements Vocabulary, IAgentTest {
                           if (lcs.get(0) instanceof Test) {
                               java.util.ArrayList<Test> L = (java.util.ArrayList<Test>)lcs.toList();
                               ExampleController.setListeTest(L);
-                              SemaphoreClass.available.release();
+                              SemaphoreClass.listTest_sem.release();
 
                           }
                           else if (lcs.get(0) instanceof Question) {
                               java.util.ArrayList<Question> L = (java.util.ArrayList<Question>)lcs.toList();
                               SingletonQuestion.setQuestions(L);
-                              SemaphoreClass.available.release();
+                              SemaphoreClass.listQuestion_sem.release();
 
                           }
                           else if (lcs.get(0) instanceof Proposition) {
                               java.util.ArrayList<Proposition> L = (java.util.ArrayList<Proposition>)lcs.toList();
                               SingletonQuestion.setPropositions(L);
-                              SemaphoreClass.available.release();
+                              SemaphoreClass.listProposition_sem.release();
 
                           }
                           else if (lcs.get(0) instanceof TestEtudiant) {
                               java.util.ArrayList<TestEtudiant> L = (java.util.ArrayList<TestEtudiant>)lcs.toList();
                               SingletonQuestion.setTestEtudiantList(L);
-                              SemaphoreClass.available.release();
+                              SemaphoreClass.listTestEtudiant_sem.release();
 
                           }
 
