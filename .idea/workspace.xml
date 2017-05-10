@@ -3,23 +3,67 @@
   <component name="ChangeListManager">
     <list default="true" id="b91d8bc1-944a-4ef3-9f1f-a4bd0e8cd969" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentEtudiant$WaitServerResponse$1.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentEtudiant$WaitServerResponse$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentForum$ReceiveResponse.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentForum$ReceiveResponse.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentForum$WaitServerResponse$1.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentForum$WaitServerResponse$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentPlanCours$ReceiveResponse.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentPlanCours$ReceiveResponse.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentForum$WaitServerResponse.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentForum$WaitServerResponse.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentForum.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentForum.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentOperator.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentOperator.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentPlanCours$WaitServerResponse$1.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentPlanCours$WaitServerResponse$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleAffecterCours.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleAffecterCours.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleAffecterTest.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleAffecterTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleCreateCours.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleCreateCours.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleCreateQuestion.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleCreateQuestion.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleCreateReponseEtudiant.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleCreateReponseEtudiant.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleCreateTest.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleCreateTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleCreationProposition.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleCreationProposition.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleInformationCours.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleInformationCours.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleInformationEtudiant.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleInformationEtudiant.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListAllCours.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListAllCours.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListAllTestEtudiant.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListAllTestEtudiant.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListCoursByEtudiant.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListCoursByEtudiant.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListCoursByTest.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListCoursByTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListCoursEnseignant.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListCoursEnseignant.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListCoursSearch.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListCoursSearch.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListCoursSearchDescription.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListCoursSearchDescription.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListEtudiantsCours.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListEtudiantsCours.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListEtudiantsEnseignant.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListEtudiantsEnseignant.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListTestEtudiant.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListTestEtudiant.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListTestEtudiantByTest.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListTestEtudiantByTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListePropositionByQuestion.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListePropositionByQuestion.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListeQuestionByTest.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$HandleListeQuestionByTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$ReceiveMessages.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$ReceiveMessages.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$RegisterInDF.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer$RegisterInDF.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentServer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentTest$ReceiveResponse.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/AgentTest$ReceiveResponse.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Agents/Vocabulary.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Agents/Vocabulary.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Client/ExampleController.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Client/ExampleController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/Client/SemaphoreClass.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/Client/SemaphoreClass.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/CoursController.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/CoursController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/EnseignantController.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/EnseignantController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/EtudiantController.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/EtudiantController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/TestController.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/TestController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/UtilityController.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/UtilityController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/ontologies/Cours.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/ontologies/Cours.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/ontologies/Enseignant.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/ontologies/Enseignant.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/ontologies/Etudiant.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/ontologies/Etudiant.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/ontologies/OntologyWSK.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/ontologies/OntologyWSK.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/ontologies/ReponseForum.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/ontologies/ReponseForum.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tn/insat/ontologies/SujetForum.class" afterPath="$PROJECT_DIR$/target/classes/tn/insat/ontologies/SujetForum.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/APDescription.txt" afterPath="$PROJECT_DIR$/APDescription.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MTPs-Main-Container.txt" afterPath="$PROJECT_DIR$/MTPs-Main-Container.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentEnseignant.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentEnseignant.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentEtudiant.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentEtudiant.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentPlanCours.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentPlanCours.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentTest.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentForum.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentForum.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentOperator.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentOperator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentServer.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/Agents/Vocabulary.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/Agents/Vocabulary.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/Client/ExampleController.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/Client/ExampleController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/Client/SemaphoreClass.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/Client/SemaphoreClass.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/CoursController.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/CoursController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/EnseignantController.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/EnseignantController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/EtudiantController.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/EtudiantController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/TestController.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/TestController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/UtilityController.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/UtilityController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/Cours.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/Cours.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/Enseignant.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/Enseignant.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/Etudiant.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/Etudiant.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/OntologyWSK.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/OntologyWSK.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/ReponseForum.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/ReponseForum.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/SujetForum.java" afterPath="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/SujetForum.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -38,24 +82,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TestController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/TestController.java">
+      <file leaf-file-name="ForumController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ForumController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
-              <folding>
-                <element signature="method#create#0;class#TestController#0" expanded="false" />
-                <element signature="method#create#1;class#TestController#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UtilityController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/UtilityController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="11" lean-forward="false" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+            <state relative-caret-position="296">
+              <caret line="50" column="52" lean-forward="false" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -63,51 +94,72 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoursController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/CoursController.java">
+      <file leaf-file-name="ExampleController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Client/ExampleController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="14" column="27" lean-forward="false" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+            <state relative-caret-position="298">
+              <caret line="109" column="47" lean-forward="false" selection-start-line="109" selection-start-column="47" selection-end-line="109" selection-end-column="47" />
+              <folding>
+                <element signature="e#1992#2004#0" expanded="true" />
+                <element signature="method#rendreUniquesEtudiants#0;class#ExampleController#0" expanded="false" />
+                <element signature="e#3038#3039#0" expanded="true" />
+                <element signature="e#3103#3104#0" expanded="true" />
+                <element signature="e#3162#3163#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AgentForum.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentForum.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="187" column="69" lean-forward="false" selection-start-line="187" selection-start-column="69" selection-end-line="187" selection-end-column="69" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EnseignantController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/EnseignantController.java">
+      <file leaf-file-name="AgentServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="16" column="11" lean-forward="true" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
-              <folding />
+            <state relative-caret-position="276">
+              <caret line="428" column="68" lean-forward="false" selection-start-line="428" selection-start-column="68" selection-end-line="428" selection-end-column="68" />
+              <folding>
+                <element signature="class#HandleCreateCours#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleCreateTest#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleCreateQuestion#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleCreationProposition#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleCreateReponseEtudiant#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleInformationCours#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleInformationEtudiant#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleListCoursByEtudiant#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleListCoursByTest#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleListSujetForumByCours#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleListeQuestionByTest#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleListePropositionByQuestion#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleAffecterCours#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleAffecterTest#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleListCoursEnseignant#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleListAllCours#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleListCoursSearch#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleListCoursSearchDescription#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleListEtudiantsCours#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleListAllTestEtudiant#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleListTestEtudiant#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleListTestEtudiantByTest#0;class#AgentServer#0" expanded="false" />
+                <element signature="class#HandleListEtudiantsEnseignant#0;class#AgentServer#0" expanded="false" />
+                <element signature="method#replyNotUnderstood#0;class#AgentServer#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EtudiantController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/EtudiantController.java">
+      <file leaf-file-name="AgentPlanCours.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentPlanCours.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="16" column="27" lean-forward="false" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AgentTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="348" column="65" lean-forward="false" selection-start-line="348" selection-start-column="65" selection-end-line="348" selection-end-column="65" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SemaphoreClass.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Client/SemaphoreClass.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="18" column="69" lean-forward="true" selection-start-line="18" selection-start-column="69" selection-end-line="18" selection-end-column="69" />
+            <state relative-caret-position="326">
+              <caret line="216" column="23" lean-forward="false" selection-start-line="207" selection-start-column="21" selection-end-line="216" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -125,17 +177,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>findById</find>
-      <find>repo.findById</find>
-      <find>In</find>
-      <find>processInformation</find>
-      <find>crea</find>
-      <find>HandleCreateCours</find>
-      <find>CREA</find>
-      <find>createCours</find>
-      <find>test</find>
-      <find>question</find>
-      <find>HandleListeT</find>
       <find>HandleListe</find>
       <find>HandleListCoursByT</find>
       <find>ListeQuesti</find>
@@ -154,7 +195,18 @@
       <find>listeCours</find>
       <find>listeCoursByEtudiant</find>
       <find>ListCoursB</find>
+      <find>listeAll</find>
+      <find>liste</find>
+      <find>SUJETFOR</find>
+      <find>TEST B</find>
+      <find>test</find>
       <find>TestByCours</find>
+      <find>TestBy</find>
+      <find>COursByTest</find>
+      <find>informa</find>
+      <find>information</find>
+      <find>InformationCours</find>
+      <find>infoCours</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -168,31 +220,16 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/CreateCours.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/Agents/IAgentEnseignant.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/Repositories/EnseignantRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/QuestionByTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/QuestionBy.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/PropositionByQuestion.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/Agents/IAgentSuiviApprentissage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/Agents/IAgentTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/Repositories/TestRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/Repositories/ITestRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/CreateTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/CreateQuestion.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/Repositories/QuestionRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/Repositories/IQuestionRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/CreateProposition.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/Repositories/IPropositionRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/Repositories/PropositionRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/SujetForum.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/Proposition.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/Question.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/Utilities/HibernateUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/ReponseEtudiant.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/AffecterTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/Client/ExampleController.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/TestEtudiantById.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/CreateReponseEtudiant.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/Repositories/IReponseEtudiantRepository.java" />
@@ -201,10 +238,7 @@
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/Client/SingletonQuestion.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/TestEtudiant.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/ListTestEtudiant.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/Agents/Vocabulary.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/ListTestEtudiantByTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/OntologyWSK.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/Repositories/ITestEtudiantRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/Repositories/TestEtudiantRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/Repositories/UtilityRepository.java" />
@@ -212,13 +246,31 @@
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentPlanCours.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentEnseignant.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentEtudiant.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/Client/SemaphoreClass.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/TestController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tn/insat/CoursController.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/EnseignantController.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/EtudiantController.java" />
         <option value="$PROJECT_DIR$/src/main/java/tn/insat/UtilityController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/Cours.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/Etudiant.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/ReponseForum.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/Enseignant.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/CoursController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentOperator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/ListeAllSujetsForum.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/SujetForum.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/SujetForumByCours.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/InformationForum.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/InformationSujetForum.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/Client/ExampleController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/ForumController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/Client/SemaphoreClass.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/Agents/Vocabulary.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/ontologies/OntologyWSK.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/Repositories/ISujetForumRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/Repositories/SujetForumRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentServer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentForum.java" />
       </list>
     </option>
   </component>
@@ -256,6 +308,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -368,6 +421,66 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Repositories" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WSKWebApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WSKWebApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="insat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ontologies" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WSKWebApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WSKWebApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="insat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Client" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -404,7 +517,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -817,25 +929,25 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3265306" sideWeight="0.49411765" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265306" sideWeight="0.49411765" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265306" sideWeight="0.5132353" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265306" sideWeight="0.4867647" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24264705" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23529412" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3987441" sideWeight="0.49341142" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.49341142" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -855,7 +967,7 @@
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32810047" sideWeight="0.50735295" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265306" sideWeight="0.5132353" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -865,20 +977,20 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40188384" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.49341142" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32810047" sideWeight="0.4970588" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3265306" sideWeight="0.49411765" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32810047" sideWeight="0.49264705" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265306" sideWeight="0.4867647" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2492647" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23970588" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -913,7 +1025,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentServer.java</url>
-          <line>700</line>
+          <line>774</line>
           <properties />
           <option name="timeStamp" value="31" />
         </line-breakpoint>
@@ -925,19 +1037,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentServer.java</url>
-          <line>588</line>
+          <line>662</line>
           <properties />
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentServer.java</url>
-          <line>449</line>
+          <line>488</line>
           <properties />
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentServer.java</url>
-          <line>416</line>
+          <line>455</line>
           <properties />
           <option name="timeStamp" value="40" />
         </line-breakpoint>
@@ -953,8 +1065,20 @@
           <properties />
           <option name="timeStamp" value="44" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/tn/insat/TestController.java</url>
+          <line>152</line>
+          <properties />
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentServer.java</url>
+          <line>813</line>
+          <properties />
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="52" />
+      <option name="time" value="57" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -967,179 +1091,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Repositories/PropositionRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="55" column="39" lean-forward="false" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
-          <folding>
-            <element signature="method#findByQuestion#0;class#PropositionRepository#0" expanded="false" />
-            <element signature="method#create#0;class#PropositionRepository#0" expanded="false" />
-            <element signature="method#findById#0;class#PropositionRepository#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/CreateProposition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="53" column="32" lean-forward="false" selection-start-line="53" selection-start-column="32" selection-end-line="53" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/tilab/jade/jade/4.4.0/jade-4.4.0.jar!/jade/core/behaviours/Behaviour.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/tilab/jade/jade/4.4.0/jade-4.4.0.jar!/jade/core/Agent.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="605" column="0" lean-forward="false" selection-start-line="605" selection-start-column="0" selection-end-line="605" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/SujetForum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="18" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/Problem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Utilities/HibernateUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="37" column="54" lean-forward="false" selection-start-line="37" selection-start-column="54" selection-end-line="37" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/AffecterCours.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" column="3" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="15" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/AffecterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="29" lean-forward="false" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Repositories/ICoursEtudiantRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Repositories/IReponseEtudiantRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="37" lean-forward="false" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Repositories/ReponseEtudiantRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="42" column="73" lean-forward="false" selection-start-line="42" selection-start-column="73" selection-end-line="42" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/CreateReponseEtudiant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="52" column="36" lean-forward="false" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Repositories/CoursEtudiantRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="54" column="33" lean-forward="false" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Repositories/EtudiantRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="2" lean-forward="false" selection-start-line="11" selection-start-column="2" selection-end-line="21" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar!/javax/persistence/JoinColumn.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/tilab/jade/jade/4.4.0/jade-4.4.0.jar!/jade/lang/acl/ACLMessage.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/ListAllTestEtudiant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Client/SingletonQuestion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="25" column="60" lean-forward="false" selection-start-line="25" selection-start-column="60" selection-end-line="25" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#577#578#0" expanded="false" />
-            <element signature="e#1765#1766#0" expanded="false" />
-            <element signature="e#1803#1804#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Repositories/CoursRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="84" column="37" lean-forward="false" selection-start-line="84" selection-start-column="37" selection-end-line="84" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Client/ExampleController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="77" column="23" lean-forward="false" selection-start-line="71" selection-start-column="8" selection-end-line="77" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/ListTestEtudiantByTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/OntologyWSK.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3978">
-          <caret line="240" column="50" lean-forward="false" selection-start-line="240" selection-start-column="50" selection-end-line="240" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/QuestionByTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1161,50 +1112,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4029">
-          <caret line="898" column="37" lean-forward="false" selection-start-line="898" selection-start-column="37" selection-end-line="898" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#37634#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#2335#2336#0" expanded="false" />
-            <element signature="e#2362#2363#0" expanded="false" />
-            <element signature="class#HandleCreateCours#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleCreateTest#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleCreateQuestion#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleCreationProposition#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleCreateReponseEtudiant#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleInformationCours#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleInformationEtudiant#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleListCoursByEtudiant#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleListCoursByTest#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleListeQuestionByTest#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleListePropositionByQuestion#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleAffecterCours#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleAffecterTest#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleListCoursEnseignant#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleListAllCours#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleListCoursSearch#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleListCoursSearchDescription#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleListEtudiantsCours#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleListAllTestEtudiant#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleListTestEtudiant#0;class#AgentServer#0" expanded="false" />
-            <element signature="class#HandleListEtudiantsEnseignant#0;class#AgentServer#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/Vocabulary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3740">
-          <caret line="224" column="86" lean-forward="false" selection-start-line="224" selection-start-column="86" selection-end-line="224" selection-end-column="86" />
-          <folding>
-            <element signature="e#0#10155#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Repositories/TestEtudiantRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="850">
@@ -1223,7 +1130,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="22" column="7" lean-forward="false" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1234,22 +1140,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Repositories/TestRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="69" column="24" lean-forward="false" selection-start-line="68" selection-start-column="6" selection-end-line="69" selection-end-column="24" />
-          <folding>
-            <element signature="method#findByCours#0;class#TestRepository#0" expanded="false" />
-            <element signature="method#create#0;class#TestRepository#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/TestEtudiant.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="20" column="24" lean-forward="false" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1257,7 +1151,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="19" column="35" lean-forward="false" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1265,7 +1158,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="18" column="19" lean-forward="false" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1280,7 +1172,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="22" lean-forward="false" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1288,15 +1179,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="126" column="37" lean-forward="false" selection-start-line="126" selection-start-column="11" selection-end-line="126" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="method#getLastCoursId#0;class#UtilityRepository#0" expanded="false" />
-            <element signature="method#getLastTestId#0;class#UtilityRepository#0" expanded="false" />
-            <element signature="method#getLastTestEtudiantId#0;class#UtilityRepository#0" expanded="false" />
-            <element signature="method#getLastReponseId#0;class#UtilityRepository#0" expanded="false" />
-            <element signature="method#getLastQuestionId#0;class#UtilityRepository#0" expanded="false" />
-            <element signature="method#getLastPropositionId#0;class#UtilityRepository#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1304,7 +1186,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="32" lean-forward="false" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1317,14 +1198,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentPlanCours.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="94" column="48" lean-forward="false" selection-start-line="94" selection-start-column="48" selection-end-line="94" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentEtudiant.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1333,63 +1206,353 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/UtilityController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="348" column="65" lean-forward="false" selection-start-line="348" selection-start-column="65" selection-end-line="348" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Client/SemaphoreClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="18" column="69" lean-forward="true" selection-start-line="18" selection-start-column="69" selection-end-line="18" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/CoursController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="14" column="27" lean-forward="false" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+        <state relative-caret-position="17">
+          <caret line="17" column="11" lean-forward="false" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/EnseignantController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="16" column="11" lean-forward="true" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+        <state relative-caret-position="17">
+          <caret line="16" column="11" lean-forward="false" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/EtudiantController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
+        <state relative-caret-position="-232">
           <caret line="16" column="27" lean-forward="false" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/UtilityController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/Cours.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="11" lean-forward="false" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+        <state relative-caret-position="371">
+          <caret line="67" column="45" lean-forward="false" selection-start-line="67" selection-start-column="45" selection-end-line="67" selection-end-column="45" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1666#1678#0" expanded="true" />
+            <element signature="e#1730#1731#0" expanded="true" />
+            <element signature="e#1764#1765#0" expanded="true" />
+            <element signature="e#1827#1828#0" expanded="true" />
+            <element signature="e#1873#1874#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/Etudiant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="86" column="56" lean-forward="false" selection-start-line="86" selection-start-column="56" selection-end-line="86" selection-end-column="56" />
+          <folding>
+            <element signature="e#1436#1450#0" expanded="true" />
+            <element signature="e#2519#2520#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/Enseignant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="67" column="58" lean-forward="false" selection-start-line="67" selection-start-column="58" selection-end-line="67" selection-end-column="58" />
+          <folding>
+            <element signature="e#923#937#0" expanded="true" />
+            <element signature="e#1783#1784#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/ReponseForum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="25" column="46" lean-forward="false" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="46" />
+          <folding>
+            <element signature="e#1777#1778#0" expanded="true" />
+            <element signature="e#1823#1824#0" expanded="true" />
+            <element signature="e#2025#2026#0" expanded="true" />
+            <element signature="e#2069#2070#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentOperator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="151" column="27" lean-forward="false" selection-start-line="151" selection-start-column="27" selection-end-line="151" selection-end-column="27" />
+          <folding>
+            <element signature="method#send_to_enseignant#0;class#AgentOperator#0" expanded="false" />
+            <element signature="method#send_to_etudiant#0;class#AgentOperator#0" expanded="false" />
+            <element signature="method#send_to_planCours#0;class#AgentOperator#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/ListeAllCours.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/ListeAllSujetsForum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="55" lean-forward="false" selection-start-line="7" selection-start-column="55" selection-end-line="7" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/TestByCours.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="17" column="5" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="17" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/SujetForumByCours.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="17" column="5" lean-forward="false" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/SujetForum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="36" column="36" lean-forward="false" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="212" column="1" lean-forward="false" selection-start-line="212" selection-start-column="1" selection-end-line="215" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Repositories/ITestRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="12" column="41" lean-forward="true" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Repositories/TestRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="34" selection-end-column="5" />
+          <folding>
+            <element signature="method#findByCours#0;class#TestRepository#0" expanded="false" />
+            <element signature="method#create#0;class#TestRepository#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Client/MainTets.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-75">
+          <caret line="25" column="7" lean-forward="false" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/HelloWorldConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/TestController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+        <state relative-caret-position="327">
+          <caret line="41" column="20" lean-forward="true" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
           <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#listerTestEtudiantByTest#0;class#TestController#0" expanded="false" />
             <element signature="method#create#0;class#TestController#0" expanded="false" />
-            <element signature="method#create#1;class#TestController#0" expanded="false" />
+            <element signature="e#4476#4486#0" expanded="true" />
+            <element signature="e#4542#4555#0" expanded="true" />
+            <element signature="e#6007#6024#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Client/SemaphoreClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="34" column="78" lean-forward="false" selection-start-line="34" selection-start-column="78" selection-end-line="34" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/OntologyWSK.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="235" column="36" lean-forward="true" selection-start-line="235" selection-start-column="36" selection-end-line="235" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/CoursController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="69" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/InformationCours.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="16" column="25" lean-forward="true" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ontologies/InformationSujetForum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="30" lean-forward="false" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+          <folding>
+            <element signature="e#255#256#0" expanded="true" />
+            <element signature="e#300#301#0" expanded="true" />
+            <element signature="e#335#336#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/Vocabulary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="134" column="53" lean-forward="false" selection-start-line="134" selection-start-column="30" selection-end-line="134" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Client/ExampleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="109" column="47" lean-forward="false" selection-start-line="109" selection-start-column="47" selection-end-line="109" selection-end-column="47" />
+          <folding>
+            <element signature="e#1992#2004#0" expanded="true" />
+            <element signature="method#rendreUniquesEtudiants#0;class#ExampleController#0" expanded="false" />
+            <element signature="e#3038#3039#0" expanded="true" />
+            <element signature="e#3103#3104#0" expanded="true" />
+            <element signature="e#3162#3163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Repositories/ICoursRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="13" column="27" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Repositories/CoursRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="57" selection-end-column="5" />
+          <folding>
+            <element signature="method#findById#0;class#CoursRepository#0" expanded="false" />
+            <element signature="method#findByEnseignant#0;class#CoursRepository#0" expanded="false" />
+            <element signature="method#findAll#0;class#CoursRepository#0" expanded="false" />
+            <element signature="method#findCoursLikkSearch#0;class#CoursRepository#0" expanded="false" />
+            <element signature="method#findCoursLikkSearchDescription#0;class#CoursRepository#0" expanded="false" />
+            <element signature="method#findByEtudiant#0;class#CoursRepository#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Repositories/SujetForumRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="54" column="58" lean-forward="false" selection-start-line="54" selection-start-column="58" selection-end-line="54" selection-end-column="58" />
+          <folding>
+            <element signature="method#findAll#0;class#SujetForumRepository#0" expanded="false" />
+            <element signature="method#findByCours#0;class#SujetForumRepository#0" expanded="false" />
+            <element signature="e#943#955#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Repositories/ISujetForumRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="16" column="14" lean-forward="false" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="428" column="68" lean-forward="false" selection-start-line="428" selection-start-column="68" selection-end-line="428" selection-end-column="68" />
+          <folding>
+            <element signature="class#HandleCreateCours#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleCreateTest#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleCreateQuestion#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleCreationProposition#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleCreateReponseEtudiant#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleInformationCours#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleInformationEtudiant#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleListCoursByEtudiant#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleListCoursByTest#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleListSujetForumByCours#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleListeQuestionByTest#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleListePropositionByQuestion#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleAffecterCours#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleAffecterTest#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleListCoursEnseignant#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleListAllCours#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleListCoursSearch#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleListCoursSearchDescription#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleListEtudiantsCours#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleListAllTestEtudiant#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleListTestEtudiant#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleListTestEtudiantByTest#0;class#AgentServer#0" expanded="false" />
+            <element signature="class#HandleListEtudiantsEnseignant#0;class#AgentServer#0" expanded="false" />
+            <element signature="method#replyNotUnderstood#0;class#AgentServer#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentPlanCours.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="216" column="23" lean-forward="false" selection-start-line="207" selection-start-column="21" selection-end-line="216" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/Agents/AgentForum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="187" column="69" lean-forward="false" selection-start-line="187" selection-start-column="69" selection-end-line="187" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tn/insat/ForumController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="50" column="52" lean-forward="false" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

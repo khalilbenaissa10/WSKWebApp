@@ -25,6 +25,17 @@ public class ReponseForum {
             @JoinColumn(name="SujetForum_idSujetForum", referencedColumnName="idSujetForum", nullable=true) } )
     private SujetForum sujetforum_reponseforum ;
 
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumns( {
+            @JoinColumn(name="Enseignant_idEnseignant", referencedColumnName="idEnseignant", nullable=true) } )
+    private Enseignant enseignant_reponseforum ;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumns( {
+            @JoinColumn(name="Etudiant_idEtudiant", referencedColumnName="idEtudiant", nullable=true) } )
+    private Etudiant etudiant_reponseforum ;
+
     public int getId_reponseforum() {
         return id_reponseforum;
     }
@@ -47,5 +58,21 @@ public class ReponseForum {
 
     public void setSujetforum_reponseforum(SujetForum sujetforum_reponseforum) {
         this.sujetforum_reponseforum = sujetforum_reponseforum;
+    }
+
+    public Enseignant getEnseignant_reponseforum() {
+        return enseignant_reponseforum;
+    }
+
+    public void setEnseignant_reponseforum(Enseignant enseignant_reponseforum) {
+        this.enseignant_reponseforum = enseignant_reponseforum;
+    }
+
+    public Etudiant getEtudiant_reponseforum() {
+        return etudiant_reponseforum;
+    }
+
+    public void setEtudiant_reponseforum(Etudiant etudiant_reponseforum) {
+        this.etudiant_reponseforum = etudiant_reponseforum;
     }
 }

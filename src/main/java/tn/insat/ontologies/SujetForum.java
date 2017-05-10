@@ -24,15 +24,20 @@ public class SujetForum {
     @Column(name="TextSujetForum", length=1028)
     String text_sujetforum ;
 
-   @ManyToOne(fetch=FetchType.LAZY)
+   @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumns( {
             @JoinColumn(name="Enseignant_idEnseignant", referencedColumnName="idEnseignant", nullable=true) } )
     private Enseignant enseignant_sujetforum ;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumns( {
             @JoinColumn(name="Etudiant_idEtudiant", referencedColumnName="idEtudiant", nullable=true) } )
     private Etudiant etudiant_sujetforum ;
+
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumns( {
+            @JoinColumn(name="Cours_idCours", referencedColumnName="idCours", nullable=true) } )
+    private Cours cours_sujetforum ;
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="sujetforum_reponseforum")
     private Set<ReponseForum> reponsesforum = new HashSet<ReponseForum>(0);
@@ -83,5 +88,13 @@ public class SujetForum {
 
     public void setReponsesforum(Set<ReponseForum> reponsesforum) {
         this.reponsesforum = reponsesforum;
+    }
+
+    public Cours getCours_sujetforum() {
+        return cours_sujetforum;
+    }
+
+    public void setCours_sujetforum(Cours cours_sujetforum) {
+        this.cours_sujetforum = cours_sujetforum;
     }
 }

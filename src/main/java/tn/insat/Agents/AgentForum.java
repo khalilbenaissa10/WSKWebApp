@@ -17,7 +17,9 @@ import jade.domain.FIPAAgentManagement.*;
 import jade.gui.*;
 import jade.lang.acl.*;
 import jade.util.leap.*;
-import tn.insat.ontologies.OntologyWSK;
+import tn.insat.Client.ExampleController;
+import tn.insat.Client.SemaphoreClass;
+import tn.insat.ontologies.*;
 
 /**
  *
@@ -33,11 +35,63 @@ public class AgentForum extends Agent implements Vocabulary, IAgentForum {
      protected void setup() {
 // ------------------------
 
-      // Register language and ontology
-      getContentManager().registerLanguage(codec);
-      getContentManager().registerOntology(ontology);
 
-     
+         // Register language and ontology
+         getContentManager().registerLanguage(codec);
+         getContentManager().registerOntology(ontology);
+         setEnabledO2ACommunication(true, 10);
+
+
+         addBehaviour(new CyclicBehaviour() {
+
+             public void action() {
+                 // Retrieve the first object in the queue and print it on
+                 // the standard output
+                 Object obj = getO2AObject();
+                 if(obj != null) {
+                     System.out.println("Got an object from the queue: [" + obj + "]");
+                     if(obj instanceof ListeAllSujetsForum){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 ListeAllSujetsForum aff = (ListeAllSujetsForum) obj ;
+                                 listerAllSujetsCours();
+
+                             }
+                         });
+                     }
+                     else if(obj instanceof SujetForumByCours){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 SujetForumByCours aff = (SujetForumByCours) obj ;
+                                 listerSujetForumByCours(aff);
+
+                             }
+                         });
+                     }
+                     else if(obj instanceof InformationSujetForum) {
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 InformationSujetForum aff = (InformationSujetForum) obj;
+                                 infoSujetForum(aff);
+
+                             }
+                         });
+                     }
+
+                 }
+                 else
+                     block();
+             }
+
+         });
+
+
       
    }
 
@@ -47,8 +101,26 @@ public class AgentForum extends Agent implements Vocabulary, IAgentForum {
        System.out.println(getLocalName() + " is now shutting down.");
        
     }
-   
-   
+
+    public void listerAllSujetsCours(){
+
+        ListeAllSujetsForum lc = new ListeAllSujetsForum();
+        sendMessage(ACLMessage.QUERY_REF, lc);
+
+
+    }
+
+    public void listerSujetForumByCours(SujetForumByCours aff){
+        sendMessage(ACLMessage.QUERY_REF, aff);
+
+    }
+
+    public void infoSujetForum(InformationSujetForum ic) {
+
+
+        sendMessage(ACLMessage.QUERY_REF, ic);
+
+    }
    
    
     class WaitServerResponse extends ParallelBehaviour {
@@ -82,54 +154,64 @@ public class AgentForum extends Agent implements Vocabulary, IAgentForum {
          super(a);
       }
 
-      public void action() {
-        /*
-         ACLMessage msg = receive(MessageTemplate.MatchSender(server));
+         public void action() {
 
-         if (msg == null) { block(); return; }
+             ACLMessage msg = receive(MessageTemplate.MatchSender(server));
 
-         if (msg.getPerformative() == ACLMessage.NOT_UNDERSTOOD){
-           // alertGui("Response from server: NOT UNDERSTOOD");
-         }
-         else if (msg.getPerformative() != ACLMessage.INFORM){
-           // alertGui("\nUnexpected msg from server!");
-         }
-         else {
-            try {
-               ContentElement content = getContentManager().extractContent(msg);
+             if (msg == null) { block(); return; }
 
-               if (content instanceof Result) {
+             if (msg.getPerformative() == ACLMessage.NOT_UNDERSTOOD){
+                 System.out.println("Response from server: NOT UNDERSTOOD");
+             }
+             else if (msg.getPerformative() != ACLMessage.INFORM){
+                 System.out.println("Unexpected Message ");
+             }
+             else {
+                 try {
+                     ContentElement content = getContentManager().extractContent(msg);
 
-                  Result result = (Result) content;
+                     if (content instanceof Result) {
 
-                  if (result.getAction() instanceof Problem) {
+                         Result result = (Result) content;
 
-                     Problem prob = (Problem)result.getAction();
-                     alertGui(prob);
-                  }
-                  else if (result.getAction()  instanceof Account) {
 
-                     Account acc = (Account) result.getAction() ;
+                         if (result.getValue() instanceof Problem) {
 
-                     if (command == NEW_ACCOUNT) {
-                        accounts.add(acc);
+                             Problem prob = (Problem) result.getItems().get(0);
+                             System.out.println("Problem : " + prob.getMsg());
+                         }
+                         else if (result.getValue()  instanceof SujetForum) {
+
+                             SujetForum frm = (SujetForum)result.getValue() ;
+
+                             ExampleController.setSujet_forum(frm);
+                             SemaphoreClass.informationSujetForum_sem.release();
+
+
+
+                         }
+                         else if (result.getValue()  instanceof ArrayList) {
+
+                             ArrayList lcs = (ArrayList) result.getValue() ;
+                             if (lcs.get(0) instanceof SujetForum) {
+                                 java.util.ArrayList<SujetForum> L = (java.util.ArrayList<SujetForum>)lcs.toList();
+                                 ExampleController.setSujets_forums(L);
+                                 SemaphoreClass.listeAllsujetsForum_sem.release();
+
+                             }
+
+                         }
+                         else System.out.println("\nUnexpected result from server!");
                      }
-                     alertGui(acc);
-                  }
-                  else if (result.getAction()  instanceof List) {
-                     alertGui(result.getItems());
-                  }
-                  else alertGui("\nUnexpected result from server!");
-               }
-               else {
-                  alertGui("\nUnable de decode response from server!");
-               }
-            }
-            catch (Exception e) { e.printStackTrace(); }
+                     else {
+                         System.out.println("\nUnable de decode response from server!");
+                     }
+                 }
+                 catch (Exception e) { e.printStackTrace(); }
+             }
+
+             finished = true;
          }
-         resetStatusGui();
-         finished = true;
-   */   }
 
       public boolean done() { return finished; }
 

@@ -23,6 +23,9 @@ public  class ExampleController {
     public static List<Etudiant> liste_etudiant;
    public static Cours cours ;
    public static CoursEtudiant cours_etudiant ;
+   public static List<SujetForum> sujets_forums ;
+
+   public static SujetForum sujet_forum ;
 
     public static List<Test> getListeTest() {
         return ListeTest;
@@ -68,6 +71,16 @@ public  class ExampleController {
         return uniques;
     }
 
+    public static ArrayList<SujetForum> rendreUniquesSujetsForum(List<SujetForum> le){
+        ArrayList<SujetForum> uniques = new ArrayList<SujetForum>();
+        for (SujetForum element : le) {
+            if (!uniques.contains(element)) {
+                uniques.add(element);
+            }
+        }
+        return uniques;
+    }
+
     public static ArrayList<Etudiant> rendreUniquesEtudiants(List<Etudiant> le){
         ArrayList<Etudiant> uniques = new ArrayList<Etudiant>();
         for (Etudiant element : le) {
@@ -84,5 +97,21 @@ public  class ExampleController {
 
     public static void setTestEtudiant(TestEtudiant testEtudiant) {
         ExampleController.testEtudiant = testEtudiant;
+    }
+
+    public static List<SujetForum> getSujets_forums() {
+        return sujets_forums;
+    }
+
+    public static void setSujets_forums(List<SujetForum> sujets_forums) {
+        ExampleController.sujets_forums = sujets_forums;
+    }
+
+    public static SujetForum getSujet_forum() {
+        return sujet_forum;
+    }
+
+    public static void setSujet_forum(SujetForum sujet_forum) {
+        ExampleController.sujet_forum = sujet_forum;
     }
 }

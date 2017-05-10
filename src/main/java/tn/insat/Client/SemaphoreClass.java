@@ -29,4 +29,10 @@ public class SemaphoreClass {
     static public Semaphore listProposition_sem = new Semaphore(0,true);
 
     static public Semaphore listTestEtudiant_sem = new Semaphore(0,true);
+
+    static public Semaphore listeAllsujetsForum_sem = new Semaphore(0,true);
+
+    static public Semaphore informationSujetForum_sem = new Semaphore(0,true);
+
+
 }

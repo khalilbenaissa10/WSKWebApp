@@ -12,6 +12,8 @@ import tn.insat.Client.ExampleController;
 import tn.insat.Client.SemaphoreClass;
 import tn.insat.ontologies.*;
 
+import javax.swing.plaf.synth.SynthDesktopIconUI;
+
 @CrossOrigin(origins = "*")
 @Controller
 @RequestMapping("/cours")
@@ -25,6 +27,7 @@ public class CoursController {
        ListeAllCours listeAll = new ListeAllCours();
         operator.send_to_planCours(listeAll);
         SemaphoreClass.listeAllcours_sem.acquire();
+        System.out.println("semaphore passé apres liste cours");
         List<Cours> list = ExampleController.getListe_cours();
         ExampleController.setListe_cours(null);
         return list;

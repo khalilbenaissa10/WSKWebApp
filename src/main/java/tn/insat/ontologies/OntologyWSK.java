@@ -44,6 +44,8 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          add(new ConceptSchema(QUESTION), Question.class);
          add(new ConceptSchema(PROPOSITION), Proposition.class);
          add(new ConceptSchema(REPONSEETUDIANT), ReponseEtudiant.class);
+         add(new ConceptSchema(SUJET_FORUM), SujetForum.class);
+         add(new ConceptSchema(REPONSE_FORUM), ReponseForum.class);
 
 
 
@@ -87,6 +89,25 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          cs.add(PROPOSITION_TEXT_PROPOSITION, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
          cs.add(PROPOSITION_VALID_PROPOSITION , (PrimitiveSchema) getSchema(BasicOntology.BOOLEAN), ObjectSchema.MANDATORY);
          cs.add(PROPOSITION_QUESTION_PROPOSITION,(ConceptSchema) getSchema(Question.class));
+
+         //SujetForum
+         cs  = (ConceptSchema) getSchema(SUJET_FORUM);
+         add(cs, SujetForum.class);
+         cs.add(SUJET_FORUM_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+         cs.add(SUJET_FORUM_TITRE, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         cs.add(SUJET_FORUM_TEXT , (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         cs.add(SUJET_FORUM_COURS,(ConceptSchema) getSchema(Cours.class));
+         cs.add(SUJET_FORUM_ENSEIGNANT,(ConceptSchema) getSchema(Enseignant.class),ObjectSchema.OPTIONAL);
+         cs.add(SUJET_FORUM_ETUDIANT,(ConceptSchema) getSchema(Etudiant.class),ObjectSchema.OPTIONAL);
+
+         //ReponseForum
+         cs  = (ConceptSchema) getSchema(REPONSE_FORUM);
+         add(cs, ReponseForum.class);
+         cs.add(REPONSE_FORUM_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+         cs.add(REPONSE_FORUM_TEXT, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         cs.add(REPONSE_FORUM_SUJET_FORUM,(ConceptSchema) getSchema(SujetForum.class));
+         cs.add(REPONSE_FORUM_ETUDIANT,(ConceptSchema) getSchema(Etudiant.class),ObjectSchema.OPTIONAL);
+         cs.add(REPONSE_FORUM_ENSEIGNANT,(ConceptSchema) getSchema(Enseignant.class),ObjectSchema.OPTIONAL);
 
          //PROBLEM
          cs =(ConceptSchema) getSchema(PROBLEM);
@@ -212,9 +233,17 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          as.add(INFORMATION_COURS_TYPE, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
          as.add(INFORMATION_COURS_ID_COURS, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
 
+            // InformationSujetForum
+         add(as = new AgentActionSchema(INFORMATION_SUJET_FORUM), InformationSujetForum.class);
+         as.add(INFORMATION_SUJET_FORUM_ID_FORUM, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+
          // Test by cours
          add(as = new AgentActionSchema(TEST_BY_COURS), TestByCours.class);
          as.add(TEST_BY_COURS_ID_COURS, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+
+         // SUJET FORUM by cours
+         add(as = new AgentActionSchema(SUJET_FORUM_BY_COURS), SujetForumByCours.class);
+         as.add(SUJET_FORUM_BY_COURS_ID_COURS, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
 
          // Question by test
          add(as = new AgentActionSchema(QUESTION_BY_TEST), QuestionByTest.class);
@@ -242,6 +271,9 @@ public class OntologyWSK extends Ontology implements Vocabulary {
 
          // ListAllCours
          add(as = new AgentActionSchema(LIST_ALL_COURS), ListeAllCours.class);
+
+         // ListAllSujetsForum
+         add(as = new AgentActionSchema(LIST_ALL_COURS), ListeAllSujetsForum.class);
 
          // ListCoursSearch
          add(as = new AgentActionSchema(LIST_COURS_SEARCH), ListeCoursSearch.class);

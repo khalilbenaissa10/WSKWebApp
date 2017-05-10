@@ -30,6 +30,22 @@ public interface Vocabulary {
    public static final String COURS_COURSETUDIANT= "coursetudiant";
    public static final String COURS_DESCRIPTION= "description";
 
+   //SujetForum
+   public static final String SUJET_FORUM = "SujetForum";
+   public static final String SUJET_FORUM_ID = "id_sujetforum";
+   public static final String SUJET_FORUM_TITRE = "titre_sujetforum";
+   public static final String SUJET_FORUM_TEXT = "text_sujetforum";
+   public static final String SUJET_FORUM_ENSEIGNANT= "enseignant_sujetforum";
+   public static final String SUJET_FORUM_ETUDIANT = "etudiant_sujetforum";
+   public static final String SUJET_FORUM_COURS = "cours_sujetforum";
+
+   //ReponseForum
+   public static final String REPONSE_FORUM = "ReponseForum";
+   public static final String REPONSE_FORUM_ID = "id_reponseforum";
+   public static final String REPONSE_FORUM_TEXT = "text_reponseforum";
+   public static final String REPONSE_FORUM_SUJET_FORUM = "sujetforum_reponseforum";
+   public static final String REPONSE_FORUM_ENSEIGNANT= "enseignant_reponseforum";
+   public static final String REPONSE_FORUM_ETUDIANT = "etudiant_reponseforum";
    //test
    public static final String TEST = "Test";
    public static final String TEST_ID = "id_test";
@@ -115,8 +131,15 @@ public interface Vocabulary {
    public static final String INFORMATION_COURS_TYPE = "type";
    public static final String INFORMATION_COURS_ID_COURS="Id_cours";
 
+   //information SUJET FORUM
+   public static final String INFORMATION_SUJET_FORUM = "Information_sujet_forum";
+   public static final String INFORMATION_SUJET_FORUM_ID_FORUM="Id_forum";
+
    //list all cours
    public static final String LIST_ALL_COURS= "liste_All_Cours";
+
+   //list all sujetForums
+   public static final String LIST_ALL_SUJETS_FORUM = "liste_All_Cours";
 
    //list cours search
    public static final String LIST_COURS_SEARCH= "liste_cours_search";
@@ -150,6 +173,9 @@ public interface Vocabulary {
    public static final String TEST_BY_COURS = "Test_by_cours";
    public static final String TEST_BY_COURS_ID_COURS = "id_cours";
 
+   //sUJET FORUM by cours
+   public static final String SUJET_FORUM_BY_COURS = "Sujet_forum_by_cours";
+   public static final String SUJET_FORUM_BY_COURS_ID_COURS = "id_cours";
 
    //etudiant
    public static final String ETUDIANT="Etudiant";

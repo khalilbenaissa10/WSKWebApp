@@ -56,6 +56,18 @@ public class Cours implements Concept,Serializable {
     @OneToMany(fetch=FetchType.LAZY, mappedBy="cours_ressource")
     private Set<Ressource> ressources = new HashSet<Ressource>(0);
 
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="cours_sujetforum")
+    private Set<SujetForum> sujetForums = new HashSet<SujetForum>(0);
+
+
+
+    public Set<SujetForum> getSujetForums() {
+        return sujetForums;
+    }
+
+    public void setSujetForums(Set<SujetForum> sujetForums) {
+        this.sujetForums = sujetForums;
+    }
 
     /**
      * @return the intitule

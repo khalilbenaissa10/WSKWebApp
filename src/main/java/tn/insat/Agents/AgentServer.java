@@ -39,6 +39,7 @@ public class AgentServer extends Agent implements Vocabulary {
    IPropositionRepository repo_proposition =new PropositionRepository();
    ITestEtudiantRepository repo_test_etudiant = new TestEtudiantRepository();
    IReponseEtudiantRepository repo_reponse_question = new ReponseEtudiantRepository();
+   ISujetForumRepository repo_sujet_forum = new SujetForumRepository();
 
     
    private int idCnt = 0;
@@ -142,12 +143,16 @@ public class AgentServer extends Agent implements Vocabulary {
                      addBehaviour(new HandleInformationCours(myAgent, msg));
                   else if (action instanceof ListCoursEnseignant)
                      addBehaviour(new HandleListCoursEnseignant(myAgent, msg));
+                  else if (action instanceof InformationSujetForum)
+                     addBehaviour(new HandleInformationSujetForum(myAgent, msg));
                   else if (action instanceof ListEtudiantCours)
                      addBehaviour(new HandleListEtudiantsCours(myAgent, msg));
                   else if (action instanceof ListEtudiantEnseignant)
                      addBehaviour(new HandleListEtudiantsEnseignant(myAgent, msg));
                   else if (action instanceof ListeAllCours)
                      addBehaviour(new HandleListAllCours(myAgent, msg));
+                  else if (action instanceof ListeAllSujetsForum)
+                     addBehaviour(new HandleListAllSujetsForum(myAgent, msg));
                   else if (action instanceof ListeCoursSearch)
                      addBehaviour(new HandleListCoursSearch(myAgent,msg));
                   else if (action instanceof ListeCoursSearchDescription)
@@ -158,6 +163,8 @@ public class AgentServer extends Agent implements Vocabulary {
                      addBehaviour(new HandleListCoursByEtudiant(myAgent,msg));
                   else if (action instanceof TestByCours)
                      addBehaviour(new HandleListCoursByTest(myAgent,msg));
+                  else if (action instanceof SujetForumByCours)
+                     addBehaviour(new HandleListSujetForumByCours(myAgent,msg));
                   else if (action instanceof QuestionByTest)
                      addBehaviour(new HandleListeQuestionByTest(myAgent,msg));
                   else if (action instanceof PropositionByQuestion)
@@ -394,6 +401,38 @@ public class AgentServer extends Agent implements Vocabulary {
       }
    }
 
+   class HandleInformationSujetForum extends OneShotBehaviour {
+// --------------------------------------------------  Handler for an Information query
+
+      private ACLMessage query;
+
+      HandleInformationSujetForum(Agent a, ACLMessage query) {
+
+         super(a);
+         this.query = query;
+      }
+
+      public void action() {
+
+         try {
+
+            ContentElement content = getContentManager().extractContent(query);
+            InformationSujetForum info = (InformationSujetForum)((Action)content).getAction();
+            SujetForum frm = repo_sujet_forum.findById(info.getId_Forum());
+            if (frm == null) replyNotUnderstood(query);
+            else {
+               ACLMessage reply = query.createReply();
+               reply.setPerformative(ACLMessage.INFORM);
+               Result result = new Result((Action)content, frm);
+               getContentManager().fillContent(reply, result);
+               send(reply);
+               System.out.println("information du sujetForum " + frm  + "from server");
+            }
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
    class HandleInformationEtudiant extends OneShotBehaviour {
 // --------------------------------------------------  Handler for an Information query
 
@@ -492,6 +531,41 @@ public class AgentServer extends Agent implements Vocabulary {
          catch(Exception ex) { ex.printStackTrace(); }
       }
    }
+
+   class HandleListSujetForumByCours extends OneShotBehaviour {
+// --------------------------------------------------  Handler for an Information query
+
+      private ACLMessage query;
+
+      HandleListSujetForumByCours(Agent a, ACLMessage query) {
+
+         super(a);
+         this.query = query;
+      }
+
+      public void action() {
+
+         try {
+
+            ContentElement content = getContentManager().extractContent(query);
+
+            SujetForumByCours info = (SujetForumByCours) ((Action)content).getAction();
+            java.util.ArrayList<SujetForum> listForum = null;
+            listForum = (java.util.ArrayList<SujetForum>) repo_sujet_forum.findByCours(info.getId_cours());
+            jade.util.leap.ArrayList listforumjade = new jade.util.leap.ArrayList(listForum);
+            Result result = new Result((Action)content, (jade.util.leap.ArrayList)listforumjade);
+            ACLMessage reply = query.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+            System.out.println("liste sujet forum by cours " + listForum  + "from server");
+
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+
 
    class HandleListeQuestionByTest extends OneShotBehaviour {
 // --------------------------------------------------  Handler for an Information query
@@ -720,6 +794,37 @@ public class AgentServer extends Agent implements Vocabulary {
          catch(Exception ex) { ex.printStackTrace(); }
       }
    }
+
+   class HandleListAllSujetsForum extends OneShotBehaviour {
+// ----------------------------------------------------  Handler for a CreateAccount request
+
+      private ACLMessage request;
+
+      HandleListAllSujetsForum(Agent a, ACLMessage request) {
+
+         super(a);
+         this.request = request;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(request);
+            java.util.ArrayList<SujetForum> listSujetsForum = null;
+            listSujetsForum = repo_sujet_forum.findAll();
+            jade.util.leap.ArrayList listsujetjade = new jade.util.leap.ArrayList(listSujetsForum);
+            Result result = new Result((Action)content, (jade.util.leap.ArrayList)listsujetjade);
+            ACLMessage reply = request.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+
+            System.out.println("List All sujet forum retournée");
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
 
 
    class HandleListCoursSearch extends OneShotBehaviour {

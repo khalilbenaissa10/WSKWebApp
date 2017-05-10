@@ -44,6 +44,9 @@ public class Etudiant  implements Concept {
     @OneToMany(fetch=FetchType.EAGER, mappedBy="etudiant_sujetforum")
     private Set<SujetForum> sujetforumetudiant = new HashSet<SujetForum>(0);
 
+    @OneToMany(fetch=FetchType.EAGER, mappedBy="etudiant_reponseforum")
+    private Set<ReponseForum> reponseforumetudiant = new HashSet<ReponseForum>(0);
+
     public int getId_etudiant() {
         return id_etudiant;
     }
@@ -79,6 +82,15 @@ public class Etudiant  implements Concept {
     public Set<SujetForum> getSujetforumetudiant() {return sujetforumetudiant;    }
 
     public void setSujetforumetudiant(Set<SujetForum> sujetforumetudiant) {this.sujetforumetudiant = sujetforumetudiant;    }
+
+
+    public Set<ReponseForum> getReponseforumetudiant() {
+        return reponseforumetudiant;
+    }
+
+    public void setReponseforumetudiant(Set<ReponseForum> reponseforumetudiant) {
+        this.reponseforumetudiant = reponseforumetudiant;
+    }
 
     @Override
     public boolean equals(Object other){
