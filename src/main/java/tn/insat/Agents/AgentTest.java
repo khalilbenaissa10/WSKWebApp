@@ -325,6 +325,7 @@ public class AgentTest extends Agent implements Vocabulary, IAgentTest {
                       else if (result.getValue()  instanceof ArrayList) {
 
                           ArrayList lcs = (ArrayList) result.getValue() ;
+
                           if (lcs.get(0) instanceof Test) {
                               java.util.ArrayList<Test> L = (java.util.ArrayList<Test>)lcs.toList();
                               ExampleController.setListeTest(L);

@@ -63,7 +63,7 @@ public class AgentEnseignant extends Agent implements Vocabulary, IAgentEnseigna
                              }
                          });
                      }
-                     if(obj instanceof ListCoursEnseignant){
+                     else if(obj instanceof ListCoursEnseignant){
 
                          addBehaviour(new OneShotBehaviour() {
 
@@ -73,7 +73,7 @@ public class AgentEnseignant extends Agent implements Vocabulary, IAgentEnseigna
                              }
                          });
                      }
-                     if(obj instanceof ListEtudiantCours){
+                     else if(obj instanceof ListEtudiantCours){
 
                          addBehaviour(new OneShotBehaviour() {
 
@@ -83,13 +83,23 @@ public class AgentEnseignant extends Agent implements Vocabulary, IAgentEnseigna
                              }
                          });
                      }
-                     if(obj instanceof ListEtudiantEnseignant){
+                     else if(obj instanceof ListEtudiantEnseignant){
 
                          addBehaviour(new OneShotBehaviour() {
 
                              @Override
                              public void action() {
                                  listEtudiantbyEnseignant(((ListEtudiantEnseignant) obj).getId_enseignant());
+                             }
+                         });
+                     }
+                     else if(obj instanceof InformationEnseignant ){
+
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 informationEnseignant((InformationEnseignant) obj);
                              }
                          });
                      }
@@ -141,6 +151,14 @@ public class AgentEnseignant extends Agent implements Vocabulary, IAgentEnseigna
       sendMessage(ACLMessage.QUERY_REF, ic);
       
   }
+
+    @Override
+    public void informationEnseignant(InformationEnseignant obj) {
+
+
+        sendMessage(ACLMessage.QUERY_REF, obj);
+
+    }
 
     @Override
   public void listCours(int id_enseignant){
@@ -238,6 +256,13 @@ public class AgentEnseignant extends Agent implements Vocabulary, IAgentEnseigna
                       System.out.println("message enseignant : Cours retourné "+crs.getIntitule());
                       ExampleController.setCours(crs);
                       SemaphoreClass.available.release();
+                  }
+                  else if (result.getValue()  instanceof Enseignant) {
+
+                      Enseignant ens = (Enseignant) result.getItems().get(0) ;
+                      System.out.println("message enseignant : Enseignant retourné "+ens.getNom_enseignant());
+                      ExampleController.setEnseignant(ens);
+                      SemaphoreClass.informationEnseignant_sem.release();
                   }
                   else if (result.getValue()  instanceof ArrayList) {
 

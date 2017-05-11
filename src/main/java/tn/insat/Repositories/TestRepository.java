@@ -31,6 +31,14 @@ public class TestRepository implements  ITestRepository {
         }
         // Clean up !
         session.close();
+        if (lt.size()==0){
+            Test testdummy = new Test();
+            testdummy.setId_test(0);
+            testdummy.setNom_test("dummy test");
+            testdummy.setDuree_test("00");
+            testdummy.setCours_test(cours);
+            lt.add(testdummy);
+        }
         return lt;
     }
 

@@ -34,5 +34,7 @@ public class SemaphoreClass {
 
     static public Semaphore informationSujetForum_sem = new Semaphore(0,true);
 
+    static public Semaphore informationEnseignant_sem = new Semaphore(0,true);
+
 
 }

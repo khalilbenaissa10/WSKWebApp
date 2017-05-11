@@ -15,4 +15,5 @@ public interface ISujetForumRepository {
     ArrayList<SujetForum> findAll();
     List<SujetForum> findByCours(int id_cours);
     SujetForum findById(int id);
+    Boolean create(SujetForum c);
 }

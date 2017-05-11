@@ -1,6 +1,7 @@
 package tn.insat.Repositories;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import tn.insat.Client.ExampleController;
 import tn.insat.Utilities.HibernateUtil;
 import tn.insat.ontologies.Cours;
@@ -58,5 +59,27 @@ public class SujetForumRepository implements  ISujetForumRepository {
         session.close();
 
         return c;
+    }
+
+    public Boolean create(SujetForum forum) {
+        boolean a_retourner = false;
+        Transaction transaction = null;
+        try {
+            Session session = HibernateUtil.createSessionFactory()
+                    .openSession();
+            transaction = session.beginTransaction();
+
+            session.save(forum);
+            transaction.commit();
+
+            a_retourner = true;
+        } catch (Exception e) {
+            System.out.println("LOG : Exception lors de la creation du sujet forum. Détails :"
+                    + e);
+            if ((transaction != null) /*&& transaction.isActive()*/)
+                transaction.rollback();
+        }
+
+        return a_retourner;
     }
 }

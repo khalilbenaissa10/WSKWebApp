@@ -121,6 +121,8 @@ public class AgentServer extends Agent implements Vocabulary {
                      addBehaviour(new HandleCreateCours(myAgent, msg));
                   else if (action instanceof AffecterCours)
                     addBehaviour(new HandleAffecterCours(myAgent, msg));
+                  else if (action instanceof CreateSujetForum)
+                     addBehaviour(new HandleCreateSujetForum(myAgent, msg));
                   else if (action instanceof AffecterTest)
                      addBehaviour(new HandleAffecterTest(myAgent, msg));
                   else if (action instanceof CreateTest)
@@ -145,6 +147,8 @@ public class AgentServer extends Agent implements Vocabulary {
                      addBehaviour(new HandleListCoursEnseignant(myAgent, msg));
                   else if (action instanceof InformationSujetForum)
                      addBehaviour(new HandleInformationSujetForum(myAgent, msg));
+                  else if (action instanceof InformationEnseignant)
+                     addBehaviour(new HandleInformationEnseignant(myAgent, msg));
                   else if (action instanceof ListEtudiantCours)
                      addBehaviour(new HandleListEtudiantsCours(myAgent, msg));
                   else if (action instanceof ListEtudiantEnseignant)
@@ -220,6 +224,41 @@ public class AgentServer extends Agent implements Vocabulary {
             send(reply);
             System.out.println("Cours [" + cours.getIntitule() + " # " +
                                cours.getId_cours() + "] created!");
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+   class HandleCreateSujetForum extends OneShotBehaviour {
+// ----------------------------------------------------  Handler for a CreateAccount request
+
+      private ACLMessage request;
+
+      HandleCreateSujetForum(Agent a, ACLMessage request) {
+
+         super(a);
+         this.request = request;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(request);
+            CreateSujetForum ca = (CreateSujetForum) ((Action)content).getAction();
+            SujetForum sujetForum = new SujetForum();
+            sujetForum.setId_sujetforum(ca.getId_sujetForum());
+            sujetForum.setCours_sujetforum(ca.getCours_sujetforum());
+            sujetForum.setText_sujetforum(ca.getText_sujetforum());
+            sujetForum.setTitre_sujetforum(ca.getTitre_sujetforum());
+            sujetForum.setEnseignant_sujetforum(ca.getEnseignant_sujetforum());
+            sujetForum.setEtudiant_sujetforum(ca.getEtudiant_sujetforum());
+            repo_sujet_forum.create(sujetForum);
+            sujetForum = repo_sujet_forum.findById(ca.getId_sujetForum());
+            Result result = new Result((Action)content, (SujetForum)sujetForum);
+            ACLMessage reply = request.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
          }
          catch(Exception ex) { ex.printStackTrace(); }
       }
@@ -424,7 +463,7 @@ public class AgentServer extends Agent implements Vocabulary {
                ACLMessage reply = query.createReply();
                reply.setPerformative(ACLMessage.INFORM);
                Result result = new Result((Action)content, frm);
-               getContentManager().fillContent(reply, result);
+                  getContentManager().fillContent(reply, result);
                send(reply);
                System.out.println("information du sujetForum " + frm  + "from server");
             }
@@ -432,6 +471,41 @@ public class AgentServer extends Agent implements Vocabulary {
          catch(Exception ex) { ex.printStackTrace(); }
       }
    }
+
+
+   class HandleInformationEnseignant extends OneShotBehaviour {
+// --------------------------------------------------  Handler for an Information query
+
+      private ACLMessage query;
+
+      HandleInformationEnseignant(Agent a, ACLMessage query) {
+
+         super(a);
+         this.query = query;
+      }
+
+      public void action() {
+
+         try {
+
+            ContentElement content = getContentManager().extractContent(query);
+            InformationEnseignant info = (InformationEnseignant)((Action)content).getAction();
+            Enseignant ens = repo_enseignant.findById(info.getId_enseignant());
+            if (ens == null) replyNotUnderstood(query);
+            else {
+               ACLMessage reply = query.createReply();
+               reply.setPerformative(ACLMessage.INFORM);
+               Result result = new Result((Action)content, ens);
+               getContentManager().fillContent(reply, result);
+               send(reply);
+               System.out.println("information de l'enseignant " + ens  + "from server");
+            }
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+
 
    class HandleInformationEtudiant extends OneShotBehaviour {
 // --------------------------------------------------  Handler for an Information query

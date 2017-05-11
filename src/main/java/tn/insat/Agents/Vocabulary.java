@@ -77,6 +77,15 @@ public interface Vocabulary {
    public static final String CREATE_COURS_DESCRIPTION = "DESCRIPTION";
    public static final String CREATE_COURS_ENSEIGNANT = "enseignant";
 
+   //create SujetForum
+   public static final String CREATE_SUJET_FORUM = "Create_sujet_forum";
+   public static final String CREATE_SUJET_FORUM_ID = "id_sujetforum";
+   public static final String CREATE_SUJET_FORUM_TITRE = "titre_sujetforum";
+   public static final String CREATE_SUJET_FORUM_TEXT = "text_sujetforum";
+   public static final String CREATE_SUJET_FORUM_ENSEIGNANT= "enseignant_sujetforum";
+   public static final String CREATE_SUJET_FORUM_ETUDIANT = "etudiant_sujetforum";
+   public static final String CREATE_SUJET_FORUM_COURS = "cours_sujetforum";
+
    //affecter cours
    public static final String AFFECTER_COURS = "Affecter_cours";
    public static final String AFFECTER_COURS_ID_COURS = "id_cours";
@@ -134,6 +143,10 @@ public interface Vocabulary {
    //information SUJET FORUM
    public static final String INFORMATION_SUJET_FORUM = "Information_sujet_forum";
    public static final String INFORMATION_SUJET_FORUM_ID_FORUM="Id_forum";
+
+   //information Enseignant
+   public static final String INFORMATION_ENSEIGNANT = "Information_enseignant";
+   public static final String INFORMATION_ENSEIGNANT_ID="Id_enseignant";
 
    //list all cours
    public static final String LIST_ALL_COURS= "liste_All_Cours";

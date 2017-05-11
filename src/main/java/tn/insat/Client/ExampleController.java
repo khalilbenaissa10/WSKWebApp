@@ -27,6 +27,8 @@ public  class ExampleController {
 
    public static SujetForum sujet_forum ;
 
+   public static Enseignant enseignant ;
+
     public static List<Test> getListeTest() {
         return ListeTest;
     }
@@ -113,5 +115,13 @@ public  class ExampleController {
 
     public static void setSujet_forum(SujetForum sujet_forum) {
         ExampleController.sujet_forum = sujet_forum;
+    }
+
+    public static Enseignant getEnseignant() {
+        return enseignant;
+    }
+
+    public static void setEnseignant(Enseignant enseignant) {
+        ExampleController.enseignant = enseignant;
     }
 }

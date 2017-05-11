@@ -19,6 +19,10 @@ import jade.lang.acl.*;
 import jade.util.leap.*;
 import tn.insat.Client.ExampleController;
 import tn.insat.Client.SemaphoreClass;
+import tn.insat.Repositories.EnseignantRepository;
+import tn.insat.Repositories.EtudiantRepository;
+import tn.insat.Repositories.IEnseignantRepository;
+import tn.insat.Repositories.IEtudiantRepository;
 import tn.insat.ontologies.*;
 
 /**
@@ -26,8 +30,9 @@ import tn.insat.ontologies.*;
  * @author saif
  */
 public class AgentForum extends Agent implements Vocabulary, IAgentForum {
-    
-    
+
+    IEnseignantRepository repo_enseignant = new EnseignantRepository();
+    IEtudiantRepository repo_etudiant = new EtudiantRepository();
       private AID server;
     private Codec codec = new SLCodec();
    private Ontology ontology = OntologyWSK.getInstance();
@@ -50,7 +55,18 @@ public class AgentForum extends Agent implements Vocabulary, IAgentForum {
                  Object obj = getO2AObject();
                  if(obj != null) {
                      System.out.println("Got an object from the queue: [" + obj + "]");
-                     if(obj instanceof ListeAllSujetsForum){
+
+                     if(obj instanceof CreateSujetForum){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 CreateSujetForum cc = (CreateSujetForum)obj ;
+                                 createSujetForum(cc);
+                             }
+                         });
+                     }
+                     else if(obj instanceof ListeAllSujetsForum){
                          addBehaviour(new OneShotBehaviour() {
 
                              @Override
@@ -100,6 +116,21 @@ public class AgentForum extends Agent implements Vocabulary, IAgentForum {
 
        System.out.println(getLocalName() + " is now shutting down.");
        
+    }
+
+
+    public void createSujetForum(CreateSujetForum ca) {
+// ----------------------  Process to the server agent the request
+//                         to create a new account
+        System.out.println("create sujetforum from enseignant");
+        if(ca.getEnseignant_sujetforum()!= null) {
+            ca.setEnseignant_sujetforum(repo_enseignant.findById(ca.getEnseignant_sujetforum().getId_enseignant()));
+        }
+        else{
+            ca.setEtudiant_sujetforum(repo_etudiant.findById(ca.getEtudiant_sujetforum().getId_etudiant()));
+        }
+        sendMessage(ACLMessage.REQUEST, ca);
+
     }
 
     public void listerAllSujetsCours(){

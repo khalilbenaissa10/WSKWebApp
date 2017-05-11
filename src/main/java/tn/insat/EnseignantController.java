@@ -77,4 +77,17 @@ public class EnseignantController {
 
     }
 
+
+    @RequestMapping(value = "/getEnseignantById/{id}",method=RequestMethod.GET)
+    public @ResponseBody Enseignant getEnseignantById(@PathVariable( "id" ) int id) throws InterruptedException {
+        InformationEnseignant info_enseignant = new InformationEnseignant();
+        info_enseignant.setId_enseignant(id);
+        operator.send_to_enseignant(info_enseignant);
+        SemaphoreClass.informationEnseignant_sem.acquire();
+        System.out.println("apres semaphore information enseingnant");
+        Enseignant ens = ExampleController.getEnseignant();
+        ExampleController.setEnseignant(null);
+        return ens;
+    }
+
 }

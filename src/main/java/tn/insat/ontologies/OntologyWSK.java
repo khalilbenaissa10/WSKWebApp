@@ -192,6 +192,15 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          as.add(CREATE_COURS_DUREE, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
          as.add(CREATE_COURS_ENSEIGNANT,(ConceptSchema) getSchema(Enseignant.class));
 
+         //CreateSujetForum
+         add(as = new AgentActionSchema(CREATE_SUJET_FORUM), CreateSujetForum.class);
+         as.add(CREATE_SUJET_FORUM_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+         as.add(CREATE_SUJET_FORUM_TITRE, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         as.add(CREATE_SUJET_FORUM_TEXT , (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         as.add(CREATE_SUJET_FORUM_COURS,(ConceptSchema) getSchema(Cours.class));
+         as.add(CREATE_SUJET_FORUM_ENSEIGNANT,(ConceptSchema) getSchema(Enseignant.class),ObjectSchema.OPTIONAL);
+         as.add(CREATE_SUJET_FORUM_ETUDIANT,(ConceptSchema) getSchema(Etudiant.class),ObjectSchema.OPTIONAL);
+
          // AffecterCours
          add(as = new AgentActionSchema(AFFECTER_COURS), AffecterCours.class);
          as.add(AFFECTER_COURS_ID_COURS, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
@@ -236,6 +245,10 @@ public class OntologyWSK extends Ontology implements Vocabulary {
             // InformationSujetForum
          add(as = new AgentActionSchema(INFORMATION_SUJET_FORUM), InformationSujetForum.class);
          as.add(INFORMATION_SUJET_FORUM_ID_FORUM, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+
+         // InformationEnseignant
+         add(as = new AgentActionSchema(INFORMATION_ENSEIGNANT),InformationEnseignant.class);
+         as.add(INFORMATION_ENSEIGNANT_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
 
          // Test by cours
          add(as = new AgentActionSchema(TEST_BY_COURS), TestByCours.class);

@@ -5,6 +5,8 @@
  */
 package tn.insat.Agents;
 
+import tn.insat.ontologies.InformationEnseignant;
+
 /**
  *
  * @author saif
@@ -16,5 +18,7 @@ public interface IAgentEnseignant {
     public void infoCours(int idcours);
 
     public void listCours(int id_enseignant);
+
+    void informationEnseignant(InformationEnseignant obj);
     
 }
