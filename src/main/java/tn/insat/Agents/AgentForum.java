@@ -19,10 +19,7 @@ import jade.lang.acl.*;
 import jade.util.leap.*;
 import tn.insat.Client.ExampleController;
 import tn.insat.Client.SemaphoreClass;
-import tn.insat.Repositories.EnseignantRepository;
-import tn.insat.Repositories.EtudiantRepository;
-import tn.insat.Repositories.IEnseignantRepository;
-import tn.insat.Repositories.IEtudiantRepository;
+import tn.insat.Repositories.*;
 import tn.insat.ontologies.*;
 
 /**
@@ -33,6 +30,7 @@ public class AgentForum extends Agent implements Vocabulary, IAgentForum {
 
     IEnseignantRepository repo_enseignant = new EnseignantRepository();
     IEtudiantRepository repo_etudiant = new EtudiantRepository();
+    ISujetForumRepository repo_sujetforum = new SujetForumRepository();
       private AID server;
     private Codec codec = new SLCodec();
    private Ontology ontology = OntologyWSK.getInstance();
@@ -66,6 +64,16 @@ public class AgentForum extends Agent implements Vocabulary, IAgentForum {
                              }
                          });
                      }
+                     if(obj instanceof CreateReponseForum){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 CreateReponseForum cc = (CreateReponseForum)obj ;
+                                 createReponseForum(cc);
+                             }
+                         });
+                     }
                      else if(obj instanceof ListeAllSujetsForum){
                          addBehaviour(new OneShotBehaviour() {
 
@@ -95,6 +103,17 @@ public class AgentForum extends Agent implements Vocabulary, IAgentForum {
                              public void action() {
                                  InformationSujetForum aff = (InformationSujetForum) obj;
                                  infoSujetForum(aff);
+
+                             }
+                         });
+                     }
+                     else if(obj instanceof ReponseForumBySujet) {
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 ReponseForumBySujet aff = (ReponseForumBySujet) obj;
+                                 reponsesforumBysujet(aff);
 
                              }
                          });
@@ -133,6 +152,24 @@ public class AgentForum extends Agent implements Vocabulary, IAgentForum {
 
     }
 
+    public void createReponseForum(CreateReponseForum ca) {
+// ----------------------  Process to the server agent the request
+//                         to create a new account
+        System.out.println("create reponseforum");
+        if(ca.getEnseignant_reponseforum()!= null) {
+            ca.setEnseignant_reponseforum(repo_enseignant.findById(ca.getEnseignant_reponseforum().getId_enseignant()));
+        }
+        else{
+            ca.setEtudiant_reponseforum(repo_etudiant.findById(ca.getEtudiant_reponseforum().getId_etudiant()));
+        }
+
+
+
+        sendMessage(ACLMessage.REQUEST, ca);
+
+    }
+
+
     public void listerAllSujetsCours(){
 
         ListeAllSujetsForum lc = new ListeAllSujetsForum();
@@ -147,6 +184,13 @@ public class AgentForum extends Agent implements Vocabulary, IAgentForum {
     }
 
     public void infoSujetForum(InformationSujetForum ic) {
+
+
+        sendMessage(ACLMessage.QUERY_REF, ic);
+
+    }
+
+    public void reponsesforumBysujet(ReponseForumBySujet ic) {
 
 
         sendMessage(ACLMessage.QUERY_REF, ic);
@@ -221,6 +265,16 @@ public class AgentForum extends Agent implements Vocabulary, IAgentForum {
 
 
                          }
+                         else if (result.getValue()  instanceof ReponseForum) {
+
+                             ReponseForum frm = (ReponseForum)result.getValue() ;
+
+                             ExampleController.setReponse_forum(frm);
+                             SemaphoreClass.informationReponseForum_sem.release();
+
+
+
+                         }
                          else if (result.getValue()  instanceof ArrayList) {
 
                              ArrayList lcs = (ArrayList) result.getValue() ;
@@ -228,6 +282,13 @@ public class AgentForum extends Agent implements Vocabulary, IAgentForum {
                                  java.util.ArrayList<SujetForum> L = (java.util.ArrayList<SujetForum>)lcs.toList();
                                  ExampleController.setSujets_forums(L);
                                  SemaphoreClass.listeAllsujetsForum_sem.release();
+
+                             }
+
+                             if (lcs.get(0) instanceof ReponseForum) {
+                                 java.util.ArrayList<ReponseForum> L = (java.util.ArrayList<ReponseForum>)lcs.toList();
+                                 ExampleController.setReponses_forum(L);
+                                 SemaphoreClass.listeReponseForum_sem.release();
 
                              }
 

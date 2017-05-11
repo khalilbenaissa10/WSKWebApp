@@ -20,18 +20,18 @@ public class ReponseForum {
     @Column(name="TextReponseForum", length=512)
     String text_reponseforum ;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumns( {
             @JoinColumn(name="SujetForum_idSujetForum", referencedColumnName="idSujetForum", nullable=true) } )
     private SujetForum sujetforum_reponseforum ;
 
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumns( {
             @JoinColumn(name="Enseignant_idEnseignant", referencedColumnName="idEnseignant", nullable=true) } )
     private Enseignant enseignant_reponseforum ;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumns( {
             @JoinColumn(name="Etudiant_idEtudiant", referencedColumnName="idEtudiant", nullable=true) } )
     private Etudiant etudiant_reponseforum ;

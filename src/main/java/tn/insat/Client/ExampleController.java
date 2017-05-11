@@ -25,7 +25,11 @@ public  class ExampleController {
    public static CoursEtudiant cours_etudiant ;
    public static List<SujetForum> sujets_forums ;
 
+   public static List<ReponseForum> reponses_forum ;
+
    public static SujetForum sujet_forum ;
+
+   public static  ReponseForum reponse_forum;
 
    public static Enseignant enseignant ;
 
@@ -123,5 +127,21 @@ public  class ExampleController {
 
     public static void setEnseignant(Enseignant enseignant) {
         ExampleController.enseignant = enseignant;
+    }
+
+    public static List<ReponseForum> getReponses_forum() {
+        return reponses_forum;
+    }
+
+    public static void setReponses_forum(List<ReponseForum> reponses_forum) {
+        ExampleController.reponses_forum = reponses_forum;
+    }
+
+    public static ReponseForum getReponse_forum() {
+        return reponse_forum;
+    }
+
+    public static void setReponse_forum(ReponseForum reponse_forum) {
+        ExampleController.reponse_forum = reponse_forum;
     }
 }

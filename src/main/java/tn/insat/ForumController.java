@@ -47,7 +47,16 @@ public class ForumController {
         return list;
     }
 
-
+    @RequestMapping(value = "/listeReponsesForumBySujet/{id}",method=RequestMethod.GET)
+    public @ResponseBody List<ReponseForum> listerReponseBySujet(@PathVariable( "id" ) int id) throws InterruptedException {
+        ReponseForumBySujet reponseforum_by_sujet = new ReponseForumBySujet();
+        reponseforum_by_sujet.setId_sujet(id);
+        operator.send_to_forum(reponseforum_by_sujet);
+        SemaphoreClass.listeReponseForum_sem.acquire();
+        List<ReponseForum> list = ExampleController.getReponses_forum();
+        ExampleController.setReponses_forum(null);
+        return list;
+    }
 
     @RequestMapping(value = "/getSujetForumById/{id}",method=RequestMethod.GET)
     public @ResponseBody SujetForum getCoursById(@PathVariable( "id" ) int id) throws InterruptedException {
@@ -85,6 +94,37 @@ public class ForumController {
         operator.send_to_forum(create);
         SemaphoreClass.informationSujetForum_sem.acquire();
         SujetForum forum = ExampleController.getSujet_forum();
+        ExampleController.setSujet_forum(null);
+
+
+        return forum ;
+
+    }
+
+    @RequestMapping( value = "/creerReponseForum/{creator}/{id}",method = RequestMethod.POST )
+    @ResponseStatus( HttpStatus.CREATED )
+    @ResponseBody
+    public ReponseForum create( @PathVariable( "creator" ) int creator,@PathVariable( "id" ) int id,@RequestBody ReponseForum resource ) throws InterruptedException {
+        CreateReponseForum create = new CreateReponseForum();
+        create.setId_reponseforum(resource.getId_reponseforum());
+        create.setText_reponseforum(resource.getText_reponseforum());
+        create.setSujet_reponseforum(resource.getSujetforum_reponseforum());
+        if(creator == 0){
+            Enseignant ens = new Enseignant();
+            ens.setId_enseignant(id);
+            create.setEnseignant_reponseforum(ens);
+            create.setEtudiant_reponseforum(null);
+        }
+        if(creator == 1){
+            Etudiant et = new Etudiant();
+            et.setId_etudiant(id);
+            create.setEtudiant_reponseforum(et);
+            create.setEnseignant_reponseforum(null);
+        }
+
+        operator.send_to_forum(create);
+        SemaphoreClass.informationReponseForum_sem.acquire();
+        ReponseForum forum = ExampleController.getReponse_forum();
         ExampleController.setSujet_forum(null);
 
 

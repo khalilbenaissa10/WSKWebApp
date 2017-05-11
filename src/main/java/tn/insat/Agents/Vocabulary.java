@@ -86,6 +86,15 @@ public interface Vocabulary {
    public static final String CREATE_SUJET_FORUM_ETUDIANT = "etudiant_sujetforum";
    public static final String CREATE_SUJET_FORUM_COURS = "cours_sujetforum";
 
+   //create ReponseForum
+   public static final String CREATE_REPONSE_FORUM = "Create_reponse_forum";
+   public static final String CREATE_REPONSE_FORUM_ID = "id_reponseforum";
+   public static final String CREATE_REPONSE_FORUM_TEXT = "text_reponseforum";
+   public static final String CREATE_REPONSE_FORUM_ENSEIGNANT= "enseignant_reponseforum";
+   public static final String CREATE_REPONSE_FORUM_ETUDIANT = "etudiant_reponseforum";
+   public static final String CREATE_REPONSE_FORUM_SUJET = "sujet_reponseforum";
+
+
    //affecter cours
    public static final String AFFECTER_COURS = "Affecter_cours";
    public static final String AFFECTER_COURS_ID_COURS = "id_cours";
@@ -189,6 +198,10 @@ public interface Vocabulary {
    //sUJET FORUM by cours
    public static final String SUJET_FORUM_BY_COURS = "Sujet_forum_by_cours";
    public static final String SUJET_FORUM_BY_COURS_ID_COURS = "id_cours";
+
+   //Reponse FORUM by sujet
+   public static final String REPONSE_FORUM_BY_SUJET = "Reponse_forum_by_sujet";
+   public static final String REPONSE_FORUM_BY_SUJET_ID_SUJET = "id_sujet";
 
    //etudiant
    public static final String ETUDIANT="Etudiant";
