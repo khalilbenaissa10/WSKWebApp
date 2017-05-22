@@ -63,6 +63,16 @@ public class AgentEnseignant extends Agent implements Vocabulary, IAgentEnseigna
                              }
                          });
                      }
+                     else if(obj instanceof CreateEnseignant){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 CreateEnseignant cc = (CreateEnseignant)obj ;
+                                 createEnseignant(cc);
+                             }
+                         });
+                     }
                      else if(obj instanceof ListCoursEnseignant){
 
                          addBehaviour(new OneShotBehaviour() {
@@ -100,6 +110,18 @@ public class AgentEnseignant extends Agent implements Vocabulary, IAgentEnseigna
                              @Override
                              public void action() {
                                  informationEnseignant((InformationEnseignant) obj);
+                             }
+                         });
+                     }
+                     else if(obj instanceof LoginEnseignant)
+                     {
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 LoginEnseignant aff = (LoginEnseignant) obj ;
+                                 loginEnseignant(aff);
+
                              }
                          });
                      }
@@ -142,6 +164,22 @@ public class AgentEnseignant extends Agent implements Vocabulary, IAgentEnseigna
       sendMessage(ACLMessage.REQUEST, ca);
       
    }
+
+    public void loginEnseignant(LoginEnseignant cc) {
+// ----------------------  Process to the server agent the request
+//                         to create a new account
+
+        sendMessage(ACLMessage.QUERY_REF, cc);
+
+    }
+
+    public void createEnseignant(CreateEnseignant cc) {
+// ----------------------  Process to the server agent the request
+//                         to create a new account
+        System.out.println("helo");
+        sendMessage(ACLMessage.REQUEST, cc);
+
+    }
 
     @Override
   public void infoCours(int idcours) {

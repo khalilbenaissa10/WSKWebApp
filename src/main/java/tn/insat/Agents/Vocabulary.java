@@ -77,6 +77,8 @@ public interface Vocabulary {
    public static final String CREATE_COURS_DESCRIPTION = "DESCRIPTION";
    public static final String CREATE_COURS_ENSEIGNANT = "enseignant";
 
+
+
    //create SujetForum
    public static final String CREATE_SUJET_FORUM = "Create_sujet_forum";
    public static final String CREATE_SUJET_FORUM_ID = "id_sujetforum";
@@ -207,8 +209,24 @@ public interface Vocabulary {
    public static final String ETUDIANT="Etudiant";
    public static final String ETUDIANT_ID="id_etudiant";
    public static final String ETUDIANT_NOM="nom_etudiant";
+   public static final String ETUDIANT_EMAIL="email_etudiant";
+   public static final String ETUDIANT_PASSWORD="password_etudiant";
+   public static final String ETUDIANT_AGE="age_etudiant";
+   public static final String ETUDIANT_INSTITUT="institut_etudiant";
+   public static final String ETUDIANT_CATEGORY="category_etudiant";
    public static final String ETUDIANT_COURS_ETUDIANT="coursetudiant";
    public static final String ETUDIANT_TEST_ETUDIANT="testetudiant";
+
+   //Create etudiant
+   public static final String CREATE_ETUDIANT="Create_etudiant";
+   public static final String CREATE_ETUDIANT_ID="id_etudiant";
+   public static final String CREATE_ETUDIANT_NOM="nom_etudiant";
+   public static final String CREATE_ETUDIANT_EMAIL="email_etudiant";
+   public static final String CREATE_ETUDIANT_PASSWORD="password_etudiant";
+   public static final String CREATE_ETUDIANT_AGE="age_etudiant";
+   public static final String CREATE_ETUDIANT_INSTITUT="institut_etudiant";
+   public static final String CREATE_ETUDIANT_CATEGORY="category_etudiant";
+
 
    //Question
    public static final String QUESTION="Question";
@@ -217,11 +235,36 @@ public interface Vocabulary {
    public static final String QUESTION_TEST_QUESTION ="test_question";
    public static final String QUESTION_PROPOSITIONS ="propositions";
 
+   //Login etudiant
+   public static final String LOGIN_ETUDIANT="login_etudiant";
+   public static final String LOGIN_ETUDIANT_EMAIL="email_etudiant";
+   public static final String LOGIN_ETUDIANT_PASSWORD="password_etudiant";
+
+   //Login etudiant
+   public static final String LOGIN_ENSEIGNANT="login_enseignant";
+   public static final String LOGIN_ENSEIGNANT_EMAIL="email_enseignant";
+   public static final String LOGIN_ENSEIGNANT_PASSWORD="password_enseignant";
+
    //enseignant
    public static final String ENSEIGNANT="eneignant";
    public static final String ENSEIGNANT_ID="id_enseignant";
    public static final String ENSEIGNANT_NOM="nom_enseignant";
+   public static final String ENSEIGNANT_EMAIL="email_enseignant";
+   public static final String ENSEIGNANT_PASSWORD="password_enseignant";
+   public static final String ENSEIGNANT_AGE="age_enseignant";
+   public static final String ENSEIGNANT_INSTITUT="institut_enseignant";
+   public static final String ENSEIGNANT_CATEGORY="category_enseignant";
    public static final String ENSEIGNANT_COURS="cours";
+
+   // create enseignant
+   public static final String CREATE_ENSEIGNANT="Create_eneignant";
+   public static final String CREATE_ENSEIGNANT_ID="id_enseignant";
+   public static final String CREATE_ENSEIGNANT_NOM="nom_enseignant";
+   public static final String CREATE_ENSEIGNANT_EMAIL="email_enseignant";
+   public static final String CREATE_ENSEIGNANT_PASSWORD="password_enseignant";
+   public static final String CREATE_ENSEIGNANT_AGE="age_enseignant";
+   public static final String CREATE_ENSEIGNANT_INSTITUT="institut_enseignant";
+   public static final String CREATE_ENSEIGNANT_CATEGORY="category_enseignant";
 
    //seance
    public static final String SEANCE ="seance";

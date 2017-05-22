@@ -71,6 +71,17 @@ public class AgentEtudiant extends Agent implements Vocabulary,IAgentEtudiant {
                              }
                          });
                      }
+                     else if(obj instanceof CreateEtudiant){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 CreateEtudiant aff = (CreateEtudiant) obj ;
+                                 createEtudiant(aff);
+
+                             }
+                         });
+                     }
                      else if(obj instanceof InformationEtudiant)
                      {
                          addBehaviour(new OneShotBehaviour() {
@@ -91,6 +102,18 @@ public class AgentEtudiant extends Agent implements Vocabulary,IAgentEtudiant {
                              public void action() {
                                  ListeCoursByEtudiant aff = (ListeCoursByEtudiant) obj ;
                                  listerCoursByEtudiant(aff.getId_etudiant());
+
+                             }
+                         });
+                     }
+                     else if(obj instanceof LoginEtudiant)
+                     {
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 LoginEtudiant aff = (LoginEtudiant) obj ;
+                                 loginEtudiant(aff);
 
                              }
                          });
@@ -124,6 +147,7 @@ public class AgentEtudiant extends Agent implements Vocabulary,IAgentEtudiant {
       sendMessage(ACLMessage.REQUEST, ac);
 
    }
+
     public void PasserTest(int id_test, int id_etudiant) {
 // ----------------------  Process to the server agent the request
 //                         to create a new account
@@ -131,6 +155,22 @@ public class AgentEtudiant extends Agent implements Vocabulary,IAgentEtudiant {
         ac.setId_etudiant(id_etudiant);
         ac.setId_test(id_test);
         sendMessage(ACLMessage.REQUEST, ac);
+
+    }
+
+    public void createEtudiant(CreateEtudiant cc) {
+// ----------------------  Process to the server agent the request
+//                         to create a new account
+
+        sendMessage(ACLMessage.REQUEST, cc);
+
+    }
+
+    public void loginEtudiant(LoginEtudiant cc) {
+// ----------------------  Process to the server agent the request
+//                         to create a new account
+
+        sendMessage(ACLMessage.QUERY_REF, cc);
 
     }
 

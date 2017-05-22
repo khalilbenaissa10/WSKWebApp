@@ -157,7 +157,7 @@ public class TestController {
         for (ReponseEtudiant re: resource.getReponseEtudiants()
                 ) {
             liste.add(re);
-            CreateReponseEtudiant cq = new CreateReponseEtudiant(re.getId_reponse_etudiant(),re.getText_reponse_etudiant(),re.getValid_reponse_etudiant(),re.getTestetudiant());
+            CreateReponseEtudiant cq = new CreateReponseEtudiant(re.getId_reponse_etudiant(),re.getText_reponse_etudiant(),re.getValid_reponse_etudiant(),resource);
             operator.send_to_test(cq);
             SemaphoreClass.available2.acquire();
             reponse = SingletonQuestion.getReponseEtudiant();

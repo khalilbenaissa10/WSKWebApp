@@ -120,12 +120,23 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          add(cs, Etudiant.class);
          cs.add(ETUDIANT_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
          cs.add(ETUDIANT_NOM, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         cs.add(ETUDIANT_EMAIL, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         cs.add(ETUDIANT_PASSWORD, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         cs.add(ETUDIANT_AGE, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+         cs.add(ETUDIANT_INSTITUT, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         cs.add(ETUDIANT_CATEGORY, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+
 
          // Enseignant
          cs =(ConceptSchema) getSchema(ENSEIGNANT);
          add(cs, Enseignant.class);
          cs.add(ENSEIGNANT_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
          cs.add(ENSEIGNANT_NOM, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         cs.add(ENSEIGNANT_EMAIL, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         cs.add(ENSEIGNANT_PASSWORD, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         cs.add(ENSEIGNANT_AGE, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+         cs.add(ENSEIGNANT_INSTITUT, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         cs.add(ENSEIGNANT_CATEGORY, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
 
          // Seance
          cs = (ConceptSchema) getSchema(SEANCE);
@@ -172,7 +183,7 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          cs.add(REPONSE_ETUDIANT_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
          cs.add(REPONSE_ETUDIANT_TEXT, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
          cs.add(REPONSE_ETUDIANT_VALID, (PrimitiveSchema) getSchema(BasicOntology.BOOLEAN), ObjectSchema.MANDATORY);
-         cs.add(REPONSE_ETUDIANT_TEST_ETUDIANT,(ConceptSchema) getSchema(TestEtudiant.class));
+         cs.add(REPONSE_ETUDIANT_TEST_ETUDIANT,(ConceptSchema) getSchema(TestEtudiant.class),ObjectSchema.OPTIONAL);
 
          // ------- Add AgentActions
 
@@ -182,7 +193,7 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          as.add(CREATE_REPONSE_ETUDIANT_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
          as.add(CREATE_REPONSE_ETUDIANT_TEXT, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
          as.add(CREATE_REPONSE_ETUDIANT_VALID, (PrimitiveSchema) getSchema(BasicOntology.BOOLEAN), ObjectSchema.MANDATORY);
-         as.add(CREATE_REPONSE_ETUDIANT_TEST_ETUDIANT,(ConceptSchema) getSchema(TestEtudiant.class));
+         as.add(CREATE_REPONSE_ETUDIANT_TEST_ETUDIANT,(ConceptSchema) getSchema(TestEtudiant.class),ObjectSchema.OPTIONAL);
 
          // CreateCours
          add(as = new AgentActionSchema(CREATE_COURS), CreateCours.class);
@@ -191,6 +202,36 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          as.add(CREATE_COURS_DESCRIPTION, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
          as.add(CREATE_COURS_DUREE, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
          as.add(CREATE_COURS_ENSEIGNANT,(ConceptSchema) getSchema(Enseignant.class));
+
+         // CREATE Etudiant
+         add(as = new AgentActionSchema(CREATE_ETUDIANT), CreateEtudiant.class);
+         as.add(CREATE_ETUDIANT_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+         as.add(CREATE_ETUDIANT_NOM, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         as.add(CREATE_ETUDIANT_EMAIL, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         as.add(CREATE_ETUDIANT_PASSWORD, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         as.add(CREATE_ETUDIANT_AGE, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+         as.add(CREATE_ETUDIANT_INSTITUT, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         as.add(CREATE_ETUDIANT_CATEGORY, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+
+         // LOGIN ETUDIANT
+         add(as = new AgentActionSchema(LOGIN_ETUDIANT), LoginEtudiant.class);
+         as.add(LOGIN_ETUDIANT_EMAIL, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         as.add(LOGIN_ETUDIANT_PASSWORD, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+
+         // LOGIN Enseignant
+         add(as = new AgentActionSchema(LOGIN_ENSEIGNANT), LoginEnseignant.class);
+         as.add(LOGIN_ENSEIGNANT_EMAIL, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         as.add(LOGIN_ENSEIGNANT_PASSWORD, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+
+         // Enseignant
+         add(as = new AgentActionSchema(CREATE_ENSEIGNANT), CreateEnseignant.class);
+         as.add(CREATE_ENSEIGNANT_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+         as.add(CREATE_ENSEIGNANT_NOM, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         as.add(CREATE_ENSEIGNANT_EMAIL, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         as.add(CREATE_ENSEIGNANT_PASSWORD, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         as.add(CREATE_ENSEIGNANT_AGE, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+         as.add(CREATE_ENSEIGNANT_INSTITUT, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         as.add(CREATE_ENSEIGNANT_CATEGORY, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
 
          //CreateSujetForum
          add(as = new AgentActionSchema(CREATE_SUJET_FORUM), CreateSujetForum.class);

@@ -136,6 +136,10 @@ public class AgentServer extends Agent implements Vocabulary {
                      addBehaviour(new HandleCreateReponseEtudiant(myAgent, msg));
                   else if (action instanceof CreateReponseForum)
                      addBehaviour(new HandleCreateReponseForum(myAgent, msg));
+                  else if (action instanceof CreateEtudiant)
+                     addBehaviour(new HandleCreateEtudiant(myAgent, msg));
+                  else if (action instanceof CreateEnseignant)
+                     addBehaviour(new HandleCreateEnseignant(myAgent, msg));
                   else
                      replyNotUnderstood(msg);
                   break;
@@ -184,6 +188,10 @@ public class AgentServer extends Agent implements Vocabulary {
                      addBehaviour(new HandleListTestEtudiantByTest(myAgent,msg));
                   else if (action instanceof ReponseForumBySujet)
                      addBehaviour(new HandleListReponseForumBySujet(myAgent,msg));
+                  else if (action instanceof LoginEtudiant)
+                     addBehaviour(new HandleLoginEtudiant(myAgent,msg));
+                  else if (action instanceof LoginEnseignant)
+                     addBehaviour(new HandleLoginEnseignant(myAgent,msg));
                   else
 
                      replyNotUnderstood(msg);
@@ -302,6 +310,79 @@ public class AgentServer extends Agent implements Vocabulary {
          catch(Exception ex) { ex.printStackTrace(); }
       }
    }
+
+   class HandleCreateEtudiant extends OneShotBehaviour {
+// ----------------------------------------------------  Handler for a CreateAccount request
+
+      private ACLMessage request;
+
+      HandleCreateEtudiant(Agent a, ACLMessage request) {
+
+         super(a);
+         this.request = request;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(request);
+            CreateEtudiant resource = (CreateEtudiant) ((Action)content).getAction();
+            Etudiant etudiant = new Etudiant();
+            etudiant.setId_etudiant(resource.getId_etudiant());
+            etudiant.setNom_etudiant(resource.getNom_etudiant());
+            etudiant.setAge_etudiant(resource.getAge_etudiant());
+            etudiant.setEmail_etudiant(resource.getEmail_etudiant());
+            etudiant.setPassword_etudiant(resource.getPassword_etudiant());
+            etudiant.setCategory_etudiant(resource.getCategory_etudiant());
+            etudiant.setInstitut_etudiant(resource.getInstitut_etudiant());
+            repo_etudiant.create(etudiant);
+            etudiant = repo_etudiant.findById(resource.getId_etudiant());
+            Result result = new Result((Action)content, (Etudiant)etudiant);
+            ACLMessage reply = request.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+   class HandleCreateEnseignant extends OneShotBehaviour {
+// ----------------------------------------------------  Handler for a CreateAccount request
+
+      private ACLMessage request;
+
+      HandleCreateEnseignant(Agent a, ACLMessage request) {
+
+         super(a);
+         this.request = request;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(request);
+            CreateEnseignant resource = (CreateEnseignant) ((Action)content).getAction();
+            Enseignant cc = new Enseignant();
+            cc.setId_enseignant(resource.getId_enseignant());
+            cc.setNom_enseignant(resource.getNom_enseignant());
+            cc.setAge_enseignant(resource.getAge_enseignant());
+            cc.setEmail_enseignant(resource.getEmail_enseignant());
+            cc.setPassword_enseignant(resource.getPassword_enseignant());
+            cc.setCategory_enseignant(resource.getCategory_enseignant());
+            cc.setInstitut_enseignant(resource.getInstitut_enseignant());
+            repo_enseignant.create(cc);
+            cc = repo_enseignant.findById(resource.getId_enseignant());
+            Result result = new Result((Action)content, (Enseignant)cc);
+            ACLMessage reply = request.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
 
 
    class HandleCreateTest extends OneShotBehaviour {
@@ -511,6 +592,72 @@ public class AgentServer extends Agent implements Vocabulary {
       }
    }
 
+
+
+
+   class HandleLoginEtudiant extends OneShotBehaviour {
+// --------------------------------------------------  Handler for an Information query
+
+      private ACLMessage query;
+
+      HandleLoginEtudiant(Agent a, ACLMessage query) {
+
+         super(a);
+         this.query = query;
+      }
+
+      public void action() {
+
+         try {
+
+            ContentElement content = getContentManager().extractContent(query);
+            LoginEtudiant login = (LoginEtudiant)((Action)content).getAction();
+            Etudiant etd = repo_etudiant.findByLoginAndPassword(login.getEmail_etudiant(),login.getPassword_etudiant());
+
+
+               ACLMessage reply = query.createReply();
+               reply.setPerformative(ACLMessage.INFORM);
+               Result result = new Result((Action)content, etd);
+               getContentManager().fillContent(reply, result);
+               send(reply);
+               System.out.println("information de l'etudiant " + etd  + "from server");
+
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+   class HandleLoginEnseignant extends OneShotBehaviour {
+// --------------------------------------------------  Handler for an Information query
+
+      private ACLMessage query;
+
+      HandleLoginEnseignant(Agent a, ACLMessage query) {
+
+         super(a);
+         this.query = query;
+      }
+
+      public void action() {
+
+         try {
+
+            ContentElement content = getContentManager().extractContent(query);
+            LoginEnseignant login = (LoginEnseignant)((Action)content).getAction();
+            Enseignant ens = repo_enseignant.findByLoginAndPassword(login.getEmail_enseignant(),login.getPassword_enseignant());
+
+
+            ACLMessage reply = query.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            Result result = new Result((Action)content, ens);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+            System.out.println("information de l'enseignant " + ens  + "from server");
+
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
 
    class HandleInformationEnseignant extends OneShotBehaviour {
 // --------------------------------------------------  Handler for an Information query

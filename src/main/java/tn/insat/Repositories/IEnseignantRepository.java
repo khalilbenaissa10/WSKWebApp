@@ -13,4 +13,8 @@ public interface IEnseignantRepository {
     Enseignant findById(int id);
 
     ArrayList<Etudiant> findEtudiantsbyid(int id_enseignant);
+
+    Boolean create(Enseignant c);
+
+     Enseignant findByLoginAndPassword(String email,String password);
 }

@@ -10,6 +10,7 @@ package tn.insat;
         import tn.insat.Agents.AgentOperator;
         import tn.insat.Client.ExampleController;
         import tn.insat.Client.SemaphoreClass;
+        import tn.insat.Client.SingletonEtudiant;
         import tn.insat.ontologies.*;
 
 
@@ -88,6 +89,42 @@ public class EnseignantController {
         Enseignant ens = ExampleController.getEnseignant();
         ExampleController.setEnseignant(null);
         return ens;
+    }
+
+
+    @RequestMapping( value = "/creerEnseignant",method = RequestMethod.POST )
+    @ResponseStatus( HttpStatus.CREATED )
+    @ResponseBody
+    public Enseignant createEnseignant( @RequestBody Enseignant resource ) throws InterruptedException {
+        CreateEnseignant cc = new CreateEnseignant();
+        cc.setId_enseignant(resource.getId_enseignant());
+        cc.setNom_enseignant(resource.getNom_enseignant());
+        cc.setAge_enseignant(resource.getAge_enseignant());
+        cc.setEmail_enseignant(resource.getEmail_enseignant());
+        cc.setPassword_enseignant(resource.getPassword_enseignant());
+        cc.setCategory_enseignant(resource.getCategory_enseignant());
+        cc.setInstitut_enseignant(resource.getInstitut_enseignant());
+
+        operator.send_to_enseignant(cc);
+        SemaphoreClass.informationEnseignant_sem.acquire();
+        Enseignant ens = ExampleController.getEnseignant();
+        ExampleController.setEnseignant(null);
+        return ens ;
+
+    }
+
+
+    @RequestMapping( value = "/loginenseignant",method = RequestMethod.POST )
+    @ResponseBody
+    public Enseignant login( @RequestBody Enseignant resource ) throws InterruptedException {
+        LoginEnseignant login = new LoginEnseignant();
+        login.setEmail_enseignant(resource.getEmail_enseignant());
+        login.setPassword_enseignant(resource.getPassword_enseignant());
+        operator.send_to_enseignant(login);
+        SemaphoreClass.informationEnseignant_sem.acquire();
+        Enseignant ens = ExampleController.getEnseignant();
+        ExampleController.setEnseignant(null);
+        return ens ;
     }
 
 }

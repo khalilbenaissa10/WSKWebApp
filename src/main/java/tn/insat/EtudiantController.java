@@ -81,4 +81,38 @@ public class EtudiantController {
         return etudiant;
     }
 
+    @RequestMapping( value = "/creerEtudiant",method = RequestMethod.POST )
+    @ResponseStatus( HttpStatus.CREATED )
+    @ResponseBody
+    public Etudiant create( @RequestBody Etudiant resource ) throws InterruptedException {
+        CreateEtudiant cc = new CreateEtudiant();
+        cc.setId_etudiant(resource.getId_etudiant());
+        cc.setNom_etudiant(resource.getNom_etudiant());
+        cc.setAge_etudiant(resource.getAge_etudiant());
+        cc.setEmail_etudiant(resource.getEmail_etudiant());
+        cc.setPassword_etudiant(resource.getPassword_etudiant());
+        cc.setCategory_etudiant(resource.getCategory_etudiant());
+        cc.setInstitut_etudiant(resource.getInstitut_etudiant());
+
+        operator.send_to_etudiant(cc);
+        SemaphoreClass.informationEtudiant_sem.acquire();
+        Etudiant etd = SingletonEtudiant.getEtudiant();
+        SingletonEtudiant.setEtudiant(null);
+        return etd ;
+
+    }
+
+
+    @RequestMapping( value = "/loginetudiant",method = RequestMethod.POST )
+    @ResponseBody
+    public Etudiant login( @RequestBody Etudiant resource ) throws InterruptedException {
+        LoginEtudiant login = new LoginEtudiant();
+        login.setEmail_etudiant(resource.getEmail_etudiant());
+        login.setPassword_etudiant(resource.getPassword_etudiant());
+        operator.send_to_etudiant(login);
+        SemaphoreClass.informationEtudiant_sem.acquire();
+        Etudiant etd = SingletonEtudiant.getEtudiant();
+        SingletonEtudiant.setEtudiant(null);
+        return etd ;
+    }
 }

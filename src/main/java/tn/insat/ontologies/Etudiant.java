@@ -32,6 +32,23 @@ public class Etudiant  implements Concept {
     @Column(name="NomEtudiant", length=450)
     private String nom_etudiant;
 
+
+
+    @Column(name="EmailEtudiant", length=450)
+    private String email_etudiant;
+
+    @Column(name="PasswordEtudiant", length=450)
+    private String password_etudiant;
+
+    @Column(name="AgeEtudiant", length=450)
+    private int age_etudiant;
+
+    @Column(name="InstitutEtudiant", length=450)
+    private String institut_etudiant;
+
+    @Column(name="CategoryEtudiant", length=450)
+    private String category_etudiant;
+
     @OneToMany(fetch=FetchType.EAGER, mappedBy="etudiant_asso")
     private Set<CoursEtudiant> coursetudiant = new HashSet<CoursEtudiant>(0);
 
@@ -90,6 +107,46 @@ public class Etudiant  implements Concept {
 
     public void setReponseforumetudiant(Set<ReponseForum> reponseforumetudiant) {
         this.reponseforumetudiant = reponseforumetudiant;
+    }
+
+    public String getEmail_etudiant() {
+        return email_etudiant;
+    }
+
+    public void setEmail_etudiant(String email_etudiant) {
+        this.email_etudiant = email_etudiant;
+    }
+
+    public String getPassword_etudiant() {
+        return password_etudiant;
+    }
+
+    public void setPassword_etudiant(String password_etudiant) {
+        this.password_etudiant = password_etudiant;
+    }
+
+    public int getAge_etudiant() {
+        return age_etudiant;
+    }
+
+    public void setAge_etudiant(int age_etudiant) {
+        this.age_etudiant = age_etudiant;
+    }
+
+    public String getInstitut_etudiant() {
+        return institut_etudiant;
+    }
+
+    public void setInstitut_etudiant(String institut_etudiant) {
+        this.institut_etudiant = institut_etudiant;
+    }
+
+    public String getCategory_etudiant() {
+        return category_etudiant;
+    }
+
+    public void setCategory_etudiant(String category_etudiant) {
+        this.category_etudiant = category_etudiant;
     }
 
     @Override

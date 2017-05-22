@@ -1,7 +1,10 @@
 package tn.insat.Repositories;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import tn.insat.Utilities.HibernateUtil;
+import tn.insat.ontologies.Cours;
 import tn.insat.ontologies.Etudiant;
 
 /**
@@ -20,4 +23,52 @@ public class EtudiantRepository implements IEtudiantRepository {
 
         return e;
     }
+
+    public Boolean create(Etudiant c) {
+        boolean a_retourner = false;
+        Transaction transaction = null;
+        try {
+            Session session = HibernateUtil.createSessionFactory()
+                    .openSession();
+            transaction = session.beginTransaction();
+
+            session.save(c);
+            transaction.commit();
+
+            a_retourner = true;
+        } catch (Exception e) {
+            System.out.println("LOG : Exception lors de la creation. Détails :"
+                    + e);
+            if ((transaction != null) /*&& transaction.isActive()*/)
+                transaction.rollback();
+        }
+
+        return a_retourner;
+    }
+
+    public Etudiant findByLoginAndPassword(String email,String password){
+        Session session = HibernateUtil.createSessionFactory().openSession();
+
+        // Work with the session
+        Query query = session.createQuery("SELECT a FROM Etudiant a WHERE a.email_etudiant=:email and a.password_etudiant=:password");
+        query.setParameter("email", email);
+        query.setParameter("password", password);
+        Etudiant etd = (Etudiant)query.uniqueResult();
+        if(etd==null){
+            etd = new Etudiant();
+            etd.setId_etudiant(0);
+            etd.setNom_etudiant("dummy ben dummy");
+            etd.setAge_etudiant(0);
+            etd.setCategory_etudiant("dummy");
+            etd.setInstitut_etudiant("dummy institute");
+            etd.setPassword_etudiant("dummy password");
+            etd.setEmail_etudiant("dummy email");
+        }
+
+        // Clean up !
+        session.close();
+
+        return etd;
+    }
+
 }

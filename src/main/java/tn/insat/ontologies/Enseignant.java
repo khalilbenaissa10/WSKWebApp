@@ -26,6 +26,23 @@ public class Enseignant  implements Concept {
     @Column(name="NomEnseignant",  length=45)
     private String nom_enseignant;
 
+    @Column(name="EmailEnseignant",  length=45)
+    private String email_enseignant;
+
+    @Column(name="PasswordEnseignant",  length=45)
+    private String password_enseignant;
+
+    @Column(name="AgeEnseignant",  length=45)
+    private int age_enseignant;
+
+    @Column(name="InstitutEnseignant",  length=45)
+    private String institut_enseignant;
+
+    @Column(name="CategoryEnseignant",  length=45)
+    private String category_enseignant;
+
+
+
 
     @OneToMany(fetch=FetchType.EAGER, mappedBy="enseignant")
     private Set<Cours> cours = new HashSet<Cours>(0);
@@ -71,5 +88,45 @@ public class Enseignant  implements Concept {
 
     public void setReponseforumenseignant(Set<ReponseForum> reponseforumenseignant) {
         this.reponseforumenseignant = reponseforumenseignant;
+    }
+
+    public String getEmail_enseignant() {
+        return email_enseignant;
+    }
+
+    public void setEmail_enseignant(String email_enseignant) {
+        this.email_enseignant = email_enseignant;
+    }
+
+    public String getPassword_enseignant() {
+        return password_enseignant;
+    }
+
+    public void setPassword_enseignant(String password_enseignant) {
+        this.password_enseignant = password_enseignant;
+    }
+
+    public int getAge_enseignant() {
+        return age_enseignant;
+    }
+
+    public void setAge_enseignant(int age_enseignant) {
+        this.age_enseignant = age_enseignant;
+    }
+
+    public String getInstitut_enseignant() {
+        return institut_enseignant;
+    }
+
+    public void setInstitut_enseignant(String institut_enseignant) {
+        this.institut_enseignant = institut_enseignant;
+    }
+
+    public String getCategory_enseignant() {
+        return category_enseignant;
+    }
+
+    public void setCategory_enseignant(String category_enseignant) {
+        this.category_enseignant = category_enseignant;
     }
 }
