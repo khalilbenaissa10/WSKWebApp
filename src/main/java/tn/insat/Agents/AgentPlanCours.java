@@ -221,7 +221,7 @@ public class AgentPlanCours extends Agent implements Vocabulary, IAgentPlanCours
                           if (lcs.get(0) instanceof Cours) {
                               java.util.ArrayList<Cours> L = (java.util.ArrayList<Cours>)lcs.toList();
                               ExampleController.setListe_cours(L);
-                              SemaphoreClass.listeCoursSuggeres_sem.release();
+                              SemaphoreClass.listeAllcours_sem.release();
 
                           }
 

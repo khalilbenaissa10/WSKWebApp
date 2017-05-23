@@ -190,4 +190,49 @@ public class UtilityRepository implements  IUtilityRepository {
         return id;
 
     }
+
+    public int getLastEtudiantsId(){
+
+        Session session = HibernateUtil.createSessionFactory().openSession();
+
+
+        int id = 0 ;
+
+        DetachedCriteria maxId = DetachedCriteria.forClass(Etudiant.class)
+                .setProjection( Projections.max("id_etudiant") );
+        ArrayList<Etudiant> result = (ArrayList<Etudiant>) session.createCriteria(Etudiant.class)
+                .add( Property.forName("id_etudiant").eq(maxId) )
+                .list();
+
+        id = result.get(0).getId_etudiant();
+
+        // Clean up !
+        session.close();
+
+        return id;
+
+    }
+
+
+    public int getLastEnseignantsId(){
+
+        Session session = HibernateUtil.createSessionFactory().openSession();
+
+
+        int id = 0 ;
+
+        DetachedCriteria maxId = DetachedCriteria.forClass(Enseignant.class)
+                .setProjection( Projections.max("id_enseignant") );
+        ArrayList<Enseignant> result = (ArrayList<Enseignant>) session.createCriteria(Enseignant.class)
+                .add( Property.forName("id_enseignant").eq(maxId) )
+                .list();
+
+        id = result.get(0).getId_enseignant();
+
+        // Clean up !
+        session.close();
+
+        return id;
+
+    }
 }

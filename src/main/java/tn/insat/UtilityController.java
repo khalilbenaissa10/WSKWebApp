@@ -63,5 +63,14 @@ public class UtilityController {
     }
 
 
+    @RequestMapping(value = "/getHighestIdEtudiants",method= RequestMethod.GET)
+    public @ResponseBody int listerEtudiantsLatestId() throws InterruptedException {
+        return repo_util.getLastEtudiantsId();
+    }
+
+    @RequestMapping(value = "/getHighestIdEnseignants",method= RequestMethod.GET)
+    public @ResponseBody int listerEnseignantsLatestId() throws InterruptedException {
+        return repo_util.getLastEnseignantsId();
+    }
 
 }
