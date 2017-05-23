@@ -146,4 +146,48 @@ public class UtilityRepository implements  IUtilityRepository {
 
     }
 
+
+    public int getLastReponseForumId(){
+
+        Session session = HibernateUtil.createSessionFactory().openSession();
+
+
+        int id = 0 ;
+
+        DetachedCriteria maxId = DetachedCriteria.forClass(ReponseForum.class)
+                .setProjection( Projections.max("id_reponseforum") );
+        ArrayList<ReponseForum> result = (ArrayList<ReponseForum>) session.createCriteria(ReponseForum.class)
+                .add( Property.forName("id_reponseforum").eq(maxId) )
+                .list();
+
+        id = result.get(0).getId_reponseforum();
+
+        // Clean up !
+        session.close();
+
+        return id;
+
+    }
+
+    public int getLastSujetForumId(){
+
+        Session session = HibernateUtil.createSessionFactory().openSession();
+
+
+        int id = 0 ;
+
+        DetachedCriteria maxId = DetachedCriteria.forClass(SujetForum.class)
+                .setProjection( Projections.max("id_sujetforum") );
+        ArrayList<SujetForum> result = (ArrayList<SujetForum>) session.createCriteria(SujetForum.class)
+                .add( Property.forName("id_sujetforum").eq(maxId) )
+                .list();
+
+        id = result.get(0).getId_sujetforum();
+
+        // Clean up !
+        session.close();
+
+        return id;
+
+    }
 }

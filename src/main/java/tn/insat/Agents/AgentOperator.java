@@ -29,6 +29,7 @@ public class AgentOperator {
     AgentController planCoursController = null ;
     AgentController testController = null ;
     AgentController forumController = null ;
+    AgentController suiviApprentissageController = null ;
 
     public void start_agents(){
 
@@ -57,6 +58,9 @@ public class AgentOperator {
 
             forumController = maincontainer.createNewAgent("Forum","tn.insat.Agents.AgentForum", new Object[0]);
             forumController.start();
+
+            suiviApprentissageController = maincontainer.createNewAgent("SuiviApprentissage","tn.insat.Agents.AgentSuiviApprentissage", new Object[0]);
+            suiviApprentissageController.start();
 
 
 
@@ -150,6 +154,24 @@ public class AgentOperator {
 
             }
             forumController.putO2AObject(obj, AgentController.ASYNC);
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void send_to_suiviApprentissage(Object obj){
+
+        try {
+
+            State state = suiviApprentissageController.getState();
+            while (!(state.getCode() == AgentState.cAGENT_STATE_IDLE)) {
+                Thread.sleep(100); // wait 100 miliseconds and try it again...
+                state = suiviApprentissageController.getState();
+
+            }
+            suiviApprentissageController.putO2AObject(obj, AgentController.ASYNC);
 
 
         }catch(Exception e){

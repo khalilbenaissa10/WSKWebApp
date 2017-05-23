@@ -6,6 +6,7 @@
 package tn.insat.Agents;
 
 
+import jade.util.leap.ArrayList;
 import tn.insat.Repositories.*;
 import tn.insat.ontologies.*;
 
@@ -20,6 +21,9 @@ import jade.domain.*;
 import jade.domain.FIPAAgentManagement.*;
 import jade.lang.acl.*;
 import jade.util.leap.*;
+
+import java.lang.reflect.Array;
+import java.util.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,6 +45,7 @@ public class AgentServer extends Agent implements Vocabulary {
    IReponseEtudiantRepository repo_reponse_question = new ReponseEtudiantRepository();
    ISujetForumRepository repo_sujet_forum = new SujetForumRepository();
    IReponseForumRepository repo_reponse_forum = new ReponseForumRepository();
+   IConnaissanceEtudiantRepository repo_connaissances_etudiant = new ConnaissanceEtudiantRepository();
 
     
    private int idCnt = 0;
@@ -192,6 +197,8 @@ public class AgentServer extends Agent implements Vocabulary {
                      addBehaviour(new HandleLoginEtudiant(myAgent,msg));
                   else if (action instanceof LoginEnseignant)
                      addBehaviour(new HandleLoginEnseignant(myAgent,msg));
+                  else if (action instanceof SuggererCours)
+                     addBehaviour(new HandleSuggererCours(myAgent,msg));
                   else
 
                      replyNotUnderstood(msg);
@@ -1056,6 +1063,113 @@ public class AgentServer extends Agent implements Vocabulary {
          catch(Exception ex) { ex.printStackTrace(); }
       }
    }
+
+
+
+
+
+   class HandleSuggererCours extends OneShotBehaviour {
+// ----------------------------------------------------  Handler for a CreateAccount request
+
+      private ACLMessage request;
+
+      HandleSuggererCours(Agent a, ACLMessage request) {
+
+         super(a);
+         this.request = request;
+      }
+
+      private double calculateSimilarity(Etudiant activeEtudiant,Etudiant other){
+         java.util.ArrayList<Cours> listecours = repo_cours.findByEtudiant(activeEtudiant.getId_etudiant());
+         java.util.ArrayList<ConnaissanceEtudiant> connaissances_active = repo_connaissances_etudiant.findConnaissancesByEtudiant(activeEtudiant.getId_etudiant());
+         java.util.ArrayList<ConnaissanceEtudiant> connaissances_other  = repo_connaissances_etudiant.findConnaissancesByEtudiant(other.getId_etudiant());
+         if(listecours.size()!=0){
+               int connaissanceInCommon= 0 ;
+               double differenceSum = 0;
+                for(ConnaissanceEtudiant c1 :connaissances_active){
+                   for(ConnaissanceEtudiant c2 : connaissances_other){
+                        if(c1.getConnaissance_asso().getId_connaissance()==c2.getConnaissance_asso().getId_connaissance()){
+                        connaissanceInCommon++;
+                        differenceSum += Math.abs(c1.getRating()-c2.getRating());
+                      }
+                   }
+                }
+         if (connaissanceInCommon > 0 ) {
+            return differenceSum/connaissanceInCommon;
+         }
+         else return Integer.MAX_VALUE;
+
+
+
+         }
+         else{
+            if(activeEtudiant.getCategory_etudiant().equals(other.getCategory_etudiant().toString()))
+               return 0 ;
+            else return Integer.MAX_VALUE;
+         }
+
+
+
+      }
+
+      java.util.ArrayList<Etudiant> createNeighborhood(Etudiant activeEtudiant,double SIMILARITY_THRESHOLD ){
+         java.util.ArrayList<Etudiant> hood = new java.util.ArrayList<Etudiant>();
+         for(Etudiant other:repo_etudiant.findAll()){
+            if(other.getId_etudiant() != activeEtudiant.getId_etudiant()){
+               double similarity = calculateSimilarity(activeEtudiant,other);
+               if(similarity <= SIMILARITY_THRESHOLD ){
+                  hood.add(other);
+               }
+            }
+         }
+         return hood ;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(request);
+            SuggererCours ca = (SuggererCours) ((Action)content).getAction();
+            Etudiant etudiant = repo_etudiant.findById(ca.getId_etudiant());
+            //traitement collaborative filtering
+            java.util.ArrayList<Etudiant> neighborhood  = createNeighborhood(etudiant,1);
+            java.util.ArrayList<Cours> listecourssuggeres = new java.util.ArrayList<Cours>();
+            java.util.ArrayList<Cours> listecours = repo_cours.findByEtudiant(etudiant.getId_etudiant());
+            for (Etudiant etd : neighborhood){
+               for (Cours c : repo_cours.findByEtudiant(etd.getId_etudiant()))
+               {
+                  if(!listecours.contains(c)){
+                     listecourssuggeres.add(c);
+                  }
+               }
+            }
+
+            if(listecourssuggeres.size()==0){
+               Cours c = new Cours();
+               c.setId_cours(0);
+               c.setDuree(00);
+               c.setDescription("aucune");
+               c.setIntitule("aucun ");
+               listecourssuggeres.add(c);
+            }
+
+
+
+
+
+            jade.util.leap.ArrayList listcoursjade = new jade.util.leap.ArrayList(listecourssuggeres);
+            Result result = new Result((Action)content, (jade.util.leap.ArrayList)listcoursjade);
+            ACLMessage reply = request.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+
+            System.out.println("List cours suggerés retournée");
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
 
    class HandleListAllCours extends OneShotBehaviour {
 // ----------------------------------------------------  Handler for a CreateAccount request

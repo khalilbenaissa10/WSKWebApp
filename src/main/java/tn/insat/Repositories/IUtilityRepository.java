@@ -17,4 +17,8 @@ public interface IUtilityRepository {
 
     int getLastPropositionId();
 
+    int getLastReponseForumId();
+
+    int getLastSujetForumId();
+
 }

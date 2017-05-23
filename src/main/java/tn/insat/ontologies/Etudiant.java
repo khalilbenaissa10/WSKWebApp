@@ -16,13 +16,6 @@ import javax.persistence.*;
 )
 public class Etudiant  implements Concept {
 
-    public Set<Connaissance> getConnaissances() {
-        return connaissances;
-    }
-
-    public void setConnaissances(Set<Connaissance> connaissances) {
-        this.connaissances = connaissances;
-    }
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -55,14 +48,14 @@ public class Etudiant  implements Concept {
     @OneToMany(fetch=FetchType.EAGER, mappedBy="etudiant_asso_test")
     private Set<TestEtudiant> testetudiant = new HashSet<TestEtudiant>(0);
 
-    @OneToMany(fetch=FetchType.EAGER, mappedBy="etudiant_connaissance")
-    private Set<Connaissance> connaissances = new HashSet<Connaissance>(0);
-
     @OneToMany(fetch=FetchType.EAGER, mappedBy="etudiant_sujetforum")
     private Set<SujetForum> sujetforumetudiant = new HashSet<SujetForum>(0);
 
     @OneToMany(fetch=FetchType.EAGER, mappedBy="etudiant_reponseforum")
     private Set<ReponseForum> reponseforumetudiant = new HashSet<ReponseForum>(0);
+
+    @OneToMany(fetch=FetchType.EAGER, mappedBy="etudiant_asso_connaissance")
+    private Set<ConnaissanceEtudiant> connaissancesetudiant = new HashSet<ConnaissanceEtudiant>(0);
 
     public int getId_etudiant() {
         return id_etudiant;
@@ -158,5 +151,13 @@ public class Etudiant  implements Concept {
         if(otherMyClass.getId_etudiant() == (this.getId_etudiant())) return true;
         else return false;
 
+    }
+
+    public Set<ConnaissanceEtudiant> getConnaissancesetudiant() {
+        return connaissancesetudiant;
+    }
+
+    public void setConnaissancesetudiant(Set<ConnaissanceEtudiant> connaissancesetudiant) {
+        this.connaissancesetudiant = connaissancesetudiant;
     }
 }

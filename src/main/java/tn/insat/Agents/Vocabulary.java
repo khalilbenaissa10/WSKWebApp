@@ -240,6 +240,10 @@ public interface Vocabulary {
    public static final String LOGIN_ETUDIANT_EMAIL="email_etudiant";
    public static final String LOGIN_ETUDIANT_PASSWORD="password_etudiant";
 
+   //SuggererCours
+   public static final String SUGGERER_COURS="suggerer_cours";
+   public static final String SUGGERER_COURS_ID="id_etudiant";
+
    //Login etudiant
    public static final String LOGIN_ENSEIGNANT="login_enseignant";
    public static final String LOGIN_ENSEIGNANT_EMAIL="email_enseignant";

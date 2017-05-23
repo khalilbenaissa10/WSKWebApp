@@ -18,7 +18,12 @@ import jade.domain.FIPAAgentManagement.*;
 import jade.gui.*;
 import jade.lang.acl.*;
 import jade.util.leap.*;
+import tn.insat.Client.ExampleController;
+import tn.insat.Client.SemaphoreClass;
+import tn.insat.ontologies.Cours;
 import tn.insat.ontologies.OntologyWSK;
+import tn.insat.ontologies.Problem;
+import tn.insat.ontologies.SuggererCours;
 
 /**
  *
@@ -37,10 +42,38 @@ public class AgentSuiviApprentissage extends Agent implements Vocabulary,IAgentS
       // Register language and ontology
       getContentManager().registerLanguage(codec);
       getContentManager().registerOntology(ontology);
+         setEnabledO2ACommunication(true, 10);
 
-     
-      
-   }
+
+         addBehaviour(new CyclicBehaviour() {
+
+             public void action() {
+                 // Retrieve the first object in the queue and print it on
+                 // the standard output
+                 Object obj = getO2AObject();
+                 if(obj != null) {
+                     System.out.println("Got an object from the queue: [" + obj + "]");
+                     if(obj instanceof SuggererCours){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 SuggererCours aff = (SuggererCours) obj ;
+                                 suggererCours(aff);
+
+                             }
+                         });
+                     }
+
+                 }
+                 else
+                     block();
+             }
+
+         });
+
+
+     }
 
    protected void takeDown() {
 // ---------------------------  Terminate the program properly
@@ -48,8 +81,12 @@ public class AgentSuiviApprentissage extends Agent implements Vocabulary,IAgentS
        System.out.println(getLocalName() + " is now shutting down.");
        
     }
-   
-   
+
+    public void suggererCours(SuggererCours agg){
+
+        sendMessage(ACLMessage.QUERY_REF, agg);
+
+    }
    
    
     class WaitServerResponse extends ParallelBehaviour {
@@ -74,68 +111,70 @@ public class AgentSuiviApprentissage extends Agent implements Vocabulary,IAgentS
    }
 
 
-     class ReceiveResponse extends SimpleBehaviour {
+    class ReceiveResponse extends SimpleBehaviour {
 // -----------------------------------------------  // Receive and handle server responses
 
-      private boolean finished = false;
+        private boolean finished = false;
 
-      ReceiveResponse(Agent a) {
-         super(a);
-      }
+        ReceiveResponse(Agent a) {
+            super(a);
+        }
 
-      public void action() {
-        /*
-         ACLMessage msg = receive(MessageTemplate.MatchSender(server));
+        public void action() {
 
-         if (msg == null) { block(); return; }
+            ACLMessage msg = receive(MessageTemplate.MatchSender(server));
 
-         if (msg.getPerformative() == ACLMessage.NOT_UNDERSTOOD){
-           // alertGui("Response from server: NOT UNDERSTOOD");
-         }
-         else if (msg.getPerformative() != ACLMessage.INFORM){
-           // alertGui("\nUnexpected msg from server!");
-         }
-         else {
-            try {
-               ContentElement content = getContentManager().extractContent(msg);
+            if (msg == null) { block(); return; }
 
-               if (content instanceof Result) {
-
-                  Result result = (Result) content;
-
-                  if (result.getAction() instanceof Problem) {
-
-                     Problem prob = (Problem)result.getAction();
-                     alertGui(prob);
-                  }
-                  else if (result.getAction()  instanceof Account) {
-
-                     Account acc = (Account) result.getAction() ;
-
-                     if (command == NEW_ACCOUNT) {
-                        accounts.add(acc);
-                     }
-                     alertGui(acc);
-                  }
-                  else if (result.getAction()  instanceof List) {
-                     alertGui(result.getItems());
-                  }
-                  else alertGui("\nUnexpected result from server!");
-               }
-               else {
-                  alertGui("\nUnable de decode response from server!");
-               }
+            if (msg.getPerformative() == ACLMessage.NOT_UNDERSTOOD){
+                System.out.println("Response from server: NOT UNDERSTOOD");
             }
-            catch (Exception e) { e.printStackTrace(); }
-         }
-         resetStatusGui();
-         finished = true;
-   */   }
+            else if (msg.getPerformative() != ACLMessage.INFORM){
+                System.out.println("Unexpected Message ");
+            }
+            else {
+                try {
+                    ContentElement content = getContentManager().extractContent(msg);
 
-      public boolean done() { return finished; }
+                    if (content instanceof Result) {
 
-      public int onEnd() {  return 0; }
-   }
+                        Result result = (Result) content;
+
+
+                        if (result.getValue() instanceof Problem) {
+
+                            Problem prob = (Problem) result.getItems().get(0);
+                            System.out.println("Problem : " + prob.getMsg());
+                        }
+
+                        else if (result.getValue()  instanceof ArrayList) {
+
+                            ArrayList lcs = (ArrayList) result.getValue() ;
+                            if (lcs.get(0) instanceof Cours) {
+                                java.util.ArrayList<Cours> L = (java.util.ArrayList<Cours>)lcs.toList();
+                                ExampleController.setListe_cours(L);
+                                SemaphoreClass.listeCoursSuggeres_sem.release();
+
+                            }
+
+                        }
+                        else System.out.println("\nUnexpected result from server!");
+                    }
+                    else {
+                        System.out.println("\nUnable de decode response from server!");
+                    }
+                }
+                catch (Exception e) { e.printStackTrace(); }
+            }
+
+            finished = true;
+        }
+
+        public boolean done() { return finished; }
+
+        public int onEnd() {  return 0; }
+    }
+
 
 
 

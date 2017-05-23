@@ -3,6 +3,7 @@ package tn.insat.Repositories;
 import org.hibernate.criterion.Criterion;
 import tn.insat.Client.ExampleController;
 import tn.insat.Utilities.HibernateUtil;
+import tn.insat.ontologies.Connaissance;
 import tn.insat.ontologies.Cours;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -30,6 +31,13 @@ public class CoursRepository implements  ICoursRepository{
             transaction = session.beginTransaction();
 
             session.save(c);
+
+            Connaissance conn = new Connaissance();
+            conn.setId_connaissance(c.getId_cours());
+            conn.setDescription_connsaissance("cette connaissance correspond au cours  "+c.getIntitule());
+            conn.setCours_connaissance(c);
+
+            session.save(conn);
             transaction.commit();
 
             a_retourner = true;

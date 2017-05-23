@@ -52,5 +52,16 @@ public class UtilityController {
         return repo_util.getLastPropositionId();
     }
 
+    @RequestMapping(value = "/getHighestIdReponseForum",method= RequestMethod.GET)
+    public @ResponseBody int listerReponseForumLatestId() throws InterruptedException {
+        return repo_util.getLastReponseForumId();
+    }
+
+    @RequestMapping(value = "/getHighestIdSujetForum",method= RequestMethod.GET)
+    public @ResponseBody int listerSujetForumLatestId() throws InterruptedException {
+        return repo_util.getLastSujetForumId();
+    }
+
+
 
 }

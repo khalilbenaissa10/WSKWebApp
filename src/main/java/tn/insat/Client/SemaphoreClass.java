@@ -42,4 +42,6 @@ public class SemaphoreClass {
 
     static public Semaphore loginEtudiant_sem = new Semaphore(0,true);
 
+    static public Semaphore listeCoursSuggeres_sem = new Semaphore(0,true);
+
 }

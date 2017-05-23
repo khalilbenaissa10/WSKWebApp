@@ -2,6 +2,7 @@ package tn.insat;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -114,5 +115,17 @@ public class EtudiantController {
         Etudiant etd = SingletonEtudiant.getEtudiant();
         SingletonEtudiant.setEtudiant(null);
         return etd ;
+    }
+
+    @RequestMapping( value = "/suggererCours/{id}",method = RequestMethod.GET )
+    @ResponseBody
+    public List<Cours> suggererCours( @PathVariable( "id" ) int id ) throws InterruptedException {
+       SuggererCours sugg = new SuggererCours();
+       sugg.setId_etudiant(id);
+        operator.send_to_suiviApprentissage(sugg);
+        SemaphoreClass.listeCoursSuggeres_sem.acquire();
+        List<Cours> liste = ExampleController.getListe_cours();
+        ExampleController.setListe_cours(null);
+        return liste;
     }
 }

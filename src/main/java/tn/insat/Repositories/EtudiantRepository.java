@@ -3,9 +3,12 @@ package tn.insat.Repositories;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import tn.insat.Client.ExampleController;
 import tn.insat.Utilities.HibernateUtil;
 import tn.insat.ontologies.Cours;
 import tn.insat.ontologies.Etudiant;
+
+import java.util.ArrayList;
 
 /**
  * Created by Khalil on 26/04/2017.
@@ -70,5 +73,21 @@ public class EtudiantRepository implements IEtudiantRepository {
 
         return etd;
     }
+
+    public ArrayList<Etudiant> findAll(){
+
+        ArrayList<Etudiant> lc = null;
+
+        Session session = HibernateUtil.createSessionFactory().openSession();
+        lc = (ArrayList<Etudiant>)session.createCriteria(Etudiant.class).list();
+
+        // Clean up !
+        session.close();
+
+        ArrayList<Etudiant> uniques = ExampleController.rendreUniquesEtudiants(lc);
+
+        return uniques;
+    }
+
 
 }

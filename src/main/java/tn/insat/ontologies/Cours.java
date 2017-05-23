@@ -59,6 +59,8 @@ public class Cours implements Concept,Serializable {
     @OneToMany(fetch=FetchType.LAZY, mappedBy="cours_sujetforum")
     private Set<SujetForum> sujetForums = new HashSet<SujetForum>(0);
 
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "cours_connaissance")
+    private Connaissance connaissance;
 
 
     public Set<SujetForum> getSujetForums() {
@@ -182,5 +184,11 @@ public class Cours implements Concept,Serializable {
 
     }
 
+    public Connaissance getConnaissance() {
+        return connaissance;
+    }
 
+    public void setConnaissance(Connaissance connaissance) {
+        this.connaissance = connaissance;
+    }
 }
