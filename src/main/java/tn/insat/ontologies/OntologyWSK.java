@@ -254,10 +254,10 @@ public class OntologyWSK extends Ontology implements Vocabulary {
 
          //CreateRessource
          add(as = new AgentActionSchema(CREATE_RESSOURCE), CreateRessource.class);
-         cs.add(CREATE_RESSOURCE_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
-         cs.add(CREATE_RESSOURCE_DESCRIPTION, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
-         cs.add(CREATE_RESSOURCE_TYPE, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
-         cs.add(CREATE_RESSOURCE_COURS,(ConceptSchema) getSchema(Cours.class),ObjectSchema.MANDATORY);
+         as.add(CREATE_RESSOURCE_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+         as.add(CREATE_RESSOURCE_DESCRIPTION, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         as.add(CREATE_RESSOURCE_TYPE, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         as.add(CREATE_RESSOURCE_COURS,(ConceptSchema) getSchema(Cours.class),ObjectSchema.MANDATORY);
 
          //CreateReponseForum
          add(as = new AgentActionSchema(CREATE_REPONSE_FORUM), CreateReponseForum.class);

@@ -25,7 +25,7 @@ public class Ressource {
     @Column(name="descriptionResource", length=450)
     String description_ressource ;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumns( {
             @JoinColumn(name="Cours_idCours", referencedColumnName="idCours", nullable=true) } )
     private Cours cours_ressource ;
