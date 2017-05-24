@@ -169,6 +169,7 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          cs.add(RESSOURCE_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
          cs.add(RESSOURCE_TYPE, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
          cs.add(RESSOURCE_DESCRIPTION, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         cs.add(RESSOURCE_COURS,(ConceptSchema) getSchema(Cours.class));
 
          // Connaissance
          cs = (ConceptSchema) getSchema(CONNAISSANCE);
@@ -228,6 +229,10 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          add(as = new AgentActionSchema(SUGGERER_COURS),SuggererCours.class);
          as.add(SUGGERER_COURS_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
 
+         // RessourceByCours
+         add(as = new AgentActionSchema(RESSOURCE_BY_COURS),RessourceByCours.class);
+         as.add(RESSOURCE_BY_COURS_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+
          // Enseignant
          add(as = new AgentActionSchema(CREATE_ENSEIGNANT), CreateEnseignant.class);
          as.add(CREATE_ENSEIGNANT_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
@@ -246,6 +251,13 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          as.add(CREATE_SUJET_FORUM_COURS,(ConceptSchema) getSchema(Cours.class));
          as.add(CREATE_SUJET_FORUM_ENSEIGNANT,(ConceptSchema) getSchema(Enseignant.class),ObjectSchema.OPTIONAL);
          as.add(CREATE_SUJET_FORUM_ETUDIANT,(ConceptSchema) getSchema(Etudiant.class),ObjectSchema.OPTIONAL);
+
+         //CreateRessource
+         add(as = new AgentActionSchema(CREATE_RESSOURCE), CreateRessource.class);
+         cs.add(CREATE_RESSOURCE_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+         cs.add(CREATE_RESSOURCE_DESCRIPTION, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         cs.add(CREATE_RESSOURCE_TYPE, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         cs.add(CREATE_RESSOURCE_COURS,(ConceptSchema) getSchema(Cours.class),ObjectSchema.MANDATORY);
 
          //CreateReponseForum
          add(as = new AgentActionSchema(CREATE_REPONSE_FORUM), CreateReponseForum.class);

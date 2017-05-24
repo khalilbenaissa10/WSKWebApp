@@ -13,6 +13,8 @@ public class SingletonQuestion {
 
     public static Test test ;
 
+    public static List<Ressource> ressources ;
+
     public static ReponseEtudiant reponseEtudiant ;
 
     public static Question question;
@@ -78,5 +80,13 @@ public class SingletonQuestion {
 
     public static void setReponseEtudiant(ReponseEtudiant reponseEtudiant) {
         SingletonQuestion.reponseEtudiant = reponseEtudiant;
+    }
+
+    public static List<Ressource> getRessources() {
+        return ressources;
+    }
+
+    public static void setRessources(List<Ressource> ressources) {
+        SingletonQuestion.ressources = ressources;
     }
 }

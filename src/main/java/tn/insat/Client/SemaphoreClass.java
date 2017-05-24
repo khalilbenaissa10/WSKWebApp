@@ -40,8 +40,12 @@ public class SemaphoreClass {
 
     static public Semaphore informationReponseForum_sem = new Semaphore(0,true);
 
-    static public Semaphore loginEtudiant_sem = new Semaphore(0,true);
-
     static public Semaphore listeCoursSuggeres_sem = new Semaphore(0,true);
+
+    static public Semaphore ressourceInformation_sem = new Semaphore(0,true);
+
+    static public Semaphore listeRessources_sem = new Semaphore(0,true);
+
+
 
 }

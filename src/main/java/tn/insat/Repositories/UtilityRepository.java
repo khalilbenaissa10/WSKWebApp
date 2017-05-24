@@ -213,6 +213,27 @@ public class UtilityRepository implements  IUtilityRepository {
 
     }
 
+    public int getLastRessourceId(){
+
+        Session session = HibernateUtil.createSessionFactory().openSession();
+
+
+        int id = 0 ;
+
+        DetachedCriteria maxId = DetachedCriteria.forClass(Ressource.class)
+                .setProjection( Projections.max("id_ressource") );
+        ArrayList<Ressource> result = (ArrayList<Ressource>) session.createCriteria(Ressource.class)
+                .add( Property.forName("id_ressource").eq(maxId) )
+                .list();
+
+        id = result.get(0).getId_ressource();
+
+        // Clean up !
+        session.close();
+
+        return id;
+
+    }
 
     public int getLastEnseignantsId(){
 

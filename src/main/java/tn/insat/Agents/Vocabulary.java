@@ -296,7 +296,19 @@ public interface Vocabulary {
    public static final String RESSOURCE_ID = "id_ressource";
    public static final String RESSOURCE_TYPE = "type_ressource";
    public static final String RESSOURCE_DESCRIPTION = "description_ressource";
+   public static final String RESSOURCE_COURS = "cours_ressource";
 
+   //CreateRessource
+   public static final String CREATE_RESSOURCE = "Create_ressource";
+   public static final String CREATE_RESSOURCE_ID = "id_ressource";
+   public static final String CREATE_RESSOURCE_TYPE = "type_ressource";
+   public static final String CREATE_RESSOURCE_DESCRIPTION = "description_ressource";
+   public static final String CREATE_RESSOURCE_COURS = "cours_ressource";
+
+   //Ressource
+
+   public static final String RESSOURCE_BY_COURS = "Ressource_by_cours";
+   public static final String RESSOURCE_BY_COURS_ID = "id_cours";
 
    //Connaissance
    public static final String CONNAISSANCE = "Connaissance";

@@ -73,4 +73,9 @@ public class UtilityController {
         return repo_util.getLastEnseignantsId();
     }
 
+    @RequestMapping(value = "/getHighestIdRessources",method= RequestMethod.GET)
+    public @ResponseBody int listerRessourcesLatestId() throws InterruptedException {
+        return repo_util.getLastRessourceId();
+    }
+
 }

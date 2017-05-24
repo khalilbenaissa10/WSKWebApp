@@ -46,6 +46,7 @@ public class AgentServer extends Agent implements Vocabulary {
    ISujetForumRepository repo_sujet_forum = new SujetForumRepository();
    IReponseForumRepository repo_reponse_forum = new ReponseForumRepository();
    IConnaissanceEtudiantRepository repo_connaissances_etudiant = new ConnaissanceEtudiantRepository();
+   IRessourceRepository repo_ressource = new RessourceRepository();
 
     
    private int idCnt = 0;
@@ -127,6 +128,8 @@ public class AgentServer extends Agent implements Vocabulary {
                      addBehaviour(new HandleCreateCours(myAgent, msg));
                   else if (action instanceof AffecterCours)
                     addBehaviour(new HandleAffecterCours(myAgent, msg));
+                  else if (action instanceof CreateRessource)
+                     addBehaviour(new HandleCreateRessource(myAgent, msg));
                   else if (action instanceof CreateSujetForum)
                      addBehaviour(new HandleCreateSujetForum(myAgent, msg));
                   else if (action instanceof AffecterTest)
@@ -199,6 +202,8 @@ public class AgentServer extends Agent implements Vocabulary {
                      addBehaviour(new HandleLoginEnseignant(myAgent,msg));
                   else if (action instanceof SuggererCours)
                      addBehaviour(new HandleSuggererCours(myAgent,msg));
+                  else if (action instanceof RessourceByCours)
+                     addBehaviour(new HandleRessourceByCours(myAgent,msg));
                   else
 
                      replyNotUnderstood(msg);
@@ -248,6 +253,43 @@ public class AgentServer extends Agent implements Vocabulary {
          catch(Exception ex) { ex.printStackTrace(); }
       }
    }
+
+   class HandleCreateRessource extends OneShotBehaviour {
+// ----------------------------------------------------  Handler for a CreateAccount request
+
+      private ACLMessage request;
+
+      HandleCreateRessource(Agent a, ACLMessage request) {
+
+         super(a);
+         this.request = request;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(request);
+            CreateRessource ca = (CreateRessource)((Action)content).getAction();
+            Ressource ress = new Ressource();
+
+            ress.setId_ressource(ca.getId_ressource());
+            ress.setCours_ressource(ca.getCours_ressource());
+            ress.setDescription_ressource(ca.getDescription_ressource());
+            ress.setType_ressource(ca.getType_ressource());
+            repo_ressource.create(ress);
+            ress = repo_ressource.findById(ca.getId_ressource());
+            Result result = new Result((Action)content, (Ressource)ress);
+            ACLMessage reply = request.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+            System.out.println("Ressource [" + ress.getDescription_ressource() + " # " +
+                    ress.getId_ressource() + "] created!");
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
 
    class HandleCreateSujetForum extends OneShotBehaviour {
 // ----------------------------------------------------  Handler for a CreateAccount request
@@ -865,6 +907,39 @@ public class AgentServer extends Agent implements Vocabulary {
       }
    }
 
+
+   class HandleRessourceByCours extends OneShotBehaviour {
+// --------------------------------------------------  Handler for an Information query
+
+      private ACLMessage query;
+
+      HandleRessourceByCours(Agent a, ACLMessage query) {
+
+         super(a);
+         this.query = query;
+      }
+
+      public void action() {
+
+         try {
+
+            ContentElement content = getContentManager().extractContent(query);
+
+            RessourceByCours info = (RessourceByCours) ((Action)content).getAction();
+            java.util.ArrayList<Ressource> list = null;
+            list = (java.util.ArrayList<Ressource>) repo_ressource.findByCours(info.getId_cours());
+            jade.util.leap.ArrayList listQuestionJade = new jade.util.leap.ArrayList(list);
+            Result result = new Result((Action)content, (jade.util.leap.ArrayList)listQuestionJade);
+            ACLMessage reply = query.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+            System.out.println("liste ressource by cours " + list  + "from server");
+
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
 
 
    class HandleListeQuestionByTest extends OneShotBehaviour {

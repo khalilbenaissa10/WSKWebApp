@@ -1,34 +1,28 @@
 package tn.insat.ontologies;
 
-import javax.persistence.*;
+import jade.content.AgentAction;
 
 /**
- * Created by Khalil on 17/04/2017.
+ * Created by Khalil on 24/05/2017.
  */
+public class CreateRessource implements AgentAction {
 
-@Entity
-@Table(name="resource"
-        ,catalog="wskdb"
-)
-public class Ressource {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="idResource", unique=true, nullable=false)
     int id_ressource ;
 
-    @Column(name="typeResource", length=45)
     String type_ressource ;
 
-
-
-    @Column(name="descriptionResource", length=450)
     String description_ressource ;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumns( {
-            @JoinColumn(name="Cours_idCours", referencedColumnName="idCours", nullable=true) } )
     private Cours cours_ressource ;
+
+    public Cours getCours_ressource() {
+        return cours_ressource;
+    }
+
+    public void setCours_ressource(Cours cours_ressource) {
+        this.cours_ressource = cours_ressource;
+    }
 
     public int getId_ressource() {
         return id_ressource;
@@ -52,12 +46,5 @@ public class Ressource {
 
     public void setDescription_ressource(String description_ressource) {
         this.description_ressource = description_ressource;
-    }
-    public Cours getCours_ressource() {
-        return cours_ressource;
-    }
-
-    public void setCours_ressource(Cours cours_ressource) {
-        this.cours_ressource = cours_ressource;
     }
 }

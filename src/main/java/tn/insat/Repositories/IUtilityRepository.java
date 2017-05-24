@@ -25,4 +25,6 @@ public interface IUtilityRepository {
 
     int getLastEnseignantsId();
 
+    int getLastRessourceId();
+
 }

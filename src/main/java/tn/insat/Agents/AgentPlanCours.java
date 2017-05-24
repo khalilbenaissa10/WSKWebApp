@@ -20,6 +20,8 @@ import jade.lang.acl.*;
 import jade.util.leap.*;
 import tn.insat.Client.ExampleController;
 import tn.insat.Client.SemaphoreClass;
+import tn.insat.Client.SingletonEtudiant;
+import tn.insat.Client.SingletonQuestion;
 import tn.insat.ontologies.*;
 
 /**
@@ -63,6 +65,17 @@ public class AgentPlanCours extends Agent implements Vocabulary, IAgentPlanCours
                              }
                          });
                      }
+                     else if(obj instanceof CreateRessource){
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 CreateRessource aff = (CreateRessource) obj ;
+                                 createRessource(aff);
+
+                             }
+                         });
+                     }
                      else if(obj instanceof ListeCoursSearchDescription){
                          addBehaviour(new OneShotBehaviour() {
 
@@ -86,6 +99,18 @@ public class AgentPlanCours extends Agent implements Vocabulary, IAgentPlanCours
                              }
                          });
                      }
+                     else if(obj instanceof RessourceByCours) {
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 RessourceByCours aff = (RessourceByCours) obj;
+                                 ressourcesByCours(aff);
+
+                             }
+                         });
+                     }
+
                      else {
                          addBehaviour(new OneShotBehaviour() {
 
@@ -97,6 +122,8 @@ public class AgentPlanCours extends Agent implements Vocabulary, IAgentPlanCours
                              }
                          });
                      }
+
+
 
 
                  }
@@ -124,6 +151,16 @@ public class AgentPlanCours extends Agent implements Vocabulary, IAgentPlanCours
     }
 
 
+    public void createRessource(CreateRessource ic) {
+
+        System.out.println(ic.getDescription_ressource());
+        sendMessage(ACLMessage.REQUEST,(CreateRessource) ic);
+
+    }
+
+
+
+
     public void listerAllCours(){
 
        ListeAllCours lc = new ListeAllCours();
@@ -145,6 +182,13 @@ public class AgentPlanCours extends Agent implements Vocabulary, IAgentPlanCours
         sendMessage(ACLMessage.QUERY_REF, liste_search);
 
     }
+
+    public void ressourcesByCours(RessourceByCours aff){
+
+        sendMessage(ACLMessage.QUERY_REF, aff);
+
+    }
+
 
 
    
@@ -215,6 +259,16 @@ public class AgentPlanCours extends Agent implements Vocabulary, IAgentPlanCours
 
 
                       }
+                      else if (result.getValue()  instanceof Ressource) {
+
+                          Ressource ress = (Ressource)result.getValue() ;
+
+                          SingletonEtudiant.setRessource(ress);
+                          SemaphoreClass.ressourceInformation_sem.release();
+
+
+
+                      }
                       else if (result.getValue()  instanceof ArrayList) {
 
                           ArrayList lcs = (ArrayList) result.getValue() ;
@@ -222,6 +276,12 @@ public class AgentPlanCours extends Agent implements Vocabulary, IAgentPlanCours
                               java.util.ArrayList<Cours> L = (java.util.ArrayList<Cours>)lcs.toList();
                               ExampleController.setListe_cours(L);
                               SemaphoreClass.listeAllcours_sem.release();
+
+                          }
+                          else if (lcs.get(0) instanceof Ressource) {
+                              java.util.ArrayList<Ressource> L = (java.util.ArrayList<Ressource>)lcs.toList();
+                              SingletonQuestion.setRessources(L);
+                              SemaphoreClass.listeRessources_sem.release();
 
                           }
 
