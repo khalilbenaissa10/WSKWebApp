@@ -75,4 +75,25 @@ public class ReponseForumRepository implements  IReponseForumRepository{
 
         return a_retourner;
     }
+
+    @Override
+    public ReponseForum update(ReponseForum c) {
+        ReponseForum a_retourner = null;
+        Session session = HibernateUtil.createSessionFactory().openSession();
+
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.update(c);
+            transaction.commit();
+            a_retourner = c;
+        } catch (Exception e) {
+            System.out.println("LOG : Exception lors de Update. Détails => "+e);
+            if (transaction != null)
+                transaction.rollback();
+
+        }
+
+        return a_retourner;
+    }
 }

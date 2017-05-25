@@ -44,6 +44,7 @@ public interface Vocabulary {
    public static final String REPONSE_FORUM_ID = "id_reponseforum";
    public static final String REPONSE_FORUM_TEXT = "text_reponseforum";
    public static final String REPONSE_FORUM_SUJET_FORUM = "sujetforum_reponseforum";
+   public static final String REPONSE_FORUM_APPRECIATED_FORUM = "appreciated_reponseforum";
    public static final String REPONSE_FORUM_ENSEIGNANT= "enseignant_reponseforum";
    public static final String REPONSE_FORUM_ETUDIANT = "etudiant_reponseforum";
    //test
@@ -158,6 +159,10 @@ public interface Vocabulary {
    //information Enseignant
    public static final String INFORMATION_ENSEIGNANT = "Information_enseignant";
    public static final String INFORMATION_ENSEIGNANT_ID="Id_enseignant";
+
+   //ApprecierForum
+   public static final String APPRECIER_FORUM = "Apprecier_reponse_forum";
+   public static final String APPRECIER_FORUM_ID="id_reponseforum";
 
    //list all cours
    public static final String LIST_ALL_COURS= "liste_All_Cours";

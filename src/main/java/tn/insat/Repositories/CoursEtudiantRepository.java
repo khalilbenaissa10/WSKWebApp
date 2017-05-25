@@ -41,7 +41,7 @@ public class CoursEtudiantRepository implements ICoursEtudiantRepository {
             con_et.setEtudiant_asso_connaissance(et);
             con_et.setConnaissance_asso(cr.getConnaissance());
             if(cr.getDescription().equals(et.getCategory_etudiant())){
-                con_et.setRating(3);
+                con_et.setRating(5);
             }
             else{
                 con_et.setRating(0);

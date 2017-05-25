@@ -12,4 +12,8 @@ public interface IConnaissanceEtudiantRepository {
 
      ArrayList<ConnaissanceEtudiant> findConnaissancesByEtudiant(int id_etudiant);
 
+     ConnaissanceEtudiant findByIdConnaissanceIdEtudiant(int idConaissance,int idEtudiant);
+
+     ConnaissanceEtudiant update(ConnaissanceEtudiant c);
+
 }

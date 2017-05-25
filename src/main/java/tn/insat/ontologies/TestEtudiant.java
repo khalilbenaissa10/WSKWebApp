@@ -76,4 +76,16 @@ public class TestEtudiant implements Concept {
     public void setReponseEtudiants(Set<ReponseEtudiant> reponseEtudiants) {
         this.reponseEtudiants = reponseEtudiants;
     }
+
+
+    @Override
+    public boolean equals(Object other){
+        if (other == null) return false;
+        if (other == this) return true;
+        if (!(other instanceof TestEtudiant))return false;
+        TestEtudiant otherMyClass = (TestEtudiant) other;
+        if(otherMyClass.getId_test_etudiant()== (this.getId_test_etudiant())) return true;
+        else return false;
+
+    }
 }

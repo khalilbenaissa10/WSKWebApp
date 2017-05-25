@@ -1,4 +1,6 @@
 package tn.insat.ontologies;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import javax.persistence.*;
 
 
@@ -19,6 +21,9 @@ public class ReponseForum {
 
     @Column(name="TextReponseForum", length=512)
     String text_reponseforum ;
+
+    @Column(name="AppreciatedReponseForum")
+    Boolean appreciated_reponseforum ;
 
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumns( {
@@ -74,5 +79,13 @@ public class ReponseForum {
 
     public void setEtudiant_reponseforum(Etudiant etudiant_reponseforum) {
         this.etudiant_reponseforum = etudiant_reponseforum;
+    }
+
+    public Boolean getAppreciated_reponseforum() {
+        return appreciated_reponseforum;
+    }
+
+    public void setAppreciated_reponseforum(Boolean appreciated_reponseforum) {
+        this.appreciated_reponseforum = appreciated_reponseforum;
     }
 }

@@ -14,4 +14,6 @@ public interface IReponseForumRepository{
     Boolean create(ReponseForum reponseForum);
 
     ReponseForum findById(int id_reponseforum);
+
+    ReponseForum update(ReponseForum c) ;
 }

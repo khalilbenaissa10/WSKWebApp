@@ -118,6 +118,17 @@ public class AgentForum extends Agent implements Vocabulary, IAgentForum {
                              }
                          });
                      }
+                     else if(obj instanceof ApprecierReponseForum) {
+                         addBehaviour(new OneShotBehaviour() {
+
+                             @Override
+                             public void action() {
+                                 ApprecierReponseForum aff = (ApprecierReponseForum) obj;
+                                 apprecierReponseForum(aff);
+
+                             }
+                         });
+                     }
 
                  }
                  else
@@ -169,6 +180,15 @@ public class AgentForum extends Agent implements Vocabulary, IAgentForum {
 
     }
 
+
+
+    public void apprecierReponseForum(ApprecierReponseForum lc){
+
+
+        sendMessage(ACLMessage.REQUEST, lc);
+
+
+    }
 
     public void listerAllSujetsCours(){
 

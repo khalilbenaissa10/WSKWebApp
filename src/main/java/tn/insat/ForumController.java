@@ -131,4 +131,15 @@ public class ForumController {
         return forum ;
 
     }
+
+    @RequestMapping(value = "/apprecierReponseForum/{id}",method=RequestMethod.GET)
+    public @ResponseBody ReponseForum apprecierReponseForum(@PathVariable( "id" ) int id) throws InterruptedException {
+        ApprecierReponseForum apprecier = new ApprecierReponseForum();
+        apprecier.setId_reponseforum(id);
+        operator.send_to_forum(apprecier);
+        SemaphoreClass.informationReponseForum_sem.acquire();
+        ReponseForum reponse = ExampleController.getReponse_forum();
+        ExampleController.setReponse_forum(null);
+        return reponse;
+    }
 }

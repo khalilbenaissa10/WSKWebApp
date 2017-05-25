@@ -156,4 +156,27 @@ public class TestEtudiantRepository implements ITestEtudiantRepository{
 
         return uniques;
     }
+
+
+    public List<TestEtudiant> findByIdTestIdEtudiant(int idCours,int idEtudiant){
+
+        List<TestEtudiant> lc = new ArrayList<TestEtudiant>();
+        TestEtudiant cnn = null ;
+        Session session = HibernateUtil.createSessionFactory().openSession();
+        lc = (ArrayList<TestEtudiant>)session.createCriteria(TestEtudiant.class).list();
+        List<TestEtudiant> retour = new ArrayList<TestEtudiant>();
+
+        for (TestEtudiant c:lc
+                ) {
+            if((c.getTest_asso().getCours_test().getId_cours()==idCours)&&(c.getEtudiant_asso_test().getId_etudiant()==idEtudiant))
+                retour.add(c);
+        }
+
+
+
+        // Clean up !
+        session.close();
+        return ExampleController.rendreUniquesTests(retour) ;
+
+    }
 }

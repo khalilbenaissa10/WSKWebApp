@@ -25,6 +25,7 @@ import jade.util.leap.*;
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -148,6 +149,8 @@ public class AgentServer extends Agent implements Vocabulary {
                      addBehaviour(new HandleCreateEtudiant(myAgent, msg));
                   else if (action instanceof CreateEnseignant)
                      addBehaviour(new HandleCreateEnseignant(myAgent, msg));
+                  else if (action instanceof ApprecierReponseForum)
+                     addBehaviour(new HandleApprecierReponseForum(myAgent, msg));
                   else
                      replyNotUnderstood(msg);
                   break;
@@ -285,6 +288,56 @@ public class AgentServer extends Agent implements Vocabulary {
             send(reply);
             System.out.println("Ressource [" + ress.getDescription_ressource() + " # " +
                     ress.getId_ressource() + "] created!");
+         }
+         catch(Exception ex) { ex.printStackTrace(); }
+      }
+   }
+
+   class HandleApprecierReponseForum extends OneShotBehaviour {
+// ----------------------------------------------------  Handler for a CreateAccount request
+
+      private ACLMessage request;
+
+      HandleApprecierReponseForum(Agent a, ACLMessage request) {
+
+         super(a);
+         this.request = request;
+      }
+
+      public void action() {
+
+         try {
+            ContentElement content = getContentManager().extractContent(request);
+            ApprecierReponseForum ca = (ApprecierReponseForum)((Action)content).getAction();
+            ReponseForum reponse = repo_reponse_forum.findById(ca.getId_reponseforum());
+            reponse.setAppreciated_reponseforum(true);
+            reponse = repo_reponse_forum.update(reponse);
+            Etudiant etudiant = reponse.getEtudiant_reponseforum();
+            Connaissance connaissance = reponse.getSujetforum_reponseforum().getCours_sujetforum().getConnaissance();
+            ConnaissanceEtudiant cnn = repo_connaissances_etudiant.findByIdConnaissanceIdEtudiant(connaissance.getId_connaissance(),etudiant.getId_etudiant());
+            if (cnn != null )
+            {
+               cnn.setRating(cnn.getRating()+1);
+               repo_connaissances_etudiant.update(cnn);
+            }
+
+
+            List<TestEtudiant> listeTestEtudiant = repo_test_etudiant.findByIdTestIdEtudiant(connaissance.getCours_connaissance().getId_cours(),etudiant.getId_etudiant());
+            for (TestEtudiant test : listeTestEtudiant
+                 ) {
+               if(cnn.getRating()>=6){
+                  int aa =Integer.parseInt(test.getNote_test())+2;
+                  test.setNote_test(Integer.toString(aa));
+                  repo_test_etudiant.update(test);
+               }
+            }
+
+            Result result = new Result((Action)content, (ReponseForum)reponse);
+            ACLMessage reply = request.createReply();
+            reply.setPerformative(ACLMessage.INFORM);
+            getContentManager().fillContent(reply, result);
+            send(reply);
+
          }
          catch(Exception ex) { ex.printStackTrace(); }
       }
@@ -1207,7 +1260,7 @@ public class AgentServer extends Agent implements Vocabulary {
             SuggererCours ca = (SuggererCours) ((Action)content).getAction();
             Etudiant etudiant = repo_etudiant.findById(ca.getId_etudiant());
             //traitement collaborative filtering
-            java.util.ArrayList<Etudiant> neighborhood  = createNeighborhood(etudiant,1);
+            java.util.ArrayList<Etudiant> neighborhood  = createNeighborhood(etudiant,2);
             java.util.ArrayList<Cours> listecourssuggeres = new java.util.ArrayList<Cours>();
             java.util.ArrayList<Cours> listecours = repo_cours.findByEtudiant(etudiant.getId_etudiant());
             for (Etudiant etd : neighborhood){

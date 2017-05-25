@@ -16,4 +16,5 @@ public interface ITestEtudiantRepository {
     ArrayList<TestEtudiant> findall();
     ArrayList<TestEtudiant> findBtIdEtudiant(int id_etudiant);
     ArrayList<TestEtudiant> findBtIdTest(int id_test);
+    List<TestEtudiant> findByIdTestIdEtudiant(int idTest,int idEtudiant);
 }

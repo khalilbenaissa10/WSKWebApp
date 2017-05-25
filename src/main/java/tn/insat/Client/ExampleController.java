@@ -97,6 +97,16 @@ public  class ExampleController {
         return uniques;
     }
 
+    public static ArrayList<TestEtudiant> rendreUniquesTests(List<TestEtudiant> le){
+        ArrayList<TestEtudiant> uniques = new ArrayList<TestEtudiant>();
+        for (TestEtudiant element : le) {
+            if (!uniques.contains(element)) {
+                uniques.add(element);
+            }
+        }
+        return uniques;
+    }
+
     public static TestEtudiant getTestEtudiant() {
         return testEtudiant;
     }

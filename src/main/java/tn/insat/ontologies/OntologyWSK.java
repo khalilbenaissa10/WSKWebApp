@@ -105,6 +105,7 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          add(cs, ReponseForum.class);
          cs.add(REPONSE_FORUM_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
          cs.add(REPONSE_FORUM_TEXT, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
+         cs.add(REPONSE_FORUM_APPRECIATED_FORUM, (PrimitiveSchema) getSchema(BasicOntology.BOOLEAN), ObjectSchema.OPTIONAL);
          cs.add(REPONSE_FORUM_SUJET_FORUM,(ConceptSchema) getSchema(SujetForum.class));
          cs.add(REPONSE_FORUM_ETUDIANT,(ConceptSchema) getSchema(Etudiant.class),ObjectSchema.OPTIONAL);
          cs.add(REPONSE_FORUM_ENSEIGNANT,(ConceptSchema) getSchema(Enseignant.class),ObjectSchema.OPTIONAL);
@@ -232,6 +233,10 @@ public class OntologyWSK extends Ontology implements Vocabulary {
          // RessourceByCours
          add(as = new AgentActionSchema(RESSOURCE_BY_COURS),RessourceByCours.class);
          as.add(RESSOURCE_BY_COURS_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+
+         // ApprecierReponseForum
+         add(as = new AgentActionSchema(APPRECIER_FORUM),ApprecierReponseForum.class);
+         as.add(APPRECIER_FORUM_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
 
          // Enseignant
          add(as = new AgentActionSchema(CREATE_ENSEIGNANT), CreateEnseignant.class);
